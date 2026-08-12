@@ -93,6 +93,26 @@ KO_LANG = "ko"
 TASK_EVIDENCE = "증거찾기"
 TASK_ANSWER = "답변찾기"
 
+# 합성증거 증거블록 번호 -> 유형 이름 (build_qa_synthetic.py 의 템플릿과 짝)
+EVIDENCE_TYPES = {
+    1: "메신저 원문", 2: "삭제 메신저 복구", 3: "이메일·첨부파일", 4: "통화내역",
+    5: "위치기록", 6: "차량·주차", 7: "CCTV", 8: "계좌거래", 9: "카드·결제",
+    10: "브라우저 기록", 11: "서버 감사로그", 12: "클라우드·복구",
+    13: "문서·ERP·결재", 14: "SNS", 15: "압수물·감정", 16: "일정·출입통제",
+    17: "교차 타임라인", 19: "보충 원시자료", 20: "증거 연결 인덱스",
+}
+
+
+def evidence_type(evidence_id: str | None) -> str:
+    """'A-008' -> '계좌거래'. 법령 QA 는 evidence_id 가 없어 빈 문자열."""
+    if not evidence_id or "-" not in evidence_id:
+        return ""
+    try:
+        return EVIDENCE_TYPES.get(int(evidence_id.split("-")[1]), "")
+    except ValueError:
+        return ""
+
+
 GROUP_ALL = "ALL"
 GROUP_KO = "ALL(한국어)"
 GROUP_MULTI = "ALL(다국어)"
@@ -100,8 +120,8 @@ GROUP_EVID = "ALL(증거찾기)"
 GROUP_ANS = "ALL(답변찾기)"
 
 CSV_FIELDS = ["config", "question_model", "doc_model", "mode", "sparse_weight",
-              "scope", "neighbor_tolerance", "language", "task", "document",
-              "n_queries", "recall@5", "recall@10", "mrr@10", "ndcg@10"]
+              "scope", "neighbor_tolerance", "group_kind", "language", "task",
+              "document", "n_queries", "recall@5", "recall@10", "mrr@10", "ndcg@10"]
 
 
 # --------------------------------------------------------------------------
@@ -138,6 +158,7 @@ def load_qa(qa_dir: str) -> list[dict]:
             if not gold:
                 raise ValueError(f"{qa['source']} {pair['id']}: 정답 청크가 비어 있습니다.")
             pair["_gold"] = gold
+            pair["_etype"] = evidence_type(pair.get("evidence_id"))
         docs.append({
             "tag": tag,
             "source": qa["source"],
@@ -403,6 +424,7 @@ def evaluate(docs, target_docs, dense_all, sparse_all, layout, encoder,
             results.append({
                 "doc": doc["tag"], "language": doc["language"], "task": doc["task"],
                 "eff_scope": eff_scope, "n_candidates": int(len(ids)),
+                "etype": pair["_etype"],
                 "id": pair["id"], "question": pair["question"], "gold": pair["_gold"],
                 "rank": m["rank"], "top_chunks": ranked, "top_docs": ranked_docs,
                 "top_scores": [round(float(scores[row, p]), 4) for p in cand],
@@ -466,13 +488,14 @@ def build_rows(results, cfg_name: str, qm: str, dm: str, mode: str,
         v = sorted({r["eff_scope"] for r in subset})
         return v[0] if len(v) == 1 else "mixed"
 
-    def row(document, language, task, subset):
+    def row(document, language, task, subset, kind="overall"):
         a = average(subset)
         return {
             "config": cfg_name, "question_model": qm, "doc_model": dm,
             "mode": mode,
             "sparse_weight": sparse_weight if mode == "hybrid" else "",
             "scope": _scopes(subset), "neighbor_tolerance": tolerance,
+            "group_kind": kind,
             "language": language, "task": task, "document": document,
             "n_queries": len(subset),
             **{k: round(a[k], 4) for k in ("recall@5", "recall@10", "mrr@10", "ndcg@10")},
@@ -483,8 +506,24 @@ def build_rows(results, cfg_name: str, qm: str, dm: str, mode: str,
     for r in results:
         by_doc.setdefault(r["doc"], []).append(r)
     for tag in sorted(by_doc):
-        s = by_doc[tag]
-        rows.append(row(tag, s[0]["language"], s[0]["task"], s))
+        sub = by_doc[tag]
+        rows.append(row(tag, sub[0]["language"], sub[0]["task"], sub, "document"))
+
+    # 언어 7종별
+    by_lang = {}
+    for r in results:
+        by_lang.setdefault(r["language"], []).append(r)
+    for lang in sorted(by_lang):
+        rows.append(row(f"LANG({lang})", lang, "mixed", by_lang[lang], "language"))
+
+    # 증거유형 19종별 (증거찾기 문항에만 evidence_id 가 있다)
+    by_type = {}
+    for r in results:
+        if r.get("etype"):
+            by_type.setdefault(r["etype"], []).append(r)
+    for et in sorted(by_type, key=lambda k: -len(by_type[k])):
+        rows.append(row(f"TYPE({et})", "mixed", TASK_EVIDENCE, by_type[et],
+                        "evidence_type"))
 
     ko = [r for r in results if r["language"] == KO_LANG]
     multi = [r for r in results if r["language"] != KO_LANG]
@@ -550,7 +589,7 @@ def task_compare(all_rows, cfg_names):
     n_ev = ev[present[0]]["n_queries"]
     n_an = an[present[0]]["n_queries"]
     width = 12 + 11 * 4 + 12
-    print("■ 과제 유형 비교 — 증거찾기 vs 답변찾기")
+    print("■ 3. 과제 유형 비교 — 증거찾기 vs 답변찾기")
     print(f"  증거찾기: 합성증거 20사건, '~에 해당하는 증거를 찾아주세요' ({n_ev}문항)")
     print(f"  답변찾기: 법령·보고서, '~는 무엇인가' ({n_an}문항)")
     print("-" * width)
@@ -565,15 +604,80 @@ def task_compare(all_rows, cfg_names):
     print("  (nDCG 차이 = 답변찾기 − 증거찾기. 양수면 답변찾기가 더 쉽다는 뜻)")
 
 
+def matrix_block(all_rows, cfg_names, prefix: str, title: str, note: str,
+                 metric: str = "ndcg@10"):
+    """행=그룹, 열=구성, 값=지정 지표. 그룹이 많을 때 폭을 아끼려고 한 지표만 보여준다."""
+    rows = [r for r in all_rows if r["document"].startswith(prefix)]
+    if not rows:
+        return
+    groups, seen = [], set()
+    for r in rows:
+        if r["document"] not in seen:
+            seen.add(r["document"])
+            groups.append(r["document"])
+    present = [c for c in cfg_names if any(r["config"] == c for r in rows)]
+    tbl = {(r["config"], r["document"]): r for r in rows}
+    label_w = max(len(g) for g in groups) + 2
+    width = label_w + 6 + 12 * len(present)
+    print(f"{title}  ({metric})")
+    if note:
+        print(f"  {note}")
+    print("-" * width)
+    print(f"{'group':<{label_w}}{'N':>6}" + "".join(f"{c:>12}" for c in present))
+    print("-" * width)
+    for g in groups:
+        any_r = next(r for r in rows if r["document"] == g)
+        line = f"{g:<{label_w}}{any_r['n_queries']:>6}"
+        for c in present:
+            v = tbl.get((c, g))
+            line += f"{v[metric]:>12.3f}" if v else f"{'-':>12}"
+        print(line)
+    print("-" * width)
+
+
+def single_config_block(all_rows, cfg: str, title: str, note: str):
+    """한 구성의 증거찾기 문서별 성적만 모아서 4개 지표를 모두 보여준다."""
+    rows = [r for r in all_rows
+            if r["config"] == cfg and r["group_kind"] == "document"
+            and r["task"] == TASK_EVIDENCE]
+    if not rows:
+        return
+    rows.sort(key=lambda r: -r["ndcg@10"])
+    label_w = max(len(r["document"]) for r in rows) + 2
+    width = label_w + 6 + 34
+    print(f"{title}")
+    if note:
+        print(f"  {note}")
+    print("-" * width)
+    print(f"{'document':<{label_w}}{'N':>6}{'R@5':>9}{'R@10':>8}{'MRR@10':>9}{'nDCG@10':>9}"[:width])
+    print("-" * width)
+    for r in rows:
+        print(f"{r['document']:<{label_w}}{r['n_queries']:>6}{r['recall@5']:>9.3f}"
+              f"{r['recall@10']:>8.3f}{r['mrr@10']:>9.3f}{r['ndcg@10']:>9.3f}")
+    print("-" * width)
+
+
+GAP = "\n" * 3
+
+
 def print_comparison(all_rows, cfg_names):
-    print("\n" * 3, end="")
-    compare_block(all_rows, cfg_names, GROUP_KO, "■ 구성 비교 — 한국어 문서",
+    print(GAP, end="")
+    compare_block(all_rows, cfg_names, GROUP_KO, "■ 1. 구성 비교 — 한국어 문서",
                   "질문·본문이 모두 한국어 (동일언어 검색)")
-    print("\n" * 3, end="")
-    compare_block(all_rows, cfg_names, GROUP_MULTI, "■ 구성 비교 — 외국어 문서 (한국어 제외)",
+    print(GAP, end="")
+    compare_block(all_rows, cfg_names, GROUP_MULTI, "■ 2. 구성 비교 — 외국어 문서 (한국어 제외)",
                   "질문은 한국어, 본문은 ch/en/pil/rs/uz/vn (교차언어 검색)")
-    print("\n" * 3, end="")
+    print(GAP, end="")
     task_compare(all_rows, cfg_names)
+    print(GAP, end="")
+    matrix_block(all_rows, cfg_names, "TYPE(", "■ 4. 증거유형별 — 무엇이 잘 찾히는가",
+                 "합성증거 19종 증거블록. 문항 많은 순")
+    print(GAP, end="")
+    matrix_block(all_rows, cfg_names, "LANG(", "■ 5. 언어별 — 어느 언어가 어려운가",
+                 "각 언어의 합성증거 + 법령 문서를 합산")
+    print(GAP, end="")
+    single_config_block(all_rows, "bb-hybrid", "■ 6. bb-hybrid 증거찾기 상세",
+                        "dense + sparse 로 합성증거 700문항을 검색한 결과 (nDCG 내림차순)")
     print("\n※ recall@k 는 hit-rate 입니다. 정답 청크 중 하나라도 상위 k 에 들면 1.0 으로"
           " 세며, 표준 Recall(|상위k ∩ 정답| / |정답|)이 아닙니다.")
 
