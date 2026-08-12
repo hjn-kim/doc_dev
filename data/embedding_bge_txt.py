@@ -3,18 +3,20 @@
 """
 TXT 문서 임베딩 (BAAI/bge-m3 / dense / .npz)
 
-data/ 안의 *.txt 를 하나씩 순차로 처리한다. 본문을 토큰 수 기준으로 청킹한 뒤
+txt 폴더 안의 *.txt 를 하나씩 순차로 처리한다. 본문을 토큰 수 기준으로 청킹한 뒤
 bge-m3 로 dense 벡터를 만들어 파일마다 .npz 하나를 남긴다.
 
-    data/ko마약류관리에관한법률.txt
-      -> data/emb_bge_m3/ko마약류관리에관한법률_embeddings.npz
-    data/vn부패및경제범죄...txt
-      -> data/emb_bge_m3/vn부패및경제범죄..._embeddings.npz
+    <base>/txt/ko마약류관리에관한법률.txt
+      -> <base>/emb/ko마약류관리에관한법률_embeddings.npz
 
-기존 embedding.py(Harrier/JSON) 는 그대로 두고, 이 스크립트만 따로 쓴다.
-저장 형식은 embedding.py 와 같아서 src/search.py 의 로더가 그대로 읽는다.
-다만 bge-m3 는 1024차원이라 Harrier .npz 와 같은 폴더에 섞으면 안 된다.
-그래서 출력 기본값을 data/emb_bge_m3 로 분리해 두었다.
+저장 형식은 src/search.py 의 로더가 그대로 읽는다.
+
+경로는 스크립트 위치에 고정하지 않는다. --data 를 주지 않으면 현재 작업 폴더와
+스크립트 폴더 주변에서 *.txt 가 들어 있는 폴더를 찾고, --out 을 주지 않으면
+그 폴더의 형제 폴더인 emb/ 에 저장한다. 덕분에 아래 두 배치가 모두 그대로 돈다.
+
+    document_dev/data/txt  -> document_dev/data/emb      (스크립트: data/ 안)
+    ~/doc_dev/txt          -> ~/doc_dev/emb              (스크립트: 어디에 두든)
 
 .txt 라도 내용이 JSON 이면(en국가마약위협평가.txt 처럼) text/content/body 키를
 찾아 본문만 뽑는다. 평문이면 파일 전체를 본문으로 본다.
@@ -22,12 +24,13 @@ bge-m3 로 dense 벡터를 만들어 파일마다 .npz 하나를 남긴다.
 청킹은 모델 토크나이저 기준이다. 문자 수가 아니라 실제로 모델이 보는 토큰 수로
 자르므로 --chunk-size 가 모델 입력 길이와 정확히 일치한다.
 
-사용 예:
-    python data/data_src/embedding_bge_txt.py --dry-run     # 청킹 결과만 확인
-    python data/data_src/embedding_bge_txt.py               # 전체 (512/128)
-    python data/data_src/embedding_bge_txt.py --limit 5     # 파일당 앞 5청크만
-    python data/data_src/embedding_bge_txt.py --data data/ko마약류관리에관한법률.txt
-    python data/data_src/embedding_bge_txt.py --batch-size 32 --device cuda
+사용 예 (python -m 이 아니라 파일 경로로 실행한다):
+    python embedding_bge_txt.py --dry-run           # 경로/청킹만 확인
+    python embedding_bge_txt.py                     # 전체 (512/128)
+    python embedding_bge_txt.py --data txt/ --out emb/
+    python embedding_bge_txt.py --limit 5           # 파일당 앞 5청크만
+    python embedding_bge_txt.py --data txt/ko마약류관리에관한법률.txt
+    python embedding_bge_txt.py --device cuda --batch-size 32 --overwrite
 
 저장 형식 (.npz):
     embeddings   float32 (N, 1024)  L2 정규화된 dense 벡터
@@ -49,11 +52,10 @@ from pathlib import Path
 
 import numpy as np
 
-# 이 파일은 data/data_src/ 에 있다. 두 단계 위가 프로젝트 루트.
-REPO_ROOT = Path(__file__).resolve().parents[2]
+# 스크립트를 어디에 두든(또는 다른 장비로 복사하든) 경로가 깨지지 않도록
+# parents[N] 으로 루트를 추측하지 않고 실행 시점에 찾는다.
+SCRIPT_DIR = Path(__file__).resolve().parent
 
-DEFAULT_DATA = REPO_ROOT / "data"
-DEFAULT_OUT = REPO_ROOT / "data" / "emb_bge_m3"
 DEFAULT_MODEL = "BAAI/bge-m3"
 
 DEFAULT_CHUNK_SIZE = 512
@@ -165,11 +167,51 @@ def save_npz(path: Path, vectors: np.ndarray, chunks: list[dict], info: dict) ->
 # 파일 하나 처리
 # --------------------------------------------------------------------------
 
+def data_candidates() -> list[Path]:
+    """--data 를 생략했을 때 *.txt 를 찾아볼 후보 폴더 (앞에서부터 우선)."""
+    cwd = Path.cwd()
+    seen, out = set(), []
+    for base in (cwd, SCRIPT_DIR, SCRIPT_DIR.parent):
+        for sub in ("txt", "data/txt", "data", ""):
+            cand = (base / sub).resolve() if sub else base.resolve()
+            if cand not in seen:
+                seen.add(cand)
+                out.append(cand)
+    return out
+
+
+def find_data_dir() -> Path | None:
+    """후보 중 *.txt 가 실제로 들어 있는 첫 폴더를 돌려준다."""
+    for cand in data_candidates():
+        if cand.is_dir() and any(cand.glob("*.txt")):
+            return cand
+    return None
+
+
+def default_out_for(data_root: Path) -> Path:
+    """txt 폴더의 형제 폴더인 emb/ 를 기본 출력지로 삼는다.
+
+        <base>/txt          -> <base>/emb
+        <base>/txt/one.txt  -> <base>/emb
+    """
+    base = data_root.parent if data_root.is_dir() else data_root.parent.parent
+    return base / "emb"
+
+
 def collect_files(data: Path) -> list[Path]:
-    """--data 가 파일이면 그 파일만, 폴더면 바로 아래 *.txt 를 이름순으로."""
+    """--data 가 파일이면 그 파일만, 폴더면 바로 아래 *.txt 를 이름순으로.
+
+    바로 아래에 없으면 하위 폴더까지 한 번 더 훑는다(txt/ 로 옮긴 경우 대비).
+    """
     if data.is_file():
         return [data]
-    return sorted(data.glob("*.txt"))
+    files = sorted(data.glob("*.txt"))
+    if not files:
+        files = sorted(data.rglob("*.txt"))
+        if files:
+            print(f"  [i] {data} 바로 아래에는 없어 하위 폴더까지 찾았습니다 "
+                  f"({len(files)}개)")
+    return files
 
 
 def run_file(src: Path, dst: Path, tokenizer, model, device: str, args) -> dict | None:
@@ -245,19 +287,19 @@ def main() -> None:
         pass
 
     parser = argparse.ArgumentParser(
-        description="data/*.txt 를 토큰 기준으로 청킹해 bge-m3 dense 임베딩을 만든다.",
+        description="txt/*.txt 를 토큰 기준으로 청킹해 bge-m3 dense 임베딩을 만든다.",
         formatter_class=argparse.RawTextHelpFormatter,
     )
     parser.add_argument(
-        "--data", default=DEFAULT_DATA, type=Path,
-        help=f"임베딩할 TXT 파일 또는 폴더 (기본: {DEFAULT_DATA})\n"
+        "--data", default=None, type=Path,
+        help="임베딩할 TXT 파일 또는 폴더\n"
+             "(기본: 현재 폴더/스크립트 폴더 주변에서 *.txt 가 있는 곳을 자동 탐색)\n"
              "폴더면 바로 아래 *.txt 를 이름순으로 하나씩 처리한다",
     )
     parser.add_argument(
-        "--out", default=DEFAULT_OUT, type=Path,
-        help=f"결과를 저장할 폴더 (기본: {DEFAULT_OUT})\n"
-             "파일마다 {파일명}_embeddings.npz 를 만든다\n"
-             "차원이 다르므로 Harrier 용 data/emb 와 섞지 말 것",
+        "--out", default=None, type=Path,
+        help="결과를 저장할 폴더 (기본: --data 폴더의 형제 폴더 emb/)\n"
+             "파일마다 {파일명}_embeddings.npz 를 만든다",
     )
     parser.add_argument(
         "--field", default=None,
@@ -301,11 +343,21 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    data_root: Path = args.data.resolve()
-    if not data_root.exists():
-        sys.exit(f"경로를 찾을 수 없습니다: {data_root}")
+    if args.data is not None:
+        data_root = args.data.resolve()
+        if not data_root.exists():
+            sys.exit(f"경로를 찾을 수 없습니다: {data_root}\n"
+                     f"(현재 작업 폴더: {Path.cwd()})")
+    else:
+        found = find_data_dir()
+        if found is None:
+            looked = "\n".join(f"  - {c}" for c in data_candidates())
+            sys.exit("*.txt 가 있는 폴더를 찾지 못했습니다. --data 로 직접 지정하세요.\n"
+                     f"(현재 작업 폴더: {Path.cwd()})\n찾아본 곳:\n{looked}")
+        data_root = found
 
-    out_dir: Path = args.out.resolve()
+    out_dir: Path = (args.out.resolve() if args.out is not None
+                     else default_out_for(data_root))
 
     files = collect_files(data_root)
     if not files:
