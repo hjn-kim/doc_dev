@@ -1,5 +1,5 @@
 {
-  "source": "pl경찰조사구금심문기소형사사법제도.txt",
+  "source": "pil경찰조사구금심문기소형사사법제도.txt",
   "embedding_file": "pil경찰조사구금심문기소형사사법제도_embeddings.npz",
   "chunking": {
     "model": "BAAI/bge-m3",
@@ -9,11 +9,11 @@
     "n_chunks": 171
   },
   "question_language": "ko",
-  "n_qa": 20,
+  "n_qa": 50,
   "note": "정답 위치는 answer_chunk_index(0-based)이며 token_start/token_end는 해당 청크의 BGE-M3 토큰 구간입니다. overlap=128이므로 인접 청크에 정답 근거가 부분적으로 중복될 수 있습니다.",
   "qa_pairs": [
     {
-      "id": "pl-001",
+      "id": "pil-001",
       "question": "형사사법제도에서 자백에 대한 의존이 고문과 학대의 주요 유인이 되는 이유는 무엇이며, APT가 제시하는 대안적 조사 기법은 무엇인가?",
       "answer_chunk_index": 6,
       "token_start": 2304,
@@ -22,7 +22,7 @@
       "answer_snippet": "na pagsalalay sa mga pag-amin sa loob ng sistema ng hustisyang kriminal ay bumubuo sa isa sa mga pangunahing insentibo para sa tortyur at pagmamaltrato. Ang mga interogasyon ng pulisya na may kasamang"
     },
     {
-      "id": "pl-002",
+      "id": "pil-002",
       "question": "필리핀 마르코스 정권의 계엄령 선포에 사용된 대통령 포고령의 번호와 그 내용은 무엇인가?",
       "answer_chunk_index": 12,
       "token_start": 4608,
@@ -31,8 +31,8 @@
       "answer_snippet": "walang due process ay malawakang ginagawa ng estado sa pamamagitan ng mga serye na kautusan ng Pangulo.”1 Ang mga kautusang ito ang nagsuspinde ng mga pananggala at naglikha ng mga kondisyon na nagdul"
     },
     {
-      "id": "pl-003",
-      "question": "New People's Army 관련 혐의로 강제실종과 고문을 당한 마날로(Manalo) 형제 사건은 언제, 어디에서 발생했는가?",
+      "id": "pil-003",
+      "question": "필리핀에서 New Peopile's Army 관련 혐의로 강제실종과 고문을 당한 마날로(Manalo) 형제 사건은 언제, 어디에서 발생했는가?",
       "answer_chunk_index": 18,
       "token_start": 6912,
       "token_end": 7424,
@@ -40,7 +40,7 @@
       "answer_snippet": "long, ekstrahudisyal na pamamaslang, sapilitang pagkawala, tortyur at panliligalig ng mga sibilyan na pinaghihinalaang sumusuporta sa PKP/NPA sa buong bansa.23 Ang sapilitang pagkawala at tortyur nina"
     },
     {
-      "id": "pl-004",
+      "id": "pil-004",
       "question": "필리핀이 1986년에 비준하거나 가입한 주요 국제 인권조약 두 가지는 무엇인가?",
       "answer_chunk_index": 23,
       "token_start": 8832,
@@ -49,7 +49,7 @@
       "answer_snippet": "kasalanang maparurusahan ng mga masakit (affilictive) o kapital na parusa, o kanilang mga katumbas.36 20 PAGSULONG NG KULTURA NG PAGPIGIL SA TORTYUR SA TIMOG-SILANGANG ASYA Iniutos ng parehong artikul"
     },
     {
-      "id": "pl-005",
+      "id": "pil-005",
       "question": "필리핀 공화국법 제9745호가 금지하는 구금 형태와 구금자에게 보장하는 권리는 무엇인가?",
       "answer_chunk_index": 29,
       "token_start": 11136,
@@ -58,7 +58,7 @@
       "answer_snippet": "digang kasunduan laban sa tortyur. Nakasaad na ang karapatan na hindi pagsailalim sa tortyur ay isang ganap at hindi maaaring labagin o limitahan na karapatan sa anumang sitwasyon. Ang estado ng digma"
     },
     {
-      "id": "pl-006",
+      "id": "pil-006",
       "question": "필리핀에서 영장 없이 체포한 경우 당국이 사건을 제기해야 하는 시간 제한은 얼마이며, 무엇에 따라 달라지는가?",
       "answer_chunk_index": 35,
       "token_start": 13440,
@@ -67,7 +67,7 @@
       "answer_snippet": "patuloy ang Pambansang Pulisya ng Pilipinas at Sandatahang Lakas ng Pilipinas na patuloy sa pagkulong ng mga suspek sa lihim na mga kulungan, mga ligtas na bahay at mga kampo ng militar. Bagamat ang m"
     },
     {
-      "id": "pl-007",
+      "id": "pil-007",
       "question": "필리핀 반고문법에서 상급자가 고문 행위의 정범으로 책임을 지게 되는 요건은 무엇인가?",
       "answer_chunk_index": 41,
       "token_start": 15744,
@@ -76,8 +76,8 @@
       "answer_snippet": "hihiya,pagkahamk sa huli.75 Isinasaad sa Batas ng Republika blg. 9745 na ang sinumang tao ay maaring managot bilang prinsipal kung kasama sila sa mga gumawa ng tortyur, o iba pang malupit, di-makatao "
     },
     {
-      "id": "pl-008",
-      "question": "고문 피해자에 대한 의료 검진이 지연될 경우 수사에 어떤 영향을 미치며, 검진 비용은 실제로 어떻게 처리되는가?",
+      "id": "pil-008",
+      "question": "필리핀에서 고문 피해자에 대한 의료 검진이 지연될 경우 수사에 어떤 영향을 미치며, 검진 비용은 실제로 어떻게 처리되는가?",
       "answer_chunk_index": 47,
       "token_start": 18048,
       "token_end": 18560,
@@ -85,7 +85,7 @@
       "answer_snippet": "sila ay mayroong karapatang ganito at hindi ito ipinaalam sa kanila ng mga awtoridad. Sa malinaw na kadahilanan, ang mga awtoridad ay nag-aatubili na dalhin ang mga biktima ng tortyur sa isang medikal"
     },
     {
-      "id": "pl-009",
+      "id": "pil-009",
       "question": "필리핀 Aberca v Ver 사건은 제소 후 몇 년이 지났으며, 원고들은 어떤 상태에 놓여 있는가?",
       "answer_chunk_index": 53,
       "token_start": 20352,
@@ -94,7 +94,7 @@
       "answer_snippet": "pala (maliban kapag ang mga tao na pagtatapat ay nagiging saksi ng Estado); kalayaan mula sa labis-labis na multa o malupit at kakaibang parusa, maliban kung ang parehong ay iginiit o ipinataw alinsun"
     },
     {
-      "id": "pl-010",
+      "id": "pil-010",
       "question": "2012년 제정된 필리핀 공화국법 제10353호는 인권위원회의 어떤 권한을 강화했는가?",
       "answer_chunk_index": 59,
       "token_start": 22656,
@@ -103,7 +103,7 @@
       "answer_snippet": "at Pagbisita ng Komisyon,132 na nagsusumite sa mga miyembro ng Komisyon ng mga regular na buwanang ulat sa lahat ng mga gawain ng pagbisita, pati na rin ang espesyal na ulat na maaaring kailanganin. A"
     },
     {
-      "id": "pl-011",
+      "id": "pil-011",
       "question": "필리핀에서 법 규정과 실제 관행 사이에 큰 격차가 생긴 역사적 배경으로 제시된 요인들은 무엇인가?",
       "answer_chunk_index": 64,
       "token_start": 24576,
@@ -112,7 +112,7 @@
       "answer_snippet": "batas ay patuloy na minamaliit o binabalewala ang mga karapatan ng mga bilanggo at hindi binibigyan-pansin ang ganap na pagbabawal sa tortyur. Ang problemang ito ay pawang malalim. Tatlong daang taon "
     },
     {
-      "id": "pl-012",
+      "id": "pil-012",
       "question": "인도네시아 개혁(reformasi) 초기에 증가한 지역 간 폭력의 배경과, 군부 개입에 대한 의혹은 무엇인가?",
       "answer_chunk_index": 70,
       "token_start": 26880,
@@ -121,7 +121,7 @@
       "answer_snippet": "hindi bababa sa kalahati ng isang milyong katao patay.163 Ang mga unang taon ng reformasi 54 PAGSULONG NG KULTURA NG PAGPIGIL SA TORTYUR SA TIMOG-SILANGANG ASYA ay minarkahan ng isang pagtaas sa mga l"
     },
     {
-      "id": "pl-013",
+      "id": "pil-013",
       "question": "인도네시아 New Order 시기의 고문 실태에 대해 미국 국무부 연례 보고서는 어떻게 기술했는가?",
       "answer_chunk_index": 76,
       "token_start": 29184,
@@ -130,7 +130,7 @@
       "answer_snippet": "tig na ang tortyur mismo ay madalas na nangyayari.178 Para sa panahon mula noong 1998 ang kabanatang ito ay batay sa iba ‘t ibang lokal at internasyonal na mga ulat; ngunit hindi ito nagbibigay ng sap"
     },
     {
-      "id": "pl-014",
+      "id": "pil-014",
       "question": "1999년 동티모르에서 인도네시아 정부가 조직하고 관리한 민병대는 어떤 활동을 했는가?",
       "answer_chunk_index": 82,
       "token_start": 31488,
@@ -139,7 +139,7 @@
       "answer_snippet": "minarkahan ang huling pag-alis ng pwersa ng Indonesia sa pagitan ng Setyembre at Disyembre 1999. ‘Sa East Timor ang pamahalaan ay nag-organisa at pinamahalaan ang pabor na integrasyon ng mga militia n"
     },
     {
-      "id": "pl-015",
+      "id": "pil-015",
       "question": "인도네시아 아체 주에서 샤리아 형벌인 태형이 부과된 범죄에는 어떤 것들이 있는가?",
       "answer_chunk_index": 88,
       "token_start": 33792,
@@ -148,7 +148,7 @@
       "answer_snippet": ". Ang mismong Indonesia ay nagpatibay ng isang secular na anyo ng pamahalaan mua noong kasarinlan, ngunit ang local na suporta para sa pagpapatibay ng sharia ay isang pangunahing isyu 67 Indonesia sa "
     },
     {
-      "id": "pl-016",
+      "id": "pil-016",
       "question": "인도네시아 헌법 제28G조 제2항은 고문에 대해 무엇을 규정하고 있는가?",
       "answer_chunk_index": 94,
       "token_start": 36096,
@@ -157,7 +157,7 @@
       "answer_snippet": "exemption na ito, maraming may kagagawan ng tortyur ay napalaya. Ang Criminal Code ay hindi naglalaman ng mga pagkakasala ng mga di-awtorisado o hindi opisyal na pagkulong ng mga opisyal ng Estado. Mg"
     },
     {
-      "id": "pl-017",
+      "id": "pil-017",
       "question": "인도네시아에서 수사 및 기소 단계별로 허용되는 최대 구금 기간은 각각 얼마인가?",
       "answer_chunk_index": 100,
       "token_start": 38400,
@@ -166,7 +166,7 @@
       "answer_snippet": "mga pisikal na ebidensya, o ulitin ang pagkakasala.276 Ang pinakamahabang panahon ng pagkulong sa panahon ng imbestigasyon at pag-uusig ay: • Hanggang 20 mga araw para sa imbestigasyon, sa pag-udyok n"
     },
     {
-      "id": "pl-018",
+      "id": "pil-018",
       "question": "인도네시아 인권법원의 동티모르 관련 재판에서 유죄 판결을 받은 사람 중 최종적으로 형이 유지된 사람은 몇 명인가?",
       "answer_chunk_index": 106,
       "token_start": 40704,
@@ -175,7 +175,7 @@
       "answer_snippet": "NG PAGPIGIL SA TORTYUR SA TIMOG-SILANGANG ASYA paglabag ng kabuuang karapatang pantao. Ang mga paglilitis ay isinagawa sa korte ng karapatang pantao noong 2002 at 2003. Anim ay nahatulang nagkasala at"
     },
     {
-      "id": "pl-019",
+      "id": "pil-019",
       "question": "인도네시아에서 구금자 가족에 대한 체포 통지는 실제로 어떻게 이루어지며, 정치범의 변호인 접근은 어떠한가?",
       "answer_chunk_index": 111,
       "token_start": 42624,
@@ -184,13 +184,283 @@
       "answer_snippet": "aresto sa lalong madaling panahon matapos ito maganap, karaniwang sa pamamgitan ng nakasulat na abiso na inihatid sa bahay ng nakakulong.321 Sabi ng iba na ang mga miyembro ng pamilya ay maabisuhan la"
     },
     {
-      "id": "pl-020",
+      "id": "pil-020",
       "question": "인도네시아에서 고문 방지와 관련된 세 가지 독립 감시 기구는 무엇이며 각각 언제 설립되었는가?",
       "answer_chunk_index": 117,
       "token_start": 44928,
       "token_end": 45440,
       "token_count": 512,
       "answer_snippet": "ANGANG ASYA Pambansang Mekanismo Mga Reklamo at Imbestigasyon Ang Indonesia sa ngayon ay may ilang independiyenteng reklamo at pagmamanman na mga mekanismo, kung saan ang tatlo ay mahalaga para sa pag"
+    },
+    {
+      "id": "pil-021",
+      "question": "APT(고문방지협회)는 어떤 성격의 조직이며 어디에 본부를 두고 있는가?",
+      "answer_chunk_index": 0,
+      "token_start": 0,
+      "token_end": 512,
+      "token_count": 512,
+      "answer_snippet": "https://www.apt.ch/sites/default/files/publications/apt_aseanbrochure_tagalog_contents.pdf PAGSULONG NG KULTURA NG PAGPIGIL SA TORTYUR SA TIMOG-SILANGANG ASYA Mga karanasan mula sa Indonesia at Pilipi"
+    },
+    {
+      "id": "pil-022",
+      "question": "동남아시아 국가에서 변호인 접근권이 법에 규정되어 있음에도 실제로 부딪히는 장애물은 무엇인가?",
+      "answer_chunk_index": 5,
+      "token_start": 1920,
+      "token_end": 2432,
+      "token_count": 512,
+      "answer_snippet": "nggalang ito ay nakinita sa pagbabatas sa karamihan ng mga bansa sa Timog Silangang Asya, pati na sa Indonesia, Pilipinas at Thailand. Gayunpaman, sa pagsasagawa, ang paggamit sa isang abogado ay huma"
+    },
+    {
+      "id": "pil-023",
+      "question": "APT 고문방지 연구 보고서의 저자가 1995년부터 2000년까지 맡았던 직책은 무엇인가?",
+      "answer_chunk_index": 10,
+      "token_start": 3840,
+      "token_end": 4352,
+      "token_count": 512,
+      "answer_snippet": "base sa Geneva, Switzerland, mula 2003 hanggang 2007, at ngayon ay isang miyembro ng lupon ng ISHR. Siya ay Komisyonado ng Australia ng Karapatang Pantao (1995-2000), Komisyonado ng Australian Commiss"
+    },
+    {
+      "id": "pil-024",
+      "question": "유엔 특별보고관 Philip Alston이 언급한 필리핀 장군은 누구이며 어떤 혐의와 관련되는가?",
+      "answer_chunk_index": 16,
+      "token_start": 6144,
+      "token_end": 6656,
+      "token_count": 512,
+      "answer_snippet": "Executions, Philip Alston ay nagbanggit na may mga ulat na nagpapahiwatig na si Heneral Jovito Palparan ay responsable dala ng kanyang nakatataas posisyon sa maraming pamamaslang at sapilitang pagkawa"
+    },
+    {
+      "id": "pil-025",
+      "question": "필리핀은 몇 개의 섬으로 이루어져 있으며 주요 섬 그룹 세 곳은 어디인가?",
+      "answer_chunk_index": 21,
+      "token_start": 8064,
+      "token_end": 8576,
+      "token_count": 512,
+      "answer_snippet": "mga biktima ng tortyur ang mga indibidwal na akusado ng karaniwang krimen pati na rin ng krimeng pulitikal. Batay sa mga tuntunin ng mga heograpikal na distribusyon, ang mga ulat ng tortyur ay naganap"
+    },
+    {
+      "id": "pil-026",
+      "question": "필리핀 공화국법 제7438호에서 '가까운 가족'의 범위와 '경찰 구금 중 조사'의 정의는 무엇인가?",
+      "answer_chunk_index": 27,
+      "token_start": 10368,
+      "token_end": 10880,
+      "token_count": 512,
+      "answer_snippet": "pit na Pamilya’ ay kinabibilangan ng asawa ng nakakulong, nobyo o nobya, magulang o anak, kapatid, lolo o lola o apo, Tito o tita, pamangkin, at tagapag-alaga o alaga.)42 Ang Batas ng Republika Bilang"
+    },
+    {
+      "id": "pil-027",
+      "question": "필리핀에서 고문 피해자의 심리학적 평가 보고서에 포함되어야 하는 항목에는 어떤 것들이 있는가?",
+      "answer_chunk_index": 32,
+      "token_start": 12288,
+      "token_end": 12800,
+      "token_count": 512,
+      "answer_snippet": "ang lagda ng doktor, petsa at lugar; at kaugnay na mga pangsuportang dokumento. Ang mga dapat isama sa mga ulat ng sikolohikal na pagsusuri: ang sikolohiyang kasaysayan ng biktima; ulat ng kanyang pag"
+    },
+    {
+      "id": "pil-028",
+      "question": "2009년 이전 필리핀에서 고문을 처벌하는 근거가 되었던 법 조항은 무엇인가?",
+      "answer_chunk_index": 38,
+      "token_start": 14592,
+      "token_end": 15104,
+      "token_count": 512,
+      "answer_snippet": "naw kung ilan ang napanatili o kung gaano kalayo sa mga kasanayan na natutunan ang ibinahagi sa iba pang mga opisyal. BATAS NG PAG-UUSIG AT PAGSASAGAWA Krimen ng pagmamaltrato Hanggang 2009, walang ba"
+    },
+    {
+      "id": "pil-029",
+      "question": "필리핀에서 상해의 정도에 따른 형사처벌 구분은 노동 불가 기간을 기준으로 어떻게 나뉘는가?",
+      "answer_chunk_index": 43,
+      "token_start": 16512,
+      "token_end": 17024,
+      "token_count": 512,
+      "answer_snippet": "gamit ng, kanyang katawan kaysa sa mga bahagi na nabanggit sa itaas, o nagkakasakit o debilitado at hindi makapagtrabaho para sa panahon ng higit sa 90 araw;84 o nagkasakit, debilitado o hindi makapag"
+    },
+    {
+      "id": "pil-030",
+      "question": "필리핀에서 고문 주장에 대한 입증책임은 누구에게 있으며 그로 인한 결과는 무엇인가?",
+      "answer_chunk_index": 49,
+      "token_start": 18816,
+      "token_end": 19328,
+      "token_count": 512,
+      "answer_snippet": "sa paggawa sa mga opisyal na tungkulin.102 Ang mga gawain ng mga opisyal ng pamahalaan ay ipinapalagay na maayos. Tortyur ay ipinapalagay na hindi na naganap. Ang pasanin ng pagpapatunay ng isang para"
+    },
+    {
+      "id": "pil-031",
+      "question": "필리핀에서 Irene Cortes의 연구에 따르면 1979년부터 1981년까지 Tanodbayan이 연간 접수한 사건은 몇 건인가?",
+      "answer_chunk_index": 54,
+      "token_start": 20736,
+      "token_end": 21248,
+      "token_count": 512,
+      "answer_snippet": ", at usigin ang mga nagkasalang opisyal ng pamahalaan.118 Sa kanyang pag-aaral ng Tanodbayan sa pagitan ng 1979 at 1981, kinakalkula ni Irene Cortes (isang propesor ng batas at sa dakong huli Huwes ng"
+    },
+    {
+      "id": "pil-032",
+      "question": "필리핀 인권위원회(PCHR)가 2011년 정기·불시 방문으로 접촉한 수감자는 몇 명이며 2010년 방문 횟수는?",
+      "answer_chunk_index": 60,
+      "token_start": 23040,
+      "token_end": 23552,
+      "token_count": 512,
+      "answer_snippet": "Halimbawa, nakalkula ng 2011 Taunang Ulat na naabot ng PCHR ang kabuuang 46,170 na mga bihag sa panahon ng regular at biglaang pagbisita.136 Noong 2010, isinasaad ng Taunang Ulat na nagsagawa ng 520 m"
+    },
+    {
+      "id": "pil-033",
+      "question": "필리핀에서 고문방지법이 거의 효과를 내지 못하는 이유로 제시된 요인들은 무엇인가?",
+      "answer_chunk_index": 66,
+      "token_start": 25344,
+      "token_end": 25856,
+      "token_count": 512,
+      "answer_snippet": "patuloy na pagsasagawa ng mahabang detensyon bago ang pagsampa ng mga kaso, sa kabila ng kriminalisasyon ng pagsasagawa ng mga ito, ay nagtataguyod ng mga gawa ng tortyur. Ipinapaliwanag ng iba’t iban"
+    },
+    {
+      "id": "pil-034",
+      "question": "인도네시아는 언제 동티모르를 침공했으며 하비비 대통령은 어떤 조치를 허용했는가?",
+      "answer_chunk_index": 71,
+      "token_start": 27264,
+      "token_end": 27776,
+      "token_count": 512,
+      "answer_snippet": "sa pagtamo ng kalayaan nang sumalakay ang Indonesia at inokupahan ang mga teritoryo noong Disyembre 1975 at kalaunan ay isinama ang mga ito sa Indonesia. Ang paghahari ng mga Indonesiyo ay malupit at "
+    },
+    {
+      "id": "pil-035",
+      "question": "인도네시아 북수마트라에서 보고된 'shoot to wound' 정책은 무엇이며 고문 특별보고관은 언제 처음 인도네시아를 방문했는가?",
+      "answer_chunk_index": 77,
+      "token_start": 29568,
+      "token_end": 30080,
+      "token_count": 512,
+      "answer_snippet": "ulat ay tumukoy sa paulit-ulit na isang patakaran ng ‘shoot to wound’ sa Hilagang Sumatra, kung saan ang mga kriminal na suspek ay madalas na binabaril sa mga binti ng mga pulis habang diumano’y sinus"
+    },
+    {
+      "id": "pil-036",
+      "question": "인도네시아에서 고문과 학대가 이루어지는 시점과 장소, 그리고 그 목적은 무엇인가?",
+      "answer_chunk_index": 81,
+      "token_start": 31104,
+      "token_end": 31616,
+      "token_count": 512,
+      "answer_snippet": "mga gawain ng tortyur at pagmamaltrato ay isinagawa nang habang o pagkatapos ng pag-arest o habang 62 PAGSULONG NG KULTURA NG PAGPIGIL SA TORTYUR SA TIMOG-SILANGANG ASYA nakakulong. Ang ilang mga bikt"
+    },
+    {
+      "id": "pil-037",
+      "question": "인도네시아 보안·경찰 병력의 과도한 무력 사용이 특히 보고된 지역과 부대는 어디인가?",
+      "answer_chunk_index": 87,
+      "token_start": 33408,
+      "token_end": 33920,
+      "token_count": 512,
+      "answer_snippet": "iba pang mga mapagkukunan, ng kalakaran at labis na paggamit ng puwersa at malawakang pagpapahirap at iba pang malupit, di-makatao at nakahihiyang pagtrato o parusa ng mga miyembro ng seguridad at puw"
+    },
+    {
+      "id": "pil-038",
+      "question": "인도네시아 형법상 고문은 별도의 범죄로 규정되어 있는가?",
+      "answer_chunk_index": 92,
+      "token_start": 35328,
+      "token_end": 35840,
+      "token_count": 512,
+      "answer_snippet": "go, ang Criminal Code238 at ang Criminal Procedure Code.239 Bukod pa rito, ang mga tiyak na batas ay saklaw ang partikular na mga isyu o pangyayari, kabilang na ang karapatang pantao. Ang Tortyur ay h"
+    },
+    {
+      "id": "pil-039",
+      "question": "인도네시아 형사소송법은 체포 시 피의자 가족에게 무엇을 하도록 규정하고 있는가?",
+      "answer_chunk_index": 98,
+      "token_start": 37632,
+      "token_end": 38144,
+      "token_count": 512,
+      "answer_snippet": "ay naglalaman ng ilang mga probisyon na idinisenyo upang protektahan ang mga kriminal na suspek o nakakulong mula sa tortyur o pagmamaltrato. Sa ilang mga lugar ito ay dinadagdagan ng mga regulasyon n"
+    },
+    {
+      "id": "pil-040",
+      "question": "인도네시아의 법적 보호 실태에 대해 미국 국무부 보고서는 어떻게 평가했는가?",
+      "answer_chunk_index": 103,
+      "token_start": 39552,
+      "token_end": 40064,
+      "token_count": 512,
+      "answer_snippet": "mga 78 PAGSULONG NG KULTURA NG PAGPIGIL SA TORTYUR SA TIMOG-SILANGANG ASYA paghatol at magaan na parusa. Sa mga salita ng isang ulat ng State Department: ‘Sa pagsasagawa ang ligal na proteksyon ay hin"
+    },
+    {
+      "id": "pil-041",
+      "question": "인도네시아 파푸아에서 2010년 촬영된 고문 영상 사건에서 군 검찰이 구형한 형량과 군형법상 최고형은?",
+      "answer_chunk_index": 109,
+      "token_start": 41856,
+      "token_end": 42368,
+      "token_count": 512,
+      "answer_snippet": "buwan, at walong buwan ayon sa pagkakabanggit. Ang mga militar na tagausig ay naghanap ng mga sentensya ng hanggang sa 12 na buwan sa halip na sa pinakahaba na 30 buwan gaya ng ipinahihintulot sa ilal"
+    },
+    {
+      "id": "pil-042",
+      "question": "APT 보고서의 저자가 인도네시아의 고문 방지에서 핵심으로 지목한 것은 무엇인가?",
+      "answer_chunk_index": 114,
+      "token_start": 43776,
+      "token_end": 44288,
+      "token_count": 512,
+      "answer_snippet": "ang pamimilit ay gagamitin. Ang mahina na pangangasiwa ng mga tauhan ng operasyon ay isang ikalawang malaking kakulangan. Ang mga nakatataas na mga opisyal sa pulis at militar ay pinuna sa hindi pagpa"
+    },
+    {
+      "id": "pil-043",
+      "question": "인도네시아에서 조사(inquiry)와 수사(investigation)는 어떻게 구분되며 수사에서 허용되는 조치는?",
+      "answer_chunk_index": 120,
+      "token_start": 46080,
+      "token_end": 46592,
+      "token_count": 512,
+      "answer_snippet": "ito ay pinahintulutan: • Suriin ang mga sulat. • Magsagawa ng paghahanap at pag-kuha • Suriin ang mga bahay, bakuran, mga gusali, at iba pang mga lugar na may-kaugnayan kung saan ang mga partido ay na"
+    },
+    {
+      "id": "pil-044",
+      "question": "인도네시아 Komnas HAM의 일반적 임무를 확대한 조항은 무엇을 규정하며 구금 장소에 대해서는 어떻게 다루는가?",
+      "answer_chunk_index": 125,
+      "token_start": 48000,
+      "token_end": 48512,
+      "token_count": 512,
+      "answer_snippet": "PIGIL SA TORTYUR SA TIMOG-SILANGANG ASYA tungkulin ng Komnas HAM sa ilalim ng batas nito.387 Ang isang sumunod na probisyon, ang pagpapalawak ng pangkalahatang tungkulin nito, ay nagbibigay kapangyari"
+    },
+    {
+      "id": "pil-045",
+      "question": "인도네시아에서 고문을 낳는 제도적 결함으로 지적된 항목들은 무엇인가?",
+      "answer_chunk_index": 129,
+      "token_start": 49536,
+      "token_end": 50048,
+      "token_count": 512,
+      "answer_snippet": "tortyur. • Hindi sapat na pananagutan na hindi sinisiguro ang wastong pangangasiwa ng mga junior na opisyal at hindi ginagawa na ang mga junior officer, kanilang mga superior, at mga tagapamahala na r"
+    },
+    {
+      "id": "pil-046",
+      "question": "각주에서 인용된 필리핀 공화국법 제7438호와 제9745호의 조항 번호는 무엇인가?",
+      "answer_chunk_index": 134,
+      "token_start": 51456,
+      "token_end": 51968,
+      "token_count": 512,
+      "answer_snippet": "Republika Bilang 7438, 1992 (Philippines), sek. 2 42. Batas ng Republika Bilang 7438, 1992 (Philippines), sek. 2 43. Batas ng Republika Bilang 7438, 1992 (Philippines), sek. 2 44. Batas ng Republika B"
+    },
+    {
+      "id": "pil-047",
+      "question": "필리핀 Evangelista 사건에서 촬영된 고문 방식은 무엇이었는가?",
+      "answer_chunk_index": 138,
+      "token_start": 52992,
+      "token_end": 53504,
+      "token_count": 512,
+      "answer_snippet": "ng Republika Blg. 9745, 2009 (Pilipinas), sek. 21. 91. Pagpapatupad ng mga Patakaran at Regulasyon ng Batas ng Republika blg. 9745, 2010 (Pilipinas), sek. 45 92. Batas Blg. 3326, 1926 (Pilipinas), sek"
+    },
+    {
+      "id": "pil-048",
+      "question": "필리핀 옴부즈만의 연례보고서는 어느 기간분이 온라인으로 제공되는가?",
+      "answer_chunk_index": 143,
+      "token_start": 54912,
+      "token_end": 55424,
+      "token_count": 512,
+      "answer_snippet": "maraming beses (pistolwhipping) at pagsipa ng mga sibilyan sa Maynila.) Ang mga Taunang ulat ng Ombudsman ay maaaring makuha sa pangunahing tanggapan nito. Ang Taunang ulat mula 2004 hanggang 2012 ay "
+    },
+    {
+      "id": "pil-049",
+      "question": "APT 보고서의 인도네시아 부분에서 '파푸아'라는 용어는 어떤 범위를 가리키는가?",
+      "answer_chunk_index": 147,
+      "token_start": 56448,
+      "token_end": 56960,
+      "token_count": 512,
+      "answer_snippet": "natang ito ay tumutukoy sa buong rehiyon (ibig sabihin, parehong mga probinsya) bilang Papua. 170. Tignan ang Asian Human Rights Commission and International Coalition for Papua, The Neglected Genocid"
+    },
+    {
+      "id": "pil-050",
+      "question": "APT 고문방지 보고서에서 Taser는 어떤 장치로 설명되며 충격 수준은 어떻게 조절되는가?",
+      "answer_chunk_index": 156,
+      "token_start": 59904,
+      "token_end": 60416,
+      "token_count": 512,
+      "answer_snippet": "Ang mga Tasers ay ang maliit na nahahawakang aparato na naghahatid ng pangunguryente kapag nadikit sa mga tao o bagay. Ang antas ng pagkabigla ay maaaring matama ang panukat mula sa menor hanggang nak"
     }
   ]
 }

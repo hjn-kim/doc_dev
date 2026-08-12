@@ -1,47 +1,45 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-TXT 문서 임베딩 (BAAI/bge-m3 / dense / .npz)
+"""TXT 문서 임베딩 - BAAI/bge-m3, dense + sparse 하이브리드 (.npz)
 
-txt 폴더 안의 *.txt 를 하나씩 순차로 처리한다. 본문을 토큰 수 기준으로 청킹한 뒤
-bge-m3 로 dense 벡터를 만들어 파일마다 .npz 하나를 남긴다.
+txt 폴더의 *.txt 를 토큰 기준으로 청킹한 뒤 두 가지 벡터를 함께 만든다.
 
-    <base>/txt/ko마약류관리에관한법률.txt
-      -> <base>/emb/ko마약류관리에관한법률_embeddings.npz
+    dense  : 마지막 레이어 CLS 토큰 -> L2 정규화 (1024차원). 내적 = 코사인.
+    sparse : ReLU(sparse_linear(hidden_state)) 로 토큰별 lexical 가중치를 구하고,
+             같은 토큰 id 가 여러 번 나오면 최댓값만 남긴다 (BGE-M3 방식).
+             특수토큰(CLS/SEP/EOS/PAD/UNK)은 제외한다.
+             질의-문서 점수는 공통 토큰의 가중치 곱의 합이다.
 
-저장 형식은 src/search.py 의 로더가 그대로 읽는다.
+sparse 헤드(sparse_linear.pt)는 BAAI/bge-m3 저장소에만 있다. KURE-v1 에는 없으므로
+KURE 쪽은 embedding_kure_txt.py 로 dense 만 만든다.
 
 경로는 스크립트 위치에 고정하지 않는다. --data 를 주지 않으면 현재 작업 폴더와
-스크립트 폴더 주변에서 *.txt 가 들어 있는 폴더를 찾고, --out 을 주지 않으면
-그 폴더의 형제 폴더인 emb/ 에 저장한다. 덕분에 아래 두 배치가 모두 그대로 돈다.
+스크립트 폴더 주변에서 *.txt 가 있는 폴더를 찾고, --out 을 주지 않으면 그 폴더의
+형제 폴더인 emb/ 에 저장한다.
 
-    document_dev/data/txt  -> document_dev/data/emb      (스크립트: data/ 안)
-    ~/doc_dev/txt          -> ~/doc_dev/emb              (스크립트: 어디에 두든)
-
-.txt 라도 내용이 JSON 이면(en국가마약위협평가.txt 처럼) text/content/body 키를
-찾아 본문만 뽑는다. 평문이면 파일 전체를 본문으로 본다.
-
-청킹은 모델 토크나이저 기준이다. 문자 수가 아니라 실제로 모델이 보는 토큰 수로
-자르므로 --chunk-size 가 모델 입력 길이와 정확히 일치한다.
+    document_dev/data/txt  -> document_dev/data/emb/bgem3   (스크립트: data/ 안)
+    ~/doc_dev/txt          -> ~/doc_dev/emb/bgem3           (스크립트: 어디에 두든)
 
 사용 예 (python -m 이 아니라 파일 경로로 실행한다):
-    python embedding_bge_txt.py --dry-run           # 경로/청킹만 확인
-    python embedding_bge_txt.py                     # 전체 (512/128)
-    python embedding_bge_txt.py --data txt/ --out emb/
-    python embedding_bge_txt.py --limit 5           # 파일당 앞 5청크만
-    python embedding_bge_txt.py --data txt/ko마약류관리에관한법률.txt
-    python embedding_bge_txt.py --device cuda --batch-size 32 --overwrite
+    python data/embedding_bge_txt.py --dry-run          # 경로/청킹만 확인
+    python data/embedding_bge_txt.py                    # 전체 (512/128)
+    python data/embedding_bge_txt.py --device cuda --batch-size 32
+    python data/embedding_bge_txt.py --no-sparse        # dense 만
+    python data/embedding_bge_txt.py --data txt/ --out emb/bgem3 --overwrite
 
 저장 형식 (.npz):
-    embeddings   float32 (N, 1024)  L2 정규화된 dense 벡터
-    texts        <U      (N,)       청크 원문
-    chunk_index  int32   (N,)       청크 순번
-    token_start  int32   (N,)       원문 토큰 기준 시작 위치
-    token_end    int32   (N,)       원문 토큰 기준 끝 위치
-    token_count  int32   (N,)       청크 토큰 수
-    info         str                 설정/출처를 담은 JSON 문자열
+    embeddings      float32 (N, 1024)  L2 정규화된 dense 벡터
+    texts           <U      (N,)       청크 원문
+    chunk_index     int32   (N,)       청크 순번
+    token_start     int32   (N,)       원문 토큰 기준 시작 위치
+    token_end       int32   (N,)       원문 토큰 기준 끝 위치
+    token_count     int32   (N,)       청크 토큰 수
+    sparse_indices  int32              CSR 열 인덱스 (토큰 id)      [--no-sparse 면 없음]
+    sparse_values   float32            CSR 값 (lexical 가중치)
+    sparse_indptr   int64   (N+1,)     CSR 행 포인터
+    sparse_dim      int64              어휘 크기
+    info            str                설정/출처를 담은 JSON 문자열
 """
-
 from __future__ import annotations
 
 import argparse
@@ -52,23 +50,18 @@ from pathlib import Path
 
 import numpy as np
 
-# 스크립트를 어디에 두든(또는 다른 장비로 복사하든) 경로가 깨지지 않도록
-# parents[N] 으로 루트를 추측하지 않고 실행 시점에 찾는다.
 SCRIPT_DIR = Path(__file__).resolve().parent
 
 DEFAULT_MODEL = "BAAI/bge-m3"
-
+SPARSE_HEAD_REPO = "BAAI/bge-m3"          # sparse_linear.pt 를 가진 저장소
 DEFAULT_CHUNK_SIZE = 512
 DEFAULT_OVERLAP = 128
-
-# .txt 안이 JSON 일 때 본문으로 볼 key 후보 (순서대로 찾는다)
 TEXT_KEY_CANDIDATES = ("text", "content", "body")
 
 
 # --------------------------------------------------------------------------
 # 본문 추출
 # --------------------------------------------------------------------------
-
 def read_text(path: Path) -> str:
     """UTF-8 로 읽고, 안 되면 cp949 로 한 번 더 시도한다."""
     try:
@@ -78,53 +71,34 @@ def read_text(path: Path) -> str:
 
 
 def extract_text(raw: str, field: str | None) -> tuple[str, str]:
-    """
-    (본문, 어디서 뽑았는지) 를 돌려준다.
-
-    .txt 지만 내용이 JSON object 인 파일이 섞여 있다. 그런 파일은 source/method
-    같은 메타까지 임베딩하지 않도록 본문 key 만 골라낸다.
-    JSON 이 아니면 파일 전체가 본문이다.
-    """
-    stripped = raw.lstrip()
-    if not stripped.startswith("{"):
+    """(본문, 어디서 뽑았는지). .txt 지만 내용이 JSON 인 파일은 본문 key 만 골라낸다."""
+    if not raw.lstrip().startswith("{"):
         return raw, "(평문)"
-
     try:
         data = json.loads(raw)
     except json.JSONDecodeError:
         return raw, "(평문)"
     if not isinstance(data, dict):
         return raw, "(평문)"
-
     if field:
         if not isinstance(data.get(field), str):
             sys.exit(f"'{field}' 를 문자열로 찾지 못했습니다. 있는 key: {list(data)}")
         return data[field], field
-
-    for candidate in TEXT_KEY_CANDIDATES:
-        if isinstance(data.get(candidate), str) and data[candidate].strip():
-            return data[candidate], candidate
-
-    # JSON 이긴 한데 본문 key 가 없다. 통째로 임베딩하기보다 알려 주고 멈춘다.
+    for cand in TEXT_KEY_CANDIDATES:
+        if isinstance(data.get(cand), str) and data[cand].strip():
+            return data[cand], cand
     sys.exit(f"JSON 인데 text/content/body 가 없습니다. 있는 key: {list(data)}")
 
 
 # --------------------------------------------------------------------------
 # 토큰 기준 청킹
 # --------------------------------------------------------------------------
-
 def chunk_by_tokens(text: str, tokenizer, size: int, overlap: int) -> list[dict]:
-    """
-    토큰 size 개씩, 앞 청크와 overlap 개를 겹치도록 자른다.
-
-    슬라이딩 간격(stride)은 size - overlap 이다. 512/128 -> 388 씩 전진.
-    """
+    """토큰 size 개씩, 앞 청크와 overlap 개를 겹치도록 자른다 (stride = size - overlap)."""
     if overlap >= size:
         sys.exit(f"--overlap({overlap}) 은 --chunk-size({size}) 보다 작아야 합니다.")
-
     ids = tokenizer.encode(text, add_special_tokens=False)
     stride = size - overlap
-
     chunks: list[dict] = []
     for start in range(0, len(ids), stride):
         window = ids[start:start + size]
@@ -146,14 +120,119 @@ def chunk_by_tokens(text: str, tokenizer, size: int, overlap: int) -> list[dict]
 
 
 # --------------------------------------------------------------------------
+# 하이브리드 인코더
+# --------------------------------------------------------------------------
+class HybridEncoder:
+    """dense(CLS + L2 정규화) 와 sparse(학습된 lexical 가중치) 를 한 번에 뽑는다."""
+
+    def __init__(self, model_id: str, device: str | None = None, dtype: str = "auto",
+                 max_length: int = 512, with_sparse: bool = True,
+                 sparse_head_repo: str = SPARSE_HEAD_REPO):
+        import torch
+        from transformers import AutoModel, AutoTokenizer
+
+        self.torch = torch
+        self.model_id = model_id
+        self.max_length = max_length
+        self.with_sparse = with_sparse
+        self.sparse_head_repo = sparse_head_repo if with_sparse else None
+
+        if device is None:
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device = device
+
+        torch_dtype = None if dtype in (None, "auto") else getattr(torch, dtype)
+
+        self.tok = AutoTokenizer.from_pretrained(model_id)
+        kw = {"dtype": torch_dtype} if torch_dtype is not None else {}
+        self.model = AutoModel.from_pretrained(model_id, **kw).to(device).eval()
+        self.vocab_size = int(self.model.config.vocab_size)
+
+        # lexical 가중치에서 제외할 특수토큰
+        self.skip_ids = {i for i in (self.tok.cls_token_id, self.tok.sep_token_id,
+                                     self.tok.eos_token_id, self.tok.pad_token_id,
+                                     self.tok.unk_token_id) if i is not None}
+
+        self.sparse_linear = None
+        if with_sparse:
+            from huggingface_hub import hf_hub_download
+            state = torch.load(hf_hub_download(sparse_head_repo, "sparse_linear.pt"),
+                               map_location="cpu")
+            lin = torch.nn.Linear(self.model.config.hidden_size, 1)
+            lin.load_state_dict(state)
+            self.sparse_linear = lin.to(device).eval()
+            if torch_dtype is not None:
+                self.sparse_linear = self.sparse_linear.to(torch_dtype)
+
+    def encode(self, texts: list[str], batch_size: int = 8, progress: bool = False):
+        """-> (dense (N,1024) float32, sparse [dict{token_id: weight}] 또는 None)"""
+        torch = self.torch
+        dense_out: list[np.ndarray] = []
+        sparse_out: list[dict[int, float]] = []
+
+        for i in range(0, len(texts), batch_size):
+            batch = texts[i:i + batch_size]
+            enc = self.tok(batch, padding=True, truncation=True,
+                           max_length=self.max_length, return_tensors="pt").to(self.device)
+            # sparse_linear 는 새로 만든 레이어라 파라미터가 grad 를 요구한다.
+            # dense/sparse 계산을 모두 no_grad 안에서 처리해야 numpy() 로 뺄 수 있다.
+            with torch.no_grad():
+                hidden = self.model(**enc).last_hidden_state
+                dense = torch.nn.functional.normalize(hidden[:, 0], p=2, dim=-1)
+                sw = (torch.relu(self.sparse_linear(hidden)).squeeze(-1)
+                      if self.sparse_linear is not None else None)
+
+            dense_out.append(dense.float().cpu().numpy())
+
+            if sw is not None:
+                w = sw.float().cpu().numpy()
+                ids = enc["input_ids"].cpu().numpy()
+                mask = enc["attention_mask"].cpu().numpy()
+                for row_ids, row_w, row_m in zip(ids, w, mask):
+                    d: dict[int, float] = {}
+                    for tid, val, m in zip(row_ids, row_w, row_m):
+                        if not m or val <= 0:
+                            continue
+                        tid = int(tid)
+                        if tid in self.skip_ids:
+                            continue
+                        if val > d.get(tid, 0.0):        # 같은 토큰은 최댓값만
+                            d[tid] = float(val)
+                    sparse_out.append(d)
+
+            if progress:
+                print(f"\r    {min(i + batch_size, len(texts))}/{len(texts)}",
+                      end="", file=sys.stderr)
+        if progress:
+            print(file=sys.stderr)
+
+        dense = np.vstack(dense_out).astype(np.float32)
+        # fp16 로 돌면 정규화가 미세하게 어긋난다. float32 에서 다시 맞춘다.
+        dense /= np.clip(np.linalg.norm(dense, axis=1, keepdims=True), 1e-12, None)
+        return dense, (sparse_out if self.sparse_linear is not None else None)
+
+
+# --------------------------------------------------------------------------
 # 저장
 # --------------------------------------------------------------------------
+def sparse_to_csr(dicts: list[dict[int, float]]):
+    indptr = np.zeros(len(dicts) + 1, dtype=np.int64)
+    indices: list[int] = []
+    values: list[float] = []
+    for i, d in enumerate(dicts):
+        for k in sorted(d):
+            indices.append(k)
+            values.append(d[k])
+        indptr[i + 1] = len(indices)
+    return (np.asarray(indices, dtype=np.int32),
+            np.asarray(values, dtype=np.float32), indptr)
 
-def save_npz(path: Path, vectors: np.ndarray, chunks: list[dict], info: dict) -> None:
+
+def save_npz(path: Path, dense: np.ndarray, sparse, chunks: list[dict],
+             info: dict, vocab_size: int) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    np.savez_compressed(
-        path,
-        embeddings=vectors.astype(np.float32),
+    payload = dict(
+        embeddings=dense.astype(np.float32),
         texts=np.array([c["text"] for c in chunks]),
         chunk_index=np.array([c["index"] for c in chunks], dtype=np.int32),
         token_start=np.array([c["token_start"] for c in chunks], dtype=np.int32),
@@ -161,14 +240,17 @@ def save_npz(path: Path, vectors: np.ndarray, chunks: list[dict], info: dict) ->
         token_count=np.array([c["token_count"] for c in chunks], dtype=np.int32),
         info=np.array(json.dumps(info, ensure_ascii=False)),
     )
+    if sparse is not None:
+        idx, val, ptr = sparse_to_csr(sparse)
+        payload.update(sparse_indices=idx, sparse_values=val, sparse_indptr=ptr,
+                       sparse_dim=np.array(int(vocab_size), dtype=np.int64))
+    np.savez_compressed(path, **payload)
 
 
 # --------------------------------------------------------------------------
-# 파일 하나 처리
+# 경로 해석
 # --------------------------------------------------------------------------
-
 def data_candidates() -> list[Path]:
-    """--data 를 생략했을 때 *.txt 를 찾아볼 후보 폴더 (앞에서부터 우선)."""
     cwd = Path.cwd()
     seen, out = set(), []
     for base in (cwd, SCRIPT_DIR, SCRIPT_DIR.parent):
@@ -181,47 +263,42 @@ def data_candidates() -> list[Path]:
 
 
 def find_data_dir() -> Path | None:
-    """후보 중 *.txt 가 실제로 들어 있는 첫 폴더를 돌려준다."""
     for cand in data_candidates():
         if cand.is_dir() and any(cand.glob("*.txt")):
             return cand
     return None
 
 
-def default_out_for(data_root: Path) -> Path:
-    """txt 폴더의 형제 폴더인 emb/ 를 기본 출력지로 삼는다.
+def default_out_for(data_root: Path, name: str = "emb/bgem3") -> Path:
+    """txt 폴더의 형제 폴더 emb/<모델> 을 기본 출력지로 삼는다.
 
-        <base>/txt          -> <base>/emb
-        <base>/txt/one.txt  -> <base>/emb
+        <base>/txt -> <base>/emb/bgem3   (bge)
+        <base>/txt -> <base>/emb/kurev1  (kure)
     """
     base = data_root.parent if data_root.is_dir() else data_root.parent.parent
-    return base / "emb"
+    return base.joinpath(*name.split("/"))
 
 
 def collect_files(data: Path) -> list[Path]:
-    """--data 가 파일이면 그 파일만, 폴더면 바로 아래 *.txt 를 이름순으로.
-
-    바로 아래에 없으면 하위 폴더까지 한 번 더 훑는다(txt/ 로 옮긴 경우 대비).
-    """
     if data.is_file():
         return [data]
     files = sorted(data.glob("*.txt"))
     if not files:
         files = sorted(data.rglob("*.txt"))
         if files:
-            print(f"  [i] {data} 바로 아래에는 없어 하위 폴더까지 찾았습니다 "
-                  f"({len(files)}개)")
+            print(f"  [i] {data} 바로 아래에는 없어 하위 폴더까지 찾았습니다 ({len(files)}개)")
     return files
 
 
-def run_file(src: Path, dst: Path, tokenizer, model, device: str, args) -> dict | None:
-    """파일 하나를 청킹해 임베딩한다. 건너뛰면 None."""
+# --------------------------------------------------------------------------
+# 파일 하나 처리
+# --------------------------------------------------------------------------
+def run_file(src: Path, dst: Path, tokenizer, encoder, args) -> dict | None:
     if dst.exists() and not args.overwrite:
         print("  건너뜀 (이미 있음). 다시 만들려면 --overwrite")
         return None
 
     text, origin = extract_text(read_text(src), args.field)
-
     chunks = chunk_by_tokens(text, tokenizer, args.chunk_size, args.overlap)
     if not chunks:
         print("  [!] 청크가 없습니다. 건너뜁니다.")
@@ -235,129 +312,82 @@ def run_file(src: Path, dst: Path, tokenizer, model, device: str, args) -> dict 
         chunks = chunks[:args.limit]
         print(f"  --limit {args.limit} 적용 -> {len(chunks)}개만 임베딩")
 
-    if model is None:      # dry-run
+    if encoder is None:      # dry-run
         print("  미리보기: " + chunks[0]["text"][:120].replace("\n", " ⏎ "))
         return None
 
     started = time.time()
-    # bge-m3 는 문서에도 질의에도 instruction 프리픽스를 붙이지 않는다.
-    vectors = model.encode(
-        [c["text"] for c in chunks],
-        batch_size=args.batch_size,
-        normalize_embeddings=True,
-        convert_to_numpy=True,
-        show_progress_bar=True,
-    )
+    dense, sparse = encoder.encode([c["text"] for c in chunks],
+                                   batch_size=args.batch_size, progress=True)
     elapsed = time.time() - started
-
-    # 모델이 fp16/bf16 으로 돌면 정규화 결과가 노름 1 에서 조금 어긋난다.
-    # 내적을 그대로 코사인 유사도로 쓰려면 float32 에서 한 번 더 맞춘다.
-    vectors = vectors.astype(np.float32)
-    vectors /= np.linalg.norm(vectors, axis=1, keepdims=True)
 
     info = {
         "source": src.name,
         "source_field": origin,
         "model": args.model,
-        "dim": int(vectors.shape[1]),
+        "dim": int(dense.shape[1]),
         "normalized": True,
+        "sparse": sparse is not None,
+        "sparse_head": encoder.sparse_head_repo,
+        "vocab_size": encoder.vocab_size,
         "chunk_size": args.chunk_size,
         "overlap": args.overlap,
         "n_chunks": len(chunks),
-        "device": device,
+        "device": encoder.device,
         "elapsed_sec": round(elapsed, 1),
     }
-    save_npz(dst, vectors, chunks, info)
+    save_npz(dst, dense, sparse, chunks, info, encoder.vocab_size)
 
-    print(f"  임베딩 {vectors.shape[0]}개 x {vectors.shape[1]}차원 - "
+    nnz = sum(len(d) for d in sparse) if sparse else 0
+    extra = f" / sparse 평균 {nnz / max(len(chunks), 1):.0f}토큰" if sparse else ""
+    print(f"  dense {dense.shape[0]}개 x {dense.shape[1]}차원{extra} - "
           f"{elapsed / 60:.1f}분 ({elapsed / max(len(chunks), 1):.2f}초/청크)")
     print(f"  -> {dst.name} ({dst.stat().st_size / 1024 / 1024:.1f}MB)")
     return info
 
 
 # --------------------------------------------------------------------------
-# 실행
-# --------------------------------------------------------------------------
+def build_parser(model_default: str, out_name: str, desc: str):
+    p = argparse.ArgumentParser(description=desc,
+                                formatter_class=argparse.RawTextHelpFormatter)
+    p.add_argument("--data", default=None, type=Path,
+                   help="임베딩할 TXT 파일 또는 폴더\n"
+                        "(기본: 현재 폴더/스크립트 폴더 주변에서 *.txt 가 있는 곳을 자동 탐색)")
+    p.add_argument("--out", default=None, type=Path,
+                   help=f"결과 폴더 (기본: --data 폴더의 형제 폴더 {out_name}/)")
+    p.add_argument("--field", default=None,
+                   help="내용이 JSON 일 때 본문으로 쓸 key (기본: text -> content -> body)")
+    p.add_argument("--model", default=model_default, help=f"임베딩 모델 (기본: {model_default})")
+    p.add_argument("--chunk-size", type=int, default=DEFAULT_CHUNK_SIZE)
+    p.add_argument("--overlap", type=int, default=DEFAULT_OVERLAP)
+    p.add_argument("--batch-size", type=int, default=8, help="GPU 면 32 정도까지 올려도 된다")
+    p.add_argument("--device", default=None, help="cpu / cuda (기본: 자동 판별)")
+    p.add_argument("--dtype", default="auto", help="auto / float32 / float16")
+    p.add_argument("--limit", type=int, default=0, help="파일당 앞 N개 청크만 (테스트용)")
+    p.add_argument("--overwrite", action="store_true")
+    p.add_argument("--dry-run", action="store_true", help="모델을 올리지 않고 청킹만 확인")
+    return p
 
-def main() -> None:
-    # Windows 콘솔(cp949)에서 한글 출력이 깨지지 않도록
+
+def run(args, with_sparse: bool, out_name: str) -> None:
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     except Exception:  # noqa: BLE001
         pass
 
-    parser = argparse.ArgumentParser(
-        description="txt/*.txt 를 토큰 기준으로 청킹해 bge-m3 dense 임베딩을 만든다.",
-        formatter_class=argparse.RawTextHelpFormatter,
-    )
-    parser.add_argument(
-        "--data", default=None, type=Path,
-        help="임베딩할 TXT 파일 또는 폴더\n"
-             "(기본: 현재 폴더/스크립트 폴더 주변에서 *.txt 가 있는 곳을 자동 탐색)\n"
-             "폴더면 바로 아래 *.txt 를 이름순으로 하나씩 처리한다",
-    )
-    parser.add_argument(
-        "--out", default=None, type=Path,
-        help="결과를 저장할 폴더 (기본: --data 폴더의 형제 폴더 emb/)\n"
-             "파일마다 {파일명}_embeddings.npz 를 만든다",
-    )
-    parser.add_argument(
-        "--field", default=None,
-        help="내용이 JSON 일 때 본문으로 쓸 key\n(기본: text -> content -> body 순으로 자동 탐색)",
-    )
-    parser.add_argument(
-        "--model", default=DEFAULT_MODEL,
-        help=f"임베딩 모델 (기본: {DEFAULT_MODEL})",
-    )
-    parser.add_argument(
-        "--chunk-size", type=int, default=DEFAULT_CHUNK_SIZE,
-        help=f"청크당 토큰 수 (기본: {DEFAULT_CHUNK_SIZE})",
-    )
-    parser.add_argument(
-        "--overlap", type=int, default=DEFAULT_OVERLAP,
-        help=f"앞 청크와 겹치는 토큰 수 (기본: {DEFAULT_OVERLAP})",
-    )
-    parser.add_argument(
-        "--batch-size", type=int, default=8,
-        help="한 번에 인코딩할 청크 수 (기본: 8)\nGPU 면 32 정도까지 올려도 된다",
-    )
-    parser.add_argument(
-        "--device", default=None,
-        help="cpu / cuda (기본: 자동 판별)",
-    )
-    parser.add_argument(
-        "--dtype", default="auto",
-        help="모델 연산 dtype: auto / float32 / float16 (기본: auto)",
-    )
-    parser.add_argument(
-        "--limit", type=int, default=0,
-        help="파일당 앞에서부터 N개 청크만 임베딩. 0 이면 전체 (테스트용)",
-    )
-    parser.add_argument(
-        "--overwrite", action="store_true",
-        help="이미 만들어진 .npz 도 다시 만든다 (기본: 건너뜀)",
-    )
-    parser.add_argument(
-        "--dry-run", action="store_true",
-        help="모델을 올리지 않고 청킹 결과만 출력한다",
-    )
-    args = parser.parse_args()
-
     if args.data is not None:
         data_root = args.data.resolve()
         if not data_root.exists():
-            sys.exit(f"경로를 찾을 수 없습니다: {data_root}\n"
-                     f"(현재 작업 폴더: {Path.cwd()})")
+            sys.exit(f"경로를 찾을 수 없습니다: {data_root}\n(현재 작업 폴더: {Path.cwd()})")
     else:
         found = find_data_dir()
         if found is None:
             looked = "\n".join(f"  - {c}" for c in data_candidates())
-            sys.exit("*.txt 가 있는 폴더를 찾지 못했습니다. --data 로 직접 지정하세요.\n"
+            sys.exit("*.txt 가 있는 폴더를 찾지 못했습니다. --data 로 지정하세요.\n"
                      f"(현재 작업 폴더: {Path.cwd()})\n찾아본 곳:\n{looked}")
         data_root = found
 
-    out_dir: Path = (args.out.resolve() if args.out is not None
-                     else default_out_for(data_root))
+    out_dir = args.out.resolve() if args.out is not None else default_out_for(data_root, out_name)
 
     files = collect_files(data_root)
     if not files:
@@ -367,56 +397,31 @@ def main() -> None:
     print(f"출력    : {out_dir}")
     print(f"대상    : {len(files)}개 파일")
     print(f"모델    : {args.model}")
+    print(f"벡터    : dense" + (" + sparse (하이브리드)" if with_sparse else " (dense 전용)"))
     print(f"청킹    : {args.chunk_size}토큰 / 중복 {args.overlap}토큰 "
           f"(간격 {args.chunk_size - args.overlap})")
 
-    # 토크나이저는 모델과 동일한 것을 쓴다 (청크 길이가 모델 입력 길이와 일치하도록).
     print("\n토크나이저 로드 중...")
     from transformers import AutoTokenizer, logging as hf_logging
-    # 본문 전체를 한 번에 토크나이즈하면 "sequence length is longer than..." 경고가 뜬다.
-    # 자른 뒤에 모델로 보내므로 실제 문제가 아니어서 끈다.
     hf_logging.set_verbosity_error()
     tokenizer = AutoTokenizer.from_pretrained(args.model)
 
-    # ---- 모델은 한 번만 올리고 모든 파일에 재사용한다 ----------------------
-    model = None
-    device = args.device or "cpu"
+    encoder = None
     if not args.dry_run:
         print("모델 로드 중... (최초 실행 시 다운로드에 약 2.2GB)")
-        from sentence_transformers import SentenceTransformer
-        import torch
-
-        if args.device is None:
-            device = "cuda" if torch.cuda.is_available() else "cpu"
-
-        # transformers 4.56 부터 torch_dtype 이 dtype 으로 바뀌었다. 옛 버전에 dtype 을
-        # 넘기면 예외 없이 무시되어 fp32 로 도니, 버전을 보고 인자 이름을 고른다.
-        import transformers
-        try:
-            _tf = tuple(int(x) for x in transformers.__version__.split(".")[:2])
-        except ValueError:
-            _tf = (99, 99)
-        dtype_key = "dtype" if _tf >= (4, 56) else "torch_dtype"
-
-        model = SentenceTransformer(args.model, device=device,
-                                    model_kwargs={dtype_key: args.dtype})
-        # bge-m3 기본 입력 길이는 8192 다. 우리는 청크가 그보다 훨씬 짧으니
-        # 잘림 없이 돌면서 메모리도 아끼도록 청크 길이에 맞춰 줄인다(특수토큰 2개 여유).
-        model.max_seq_length = args.chunk_size + 2
-
-        print(f"장치    : {device}")
-        if device == "cpu":
+        encoder = HybridEncoder(args.model, device=args.device, dtype=args.dtype,
+                                max_length=args.chunk_size + 2, with_sparse=with_sparse)
+        print(f"장치    : {encoder.device}")
+        if encoder.device == "cpu":
             print("          [!] CPU 라 느립니다. --limit 로 먼저 소규모 확인을 권합니다.")
 
     total_started = time.time()
-    done = skipped = 0
-    total_chunks = 0
-
+    done = skipped = total_chunks = 0
     for idx, src in enumerate(files, 1):
         dst = out_dir / f"{src.stem}_embeddings.npz"
         print(f"\n[{idx}/{len(files)}] {src.name}")
         try:
-            info = run_file(src, dst, tokenizer, model, device, args)
+            info = run_file(src, dst, tokenizer, encoder, args)
         except OSError as exc:
             print(f"  [!] 읽기 실패, 건너뜁니다: {exc}")
             skipped += 1
@@ -430,10 +435,18 @@ def main() -> None:
     if args.dry_run:
         print("\nDRY-RUN: 모델을 올리지 않고 종료합니다.")
         return
-
     elapsed = time.time() - total_started
     print(f"\n전체 완료 - {elapsed / 60:.1f}분")
     print(f"  임베딩 {done}개 파일 / 청크 {total_chunks:,}개 / 건너뜀 {skipped}개")
+
+
+def main() -> None:
+    p = build_parser(DEFAULT_MODEL, "emb/bgem3",
+                     "txt/*.txt 를 청킹해 bge-m3 dense + sparse 임베딩을 만든다.")
+    p.add_argument("--no-sparse", action="store_true",
+                   help="sparse 를 만들지 않고 dense 만 저장한다")
+    args = p.parse_args()
+    run(args, with_sparse=not args.no_sparse, out_name="emb/bgem3")
 
 
 if __name__ == "__main__":

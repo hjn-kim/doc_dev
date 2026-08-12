@@ -9,9 +9,6 @@
     "<그 블록에만 나오는 대상> <증거 유형>에 해당하는 증거를 찾아주세요."
     예: "김도윤과 박서진 명의 가상계좌의 입출금 거래 내역에 해당하는 증거를 찾아주세요."
 
-  사전 실험 결과 짧고 초점이 좁은 질의가 가장 잘 검색된다(중앙 순위 5위).
-  사건명·범죄사실·금액·장소를 덧붙이면 같은 사건의 다른 블록과도 매칭되어
-  오히려 순위가 떨어졌다(중앙 16~116위). 그래서 대상 + 증거유형만 남긴다.
 
 정답 청크
     블록의 문자 구간을 토크나이저로 토큰 구간으로 바꾼 뒤, npz 의 token_start/
@@ -37,11 +34,10 @@ import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TXT_DIR = os.path.join(ROOT, "data", "txt")
-EMB_DIR = os.path.join(ROOT, "data", "emb")
+EMB_DIR = os.path.join(ROOT, "data", "emb", "bgem3")   # 청크 구간은 BGE 임베딩 기준
 QA_DIR = os.path.join(ROOT, "data", "qa")
 
 LETTERS = string.ascii_uppercase[:20]
-KO_TXT = os.path.join(TXT_DIR, "ko_합성증거_20사건.txt")
 MAX_GOLD = 8                      # 정답이 이보다 많은 청크에 걸치면 변별력이 없다
 
 

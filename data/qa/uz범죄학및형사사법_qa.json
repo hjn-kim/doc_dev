@@ -9,7 +9,7 @@
     "n_chunks": 184
   },
   "question_language": "ko",
-  "n_qa": 20,
+  "n_qa": 50,
   "note": "정답 위치는 answer_chunk_index(0-based)이며 token_start/token_end는 해당 청크의 BGE-M3 토큰 구간입니다. overlap=128이므로 인접 청크에 정답 근거가 부분적으로 중복될 수 있습니다.",
   "qa_pairs": [
     {
@@ -50,7 +50,7 @@
     },
     {
       "id": "uz-005",
-      "question": "범죄로 얻은 수익을 합법화하는 대표적인 방법으로 이 논문이 제시하는 것은 무엇인가?",
+      "question": "우즈베키스탄 형사사법 연구에서 범죄수익을 합법화하는 대표적인 방법으로 제시된 것은 무엇인가?",
       "answer_chunk_index": 38,
       "token_start": 14592,
       "token_end": 15104,
@@ -77,7 +77,7 @@
     },
     {
       "id": "uz-008",
-      "question": "공무원이 여러 사람으로부터 동시에 뇌물을 받은 경우 반복범(повторность)으로 인정되는 기준은 무엇인가?",
+      "question": "우즈베키스탄에서 공무원이 여러 사람으로부터 동시에 뇌물을 받은 경우 반복범(повторность)으로 인정되는 기준은 무엇인가?",
       "answer_chunk_index": 69,
       "token_start": 26496,
       "token_end": 27008,
@@ -95,7 +95,7 @@
     },
     {
       "id": "uz-010",
-      "question": "1년 이하의 자유형이 선고된 경우와 1년을 초과하는 자유형이 선고된 경우, 집행유예 시험기간은 각각 어떻게 정해지는가?",
+      "question": "우즈베키스탄에서 1년 이하의 자유형이 선고된 경우와 1년을 초과하는 자유형이 선고된 경우, 집행유예 시험기간은 각각 어떻게 정해지는가?",
       "answer_chunk_index": 88,
       "token_start": 33792,
       "token_end": 34304,
@@ -122,7 +122,7 @@
     },
     {
       "id": "uz-013",
-      "question": "이 논문이 다루는 행위의 범죄성을 배제하는 사유에는 어떤 것들이 포함되는가?",
+      "question": "우즈베키스탄 형법상 행위의 범죄성을 배제하는 사유에는 어떤 것들이 포함되는가?",
       "answer_chunk_index": 107,
       "token_start": 41088,
       "token_end": 41600,
@@ -131,7 +131,7 @@
     },
     {
       "id": "uz-014",
-      "question": "행위의 범죄성을 배제하는 사유가 확인된 경우 형사소송법 제83조 적용을 둘러싼 학계의 대립된 견해는 무엇인가?",
+      "question": "우즈베키스탄에서 행위의 범죄성을 배제하는 사유가 확인된 경우 형사소송법 제83조 적용을 둘러싼 학계의 대립된 견해는 무엇인가?",
       "answer_chunk_index": 114,
       "token_start": 43776,
       "token_end": 44288,
@@ -140,7 +140,7 @@
     },
     {
       "id": "uz-015",
-      "question": "피고인이 해당 범죄에 관여하지 않았음이 확인된 경우 법원은 형사소송법 몇 조 몇 항에 따라 무죄를 선고하는가?",
+      "question": "우즈베키스탄에서 피고인이 해당 범죄에 관여하지 않았음이 확인된 경우 법원은 형사소송법 몇 조 몇 항에 따라 무죄를 선고하는가?",
       "answer_chunk_index": 120,
       "token_start": 46080,
       "token_end": 46592,
@@ -149,7 +149,7 @@
     },
     {
       "id": "uz-016",
-      "question": "형사소송에서 수사(tergov) 단계와 재판(sud) 단계는 각각 어떤 원리에 따르는가?",
+      "question": "우즈베키스탄 형사소송에서 수사(tergov) 단계와 재판(sud) 단계는 각각 어떤 원리에 따르는가?",
       "answer_chunk_index": 133,
       "token_start": 51072,
       "token_end": 51584,
@@ -158,7 +158,7 @@
     },
     {
       "id": "uz-017",
-      "question": "법원이 직접 입증 기능을 수행한 사례로 제시된 사건에서, 법원은 어느 기관에 무엇을 조회했는가?",
+      "question": "우즈베키스탄 법원이 직접 입증 기능을 수행한 사례로 제시된 사건에서, 법원은 어느 기관에 무엇을 조회했는가?",
       "answer_chunk_index": 139,
       "token_start": 53376,
       "token_end": 53888,
@@ -167,7 +167,7 @@
     },
     {
       "id": "uz-018",
-      "question": "법원을 입증 과정의 의무적 주체 지위에서 배제하자는 주장의 근거는 무엇인가?",
+      "question": "우즈베키스탄에서 법원을 입증 과정의 의무적 주체 지위에서 배제하자는 주장의 근거는 무엇인가?",
       "answer_chunk_index": 145,
       "token_start": 55680,
       "token_end": 56192,
@@ -191,6 +191,276 @@
       "token_end": 65792,
       "token_count": 512,
       "answer_snippet": "whistleblowers) tizimini yo‘lga qo‘yish, bunda qonun buzilishi holatlari yuzasidan belgilangan tartibda xabar bergan shaxslarni moddiy tomondan rag‘batlantirish, ularni turli tazyiqlar, huquqlari chek"
+    },
+    {
+      "id": "uz-021",
+      "question": "우즈베키스탄 형법상 여성 대상 범죄의 형사책임을 다룬 논문의 키워드와 저자의 소속 학과는 무엇인가?",
+      "answer_chunk_index": 5,
+      "token_start": 1920,
+      "token_end": 2432,
+      "token_count": 512,
+      "answer_snippet": ", представлены практические рекомендации по совершенствованию уголовного законодательства Узбекистана. Ключевые слова: преступления против женщин, жизнь, здоровье женщин, законодательство зарубежных с"
+    },
+    {
+      "id": "uz-022",
+      "question": "코로나19가 가정 내 폭력에 미친 영향에 대해 뉴욕타임스는 어떻게 전망했는가?",
+      "answer_chunk_index": 11,
+      "token_start": 4224,
+      "token_end": 4736,
+      "token_count": 512,
+      "answer_snippet": "содержание [4, с. 21]. Многие ученые мира обсуждали опасность влияния Covid-19 не только на здоровье, но и на атмосферу в семье, когда все ее члены находятся дома и возникает вероятность насилия. Тауб"
+    },
+    {
+      "id": "uz-023",
+      "question": "스위스 형법과 오스트리아 형법은 중혼(다처제)에 대해 각각 어떻게 규정하고 있는가?",
+      "answer_chunk_index": 17,
+      "token_start": 6528,
+      "token_end": 7040,
+      "token_count": 512,
+      "answer_snippet": "стана и Киргизии, вместе с тем, например, Уголовный кодекс Швейцарии [12] установил ответственность именно за многоженство: «кто заключает брак, состоя в браке, кто заключает брак с лицом, состоящим в"
+    },
+    {
+      "id": "uz-024",
+      "question": "우즈베키스탄 형법상 공갈(tovlamachilik)과 횡령·유용(o‘zlashtirish yoki rastrata)이 일반 절취와 구별되는 점은 무엇인가?",
+      "answer_chunk_index": 22,
+      "token_start": 8448,
+      "token_end": 8960,
+      "token_count": 512,
+      "answer_snippet": ", lekin tovlamachilik va o‘zlashtirish yoki rastrata yo‘li bilan talon-toroj qilishga nisbatan qo‘llab bo‘lmasligi haqidagi ikrlar bayon etilgan. Chunki tovlamachilik jabrlanuvchini o‘z mulki yoki mul"
+    },
+    {
+      "id": "uz-025",
+      "question": "우즈베키스탄 법학계의 talon-toroj 논의에서 '대가를 보전하지 않음'은 어떻게 나타나며, 값의 일부만 지급한 경우는 어떻게 보는가?",
+      "answer_chunk_index": 28,
+      "token_start": 10752,
+      "token_end": 11264,
+      "token_count": 512,
+      "answer_snippet": "aybdorning o‘zganing mulkini o‘zi yoki boshqa shaxslarning foydasiga mulkdorga mulkining haqini to‘lamay, xarajat qilmay, bepul, tekinga olib qo‘yishini anglatadi. O‘rnini qoplamaslik esa mulk qiymati"
+    },
+    {
+      "id": "uz-026",
+      "question": "우즈베키스탄 법학계가 최종적으로 제시한 talon-toroj의 정의는 무엇인가?",
+      "answer_chunk_index": 34,
+      "token_start": 13056,
+      "token_end": 13568,
+      "token_count": 512,
+      "answer_snippet": "mulkdor yoki mazkur mol-mulkning boshqa egasiga zarar yetkaziladi; – talon-toroj qasddan, g‘arazli maqsadda sodir etiladi. Olimlarning qarashlarini o‘rganib, “talon-toroj” deganda, “o‘zganing mulkini "
+    },
+    {
+      "id": "uz-027",
+      "question": "우즈베키스탄에서 범죄수익 합법화에 대한 책임 설정을 다룬 논문의 저자와 소속 기관은 어디인가?",
+      "answer_chunk_index": 40,
+      "token_start": 15360,
+      "token_end": 15872,
+      "token_count": 512,
+      "answer_snippet": "tam Bakhtiyor ugli Master’s student, Academy of the General Prosecutor’s Office of the Republic of Uzbekistan Abstract. In the world, special attention is paid to the fight against crime, the impositi"
+    },
+    {
+      "id": "uz-028",
+      "question": "우즈베키스탄 형법 제243조를 형법전의 어느 부분으로 옮기자고 제안하는가?",
+      "answer_chunk_index": 46,
+      "token_start": 17664,
+      "token_end": 18176,
+      "token_count": 512,
+      "answer_snippet": "tubdan qayta ko‘rib chiqishni taqozo etmoqda. Xususan, JKning 243-moddasida − «Jinoiy faoliyatdan olingan daromadlarni legallashtirish» tartibini qayta ko‘rib 27 12.00.08 – JINOYAT HUQUQI. KRIMINOLOGI"
+    },
+    {
+      "id": "uz-029",
+      "question": "러시아 학자 А.В. Demin은 조세 위반이라는 개념을 어떻게 정의했는가?",
+      "answer_chunk_index": 55,
+      "token_start": 21120,
+      "token_end": 21632,
+      "token_count": 512,
+      "answer_snippet": "lanadi. Eʼtibor qaratishimiz lozim bo‘lgan ikkinchi masala soliqqa oid huquqbuzarlik tushunchasi va uning yuridik mazmuni bo‘lib, bir qator huquqshunos olimlar bu masalaga o‘z qarashlarini bildirgan. "
+    },
+    {
+      "id": "uz-030",
+      "question": "우즈베키스탄 조세법상 조세 위반의 주관적 측면은 무엇이며 책임을 판단할 때 무엇을 고려해야 하는가?",
+      "answer_chunk_index": 61,
+      "token_start": 23424,
+      "token_end": 23936,
+      "token_count": 512,
+      "answer_snippet": "oid huquqbuzarlikning subyektiv tomoni ham sodir etilgan soliqqa oid huquqbuzarlikda aybning mavjudligi bo‘lib, u huquqbuzarning o‘z qilmishi va uning natijasiga nisbatan qasd yoki ehtiyotsizlik shakl"
+    },
+    {
+      "id": "uz-031",
+      "question": "우즈베키스탄 형법 제210조·제211조·제212조와 관련해 분석된 가중 정황은 무엇인가?",
+      "answer_chunk_index": 66,
+      "token_start": 25344,
+      "token_end": 25856,
+      "token_count": 512,
+      "answer_snippet": "aggravating circumstances, dif iculties in qualifying criminal acts, and their relationship to the circumstances speci ied in parts 2 and 3 of Articles 210, 211, and 212 of the Criminal Code of the Re"
+    },
+    {
+      "id": "uz-032",
+      "question": "우즈베키스탄에서 사전공모한 공무원 집단이 뇌물을 받은 경우 참여자들의 책임은 어떻게 되는가?",
+      "answer_chunk_index": 72,
+      "token_start": 27648,
+      "token_end": 28160,
+      "token_count": 512,
+      "answer_snippet": "телю, но каждый раз за определенное деяние налицо повторность взяточничества. При получении взятки по предварительному сговору группой должностных лиц они все несут ответственность по одному преступле"
+    },
+    {
+      "id": "uz-033",
+      "question": "우즈베키스탄에서 공무원이 자신의 권한을 사용하지 않고 다른 사람의 뇌물수수를 도운 경우 어떤 책임을 지는가?",
+      "answer_chunk_index": 78,
+      "token_start": 29952,
+      "token_end": 30464,
+      "token_count": 512,
+      "answer_snippet": "ному лицу в получении взятки против интересов служебной деятельности без использования своих полномочий. Он должен нести ответственность за соучастие во взяточничестве другого лица: организация, подст"
+    },
+    {
+      "id": "uz-034",
+      "question": "우즈베키스탄에서 집행유예 시험기간은 최대 얼마나 연장할 수 있으며, 의무를 이행하지 않으면 법원은 어떤 결정을 내리는가?",
+      "answer_chunk_index": 89,
+      "token_start": 34176,
+      "token_end": 34688,
+      "token_count": 512,
+      "answer_snippet": "siga ko‘ra, sinov muddatini bir yilgacha uzaytirishi mumkin. Shartli hukm qilingan shaxs sinov muddati mobaynida sud tomonidan o‘ziga yuklatilgan majburiyatlarni surunkali ravishda yoki ashaddiy bajar"
+    },
+    {
+      "id": "uz-035",
+      "question": "우즈베키스탄에서 조건부로 종결된 형사소추는 시험기간이 끝난 뒤 언제까지 재개할 수 있는가?",
+      "answer_chunk_index": 94,
+      "token_start": 36096,
+      "token_end": 36608,
+      "token_count": 512,
+      "answer_snippet": "‘lish, o‘ziga yuklangan majburiyatlarni bajarish yoki tayinlangan jinoyat-huquqiy chorani o‘tashdan bo‘yin tovlayotgan yoinki jabrlanuvchi bilan erishilgan kelishuvni bajarmayotgan bo‘lsa, sud jinoiy "
+    },
+    {
+      "id": "uz-036",
+      "question": "우즈베키스탄에서 3년을 초과하는 자유형이 선고된 경우 집행유예 시험기간은 얼마이며 언제부터 계산하는가?",
+      "answer_chunk_index": 100,
+      "token_start": 38400,
+      "token_end": 38912,
+      "token_count": 512,
+      "answer_snippet": "sinov muddatining davomiyligi olti oydan uch yilgacha, uch yildan ortiq bo‘lgan muddatga ozodlikdan mahrum qilish tariqasidagi jazo tayinlangan taqdirda, sinov muddatining davomiyligi uch yildan besh "
+    },
+    {
+      "id": "uz-037",
+      "question": "우즈베키스탄 형법상 범죄성 배제 사유를 다룬 연구에서 사용한 연구 방법에는 어떤 것들이 있는가?",
+      "answer_chunk_index": 106,
+      "token_start": 40704,
+      "token_end": 41216,
+      "token_count": 512,
+      "answer_snippet": "применения обстоятельств, исключающих преступность деяния, и правовые регулятивные аспекты регистрации в качестве оснований отказа в производстве по делу. В исследовании применены методы анализа, синт"
+    },
+    {
+      "id": "uz-038",
+      "question": "우즈베키스탄 형법상 외형상 범죄와 유사한 행위가 범죄로 되지 않는 것은 어떤 목적을 가진 경우인가?",
+      "answer_chunk_index": 112,
+      "token_start": 43008,
+      "token_end": 43520,
+      "token_count": 512,
+      "answer_snippet": "tashqi tomondan u yoki bu jinoyatga o‘xshash harakatlar sodir etishi mumkin, ammo bu zararli oqibat keltirib chiqaruvchi 62 KRIMINOLOGIYA VA JINOIY ODIL SUDLOV 12.00.08 – JINOYAT HUQUQI. KRIMINOLOGIYA"
+    },
+    {
+      "id": "uz-039",
+      "question": "우즈베키스탄 V 사건에서 법원이 판단한 금액과 그 판단의 문제점은 무엇인가?",
+      "answer_chunk_index": 118,
+      "token_start": 45312,
+      "token_end": 45824,
+      "token_count": 512,
+      "answer_snippet": "ligi sababli (JPK 83-modda 2-bandi) oqlov hukmi chiqariladi. Biroq sud ushbu ishni ko‘rishda qayd etilgan qonun va Plenum qarori tushuntirishlariga amal qilmagan. Sud ish holatlarini to‘g‘ri aniqlagan"
+    },
+    {
+      "id": "uz-040",
+      "question": "우즈베키스탄 형사법령 개정 제안이 가져올 두 가지 효과는 무엇인가?",
+      "answer_chunk_index": 124,
+      "token_start": 47616,
+      "token_end": 48128,
+      "token_count": 512,
+      "answer_snippet": "qiladigan qonun qabul qilingan bo‘lsa. Yuqoridagi qonun hujjatlariga kiritilishi lozim deb topilgan o‘zgartishlar, avvalo, bu boradagi ishlarni huquqiy tartibga solishga yordam bersa, ikkinchi tomonda"
+    },
+    {
+      "id": "uz-041",
+      "question": "우즈베키스탄 형사소송에서 법원의 지위와 의의를 다룬 논문의 저자와 소속은 어디인가?",
+      "answer_chunk_index": 129,
+      "token_start": 49536,
+      "token_end": 50048,
+      "token_count": 512,
+      "answer_snippet": "isbot qilish, dalillar to‘plash, tortishuvchanlik. СУД КАК ВАЖНЫЙ УЧАСТНИК ПРОЦЕССА ДОКАЗЫВАНИЯ В РАМКАХ УГОЛОВНОГО ПРОЦЕССА Гафуров Мавлон Кучкарович, самостоятельный соискатель Ташкентского государс"
+    },
+    {
+      "id": "uz-042",
+      "question": "우즈베키스탄 수사 실무에서 흔히 나타나는 문제로 지적된 것들은 무엇인가?",
+      "answer_chunk_index": 135,
+      "token_start": 51840,
+      "token_end": 52352,
+      "token_count": 512,
+      "answer_snippet": "kovlar aynan mazkur muammolar masalasida ikr yuritib, “tergovda keng tarqalgan muammolar: ko‘rsatkichlar ortidan quvib, ongli ravishda ayblov hajmi sunʼiy oshirib yuboriladi, “sudning o‘zi to‘g‘rilayd"
+    },
+    {
+      "id": "uz-043",
+      "question": "우즈베키스탄 iPhone 6S+ 관련 사건에서 법원은 죄명을 어떻게 변경했으며 선고한 형량은 얼마인가?",
+      "answer_chunk_index": 140,
+      "token_start": 53760,
+      "token_end": 54272,
+      "token_count": 512,
+      "answer_snippet": "IPhone 6 S +” rusumli telefon apparati bo‘lmaganligi, u buni sudlanuvchi D. Аlimovdan o‘ch olish maqsadida o‘ylab topganligi maʼlum bo‘lgan. Natijada sud o‘z hukmi bilan eʼlon qilingan ayblovni Jinoya"
+    },
+    {
+      "id": "uz-044",
+      "question": "우즈베키스탄에서 법원의 입증 의무에 관한 논의가 어떤 원칙에 부합한다고 보는가?",
+      "answer_chunk_index": 146,
+      "token_start": 56064,
+      "token_end": 56576,
+      "token_count": 512,
+      "answer_snippet": "2181-2179 KRIMINOLOGIYA VA JINOIY ODIL SUDLOV 2–3 / 2022 majburiyat sifatida qolishi tortishuvchilik prinsipiga ham, haqiqatni aniqlash prinsipi talablariga ham to‘liq javob beradi hamda shaxsning huq"
+    },
+    {
+      "id": "uz-045",
+      "question": "Scott Jacobs에 따르면 규제영향평가 제도는 어떤 수단과 방법을 포함하는가?",
+      "answer_chunk_index": 152,
+      "token_start": 58368,
+      "token_end": 58880,
+      "token_count": 512,
+      "answer_snippet": "dan farq qilishini qayd etish joiz. Xususan, tartibga solish siyosatini tahlil qilish bo‘yicha taniqli mutaxassis Skott Jeykobsning taʼkidlashicha, ushbu institut quyidagi vosita va usullarni o‘z ichi"
+    },
+    {
+      "id": "uz-046",
+      "question": "우즈베키스탄 규제영향평가의 목적 중 하나로 제시된 부패 관련 사항은 무엇인가?",
+      "answer_chunk_index": 157,
+      "token_start": 60288,
+      "token_end": 60800,
+      "token_count": 512,
+      "answer_snippet": "tadbirkorlik faoliyatiga taʼsirini baholash maqsadlaridan biri sifatida korrupsiya sodir etish uchun sharoit yaratadigan qoidalarni aniqlash ekanligi qayd etildi. Shu bilan birga, yuqorida keltirilgan"
+    },
+    {
+      "id": "uz-047",
+      "question": "우즈베키스탄 각료회의 법무보장국 산하에 설치하도록 한 조직과 규정된 절차는 무엇인가?",
+      "answer_chunk_index": 162,
+      "token_start": 62208,
+      "token_end": 62720,
+      "token_count": 512,
+      "answer_snippet": "lari yuklatildi. Chunonchi, nizomda Vazirlar Mahkamasining Yuridik taʼminlash boshqarmasi tarkibida Tartibga solish taʼsirini baholash bo‘limi faoliyat yuritishi, tartibga solish taʼsirini baholashni "
+    },
+    {
+      "id": "uz-048",
+      "question": "OECD의 공공조달 부패 예방 권고를 다룬 논문의 저자 소속 기관은 어디인가?",
+      "answer_chunk_index": 167,
+      "token_start": 64128,
+      "token_end": 64640,
+      "token_count": 512,
+      "answer_snippet": "рупцией» Академии Генеральной прокуратуры Республики Узбекистан Аннотация. В данной статье освещаются рекомендации Организации экономического сотрудничества и развития по предотвращению коррупции в сф"
+    },
+    {
+      "id": "uz-049",
+      "question": "우즈베키스탄의 공공조달 정보 포털에는 2014년부터 어떤 정보가 추가되었는가?",
+      "answer_chunk_index": 173,
+      "token_start": 66432,
+      "token_end": 66944,
+      "token_count": 512,
+      "answer_snippet": "n beri faoliyat yuritadi. Dastlab ilovaga faqatgina budjet tashkilotlariga oid moliyaviy maʼlumotlar, shuningdek, davlat xaridlariga doir maʼlumotlar kiritilgan bo‘lsa, 2014-yildan boshlab jamoat tash"
+    },
+    {
+      "id": "uz-050",
+      "question": "중소기업의 공공조달 참여를 제약하는 요인과 OECD 회원국의 대응 방식은 무엇인가?",
+      "answer_chunk_index": 178,
+      "token_start": 68352,
+      "token_end": 68864,
+      "token_count": 512,
+      "answer_snippet": "va o‘rta biznes vakillariga mazkur tenderlarda ishtirok etish imkoniyatini berish lozim. Ushbu tenderlarda kichik va o‘rta biznes vakillari ishtirokining cheklanishi mazkur jarayonlarda davlat xaridla"
     }
   ]
 }

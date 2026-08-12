@@ -9,7 +9,7 @@
     "n_chunks": 82
   },
   "question_language": "ko",
-  "n_qa": 20,
+  "n_qa": 50,
   "note": "정답 위치는 answer_chunk_index(0-based)이며 token_start/token_end는 해당 청크의 BGE-M3 토큰 구간입니다. overlap=128이므로 인접 청크에 정답 근거가 부분적으로 중복될 수 있습니다.",
   "qa_pairs": [
     {
@@ -59,7 +59,7 @@
     },
     {
       "id": "en-006",
-      "question": "북동부 카르텔(CDN)이 리오그란데강을 건너는 이주민을 상대로 벌이는 범죄 행위는 무엇인가?",
+      "question": "북동부 카르텔(CDN)이 미국·멕시코 국경의 리오그란데강을 건너는 이주민을 상대로 벌이는 범죄 행위는 무엇인가?",
       "answer_chunk_index": 17,
       "token_start": 6528,
       "token_end": 7040,
@@ -68,7 +68,7 @@
     },
     {
       "id": "en-007",
-      "question": "연합 카르텔(Cárteles Unidos, CU)은 어떤 목적으로 결성되었으며 주요 거점은 어디인가?",
+      "question": "연합 카르텔(Cárteles Unidos, CU)은 멕시코에서 어떤 목적으로 결성되었으며 주요 거점은 어디인가?",
       "answer_chunk_index": 20,
       "token_start": 7680,
       "token_end": 8192,
@@ -77,7 +77,7 @@
     },
     {
       "id": "en-008",
-      "question": "걸프 카르텔(CDG)의 주요 파벌은 어떻게 나뉘며, Los Metros 파벌은 어느 조직과 제휴하고 있는가?",
+      "question": "미국으로 마약을 반입하는 걸프 카르텔(CDG)의 주요 파벌은 어떻게 나뉘며, Los Metros 파벌은 어느 조직과 제휴하고 있는가?",
       "answer_chunk_index": 22,
       "token_start": 8448,
       "token_end": 8960,
@@ -86,7 +86,7 @@
     },
     {
       "id": "en-009",
-      "question": "트렌 데 아라과(TdA)가 베네수엘라 이주민을 상대로 벌이는 범죄 수법은 무엇인가?",
+      "question": "트렌 데 아라과(TdA)가 미국 내 베네수엘라 이주민을 상대로 벌이는 범죄 수법은 무엇인가?",
       "answer_chunk_index": 25,
       "token_start": 9600,
       "token_end": 10112,
@@ -113,7 +113,7 @@
     },
     {
       "id": "en-012",
-      "question": "NFLIS 분석 결과, 코카인과 메스암페타민 제출물 중 펜타닐이 검출된 비율은 각각 어느 정도인가?",
+      "question": "미국 NFLIS 분석 결과, 코카인과 메스암페타민 제출물 중 펜타닐이 검출된 비율은 각각 어느 정도인가?",
       "answer_chunk_index": 34,
       "token_start": 13056,
       "token_end": 13568,
@@ -131,7 +131,7 @@
     },
     {
       "id": "en-014",
-      "question": "메데토미딘의 효력은 자일라진의 몇 배이며, 왜 문제가 되는가?",
+      "question": "미국 DEA 국가마약위협평가에 따르면 메데토미딘의 효력은 자일라진의 몇 배이며, 왜 문제가 되는가?",
       "answer_chunk_index": 39,
       "token_start": 14976,
       "token_end": 15488,
@@ -158,7 +158,7 @@
     },
     {
       "id": "en-017",
-      "question": "메스암페타민 P2P 제조법에서 주로 사용되는 전구체는 무엇이며, 압수품의 평균 순도는 몇 퍼센트인가?",
+      "question": "미국에서 압수된 메스암페타민의 P2P 제조법에 주로 쓰이는 전구체는 무엇이며, 압수품의 평균 순도는 몇 퍼센트인가?",
       "answer_chunk_index": 47,
       "token_start": 18048,
       "token_end": 18560,
@@ -167,7 +167,7 @@
     },
     {
       "id": "en-018",
-      "question": "2024년 10월까지 12개월간 코카인 관련 과다복용 사망자는 몇 명이며, 전년 대비 어떻게 변화했는가?",
+      "question": "미국에서 2024년 10월까지 12개월간 코카인 관련 과다복용 사망자는 몇 명이며, 전년 대비 어떻게 변화했는가?",
       "answer_chunk_index": 50,
       "token_start": 19200,
       "token_end": 19712,
@@ -185,12 +185,282 @@
     },
     {
       "id": "en-020",
-      "question": "2016년부터 2022년까지 12세 이하 어린이의 THC 식용제품 섭취 관련 신고 건수는 몇 퍼센트 증가했는가?",
+      "question": "미국에서 2016년부터 2022년까지 12세 이하 어린이의 THC 식용제품 섭취 관련 신고 건수는 몇 퍼센트 증가했는가?",
       "answer_chunk_index": 59,
       "token_start": 22656,
       "token_end": 23168,
       "token_count": 512,
       "answer_snippet": "enticing product marketing, have resulted in increased injury due to unintentional exposure to marijuana and THC products, particularly among children. Calls to poison control centers and admissions t"
+    },
+    {
+      "id": "en-021",
+      "question": "멕시코 카르텔이 펜타닐과 메스암페타민을 제조할 때 쓰는 전구체 화학물질과 알약 압착기는 어디에서 조달되는가?",
+      "answer_chunk_index": 2,
+      "token_start": 768,
+      "token_end": 1280,
+      "token_count": 512,
+      "answer_snippet": "United States. The cartels produce fentanyl and methamphetamine in clandestine laboratories in Mexico using precursor chemicals and pill presses sourced from companies in China. Much of the fentanyl i"
+    },
+    {
+      "id": "en-022",
+      "question": "미국 DEA 최우선 수배자 명단에 40년간 올라 있던 카르텔 두목은 누구인가?",
+      "answer_chunk_index": 5,
+      "token_start": 1920,
+      "token_end": 2432,
+      "token_count": 512,
+      "answer_snippet": "methamphetamine, fentanyl, and heroin, as well as associated acts of violence. One name stands above the rest for the men and women of the DEA — Rafael Caro Quintero. Caro Quintero, a cartel kingpin w"
+    },
+    {
+      "id": "en-023",
+      "question": "미국이 특별지정 글로벌테러리스트(SDGT)로 지정한 조직 여덟 곳은 어디인가?",
+      "answer_chunk_index": 9,
+      "token_start": 3456,
+      "token_end": 3968,
+      "token_count": 512,
+      "answer_snippet": "designated global terrorists (SDGTs): the Sinaloa Cartel (CDS), Jalisco New Generation Cartel (CJNG), Northeast Cartel (CDN), The New Michoacán Family (LNFM), Gulf Cartel (CDG), United Cartels (CU), T"
+    },
+    {
+      "id": "en-024",
+      "question": "시날로아 카르텔(CDS)의 조직 운영 방식과 DEA가 파악한 구성원 규모는?",
+      "answer_chunk_index": 10,
+      "token_start": 3840,
+      "token_end": 4352,
+      "token_count": 512,
+      "answer_snippet": "and traffickers of fentanyl and other illicit drugs to the United States (see Figure 1). For decades, CDS has smuggled multi-kilogram quantities of illicit fentanyl, methamphetamine, cocaine, heroin, "
+    },
+    {
+      "id": "en-025",
+      "question": "미국 DEA 국가마약위협평가에서 '투시(tusi)'는 원래 무엇을 가리키는 은어였으며 현재는 어떤 약물의 혼합물인가?",
+      "answer_chunk_index": 13,
+      "token_start": 4992,
+      "token_end": 5504,
+      "token_count": 512,
+      "answer_snippet": "production of heroin for generations. The cartel has also become involved in the manufacturing and trafficking of “tusi,” a pink-colored drug cocktail consumed mainly in the club scenes of major metro"
+    },
+    {
+      "id": "en-026",
+      "question": "북동부 카르텔(CDN)이 마약을 반입한 뒤 유통 거점으로 삼는 미국 도시는 어디인가?",
+      "answer_chunk_index": 16,
+      "token_start": 6144,
+      "token_end": 6656,
+      "token_count": 512,
+      "answer_snippet": "Mexico (see Figure 4). CDN has a dangerous reputation, with members regularly engaging in public acts of violence, including assassination, torture, kidnapping, and intimidation. The cartel is respons"
+    },
+    {
+      "id": "en-027",
+      "question": "신 미초아칸 패밀리(LNFM)가 미국으로 가는 경로상 특정 항구를 전략적으로 중시하는 이유는 무엇인가?",
+      "answer_chunk_index": 19,
+      "token_start": 7296,
+      "token_end": 7808,
+      "token_count": 512,
+      "answer_snippet": "JNG due to its strategic importance as a point of importation for precursor chemicals sourced from China and cocaine arriving from Colombia. LNFM is involved in the trafficking of illicit fentanyl, me"
+    },
+    {
+      "id": "en-028",
+      "question": "걸프 카르텔(CDG)이 주로 활동하는 미국 주(州)와 주요 수익원은 무엇인가?",
+      "answer_chunk_index": 23,
+      "token_start": 8832,
+      "token_end": 9344,
+      "token_count": 512,
+      "answer_snippet": ". states, primarily Texas, Oklahoma, California, and the southeastern United States, but also in the upper Midwest, Nebraska, Virginia, Pennsylvania, and New York. Criminal Activity CDG is primarily a"
+    },
+    {
+      "id": "en-029",
+      "question": "MS-13은 미국 어디에서 누구에 의해 언제 결성되었으며 현재 어느 나라에 자리 잡고 있는가?",
+      "answer_chunk_index": 26,
+      "token_start": 9984,
+      "token_end": 10496,
+      "token_count": 512,
+      "answer_snippet": "-13) Executive Summary Mara Salvatrucha, better known as MS-13, is an extremely violent international criminal gang founded in Los Angeles, California in the 1980s by El Salvadoran immigrants. The gan"
+    },
+    {
+      "id": "en-030",
+      "question": "2023년 미국의 전체 약물 과다복용 사망자 중 합성 오피오이드가 관련된 비율은 얼마인가?",
+      "answer_chunk_index": 27,
+      "token_start": 10368,
+      "token_end": 10880,
+      "token_count": 512,
+      "answer_snippet": "e deaths have decreased but remain at dangerously high levels. Provisional data from CDC indicated that 74,702 of the 107,543 total drug overdose deaths in 2023 (69 percent) involved synthetic opioids"
+    },
+    {
+      "id": "en-031",
+      "question": "2024년 10월 왕립캐나다기마경찰이 압수한 것은 무엇이며, 2025년 봄 기준 캐나다산 펜타닐 압수량은?",
+      "answer_chunk_index": 30,
+      "token_start": 11520,
+      "token_end": 12032,
+      "token_count": 512,
+      "answer_snippet": "the synthetic drug threat from Mexico, elevated synthetic drug production in Canada—particularly from sophisticated fentanyl “super laboratories” such as the type seized by the Royal Canadian Mounted "
+    },
+    {
+      "id": "en-032",
+      "question": "미국에서 2019년과 2024년에 펜타닐과 가장 많이 혼합된 약물 1위는 각각 무엇인가?",
+      "answer_chunk_index": 33,
+      "token_start": 12672,
+      "token_end": 13184,
+      "token_count": 512,
+      "answer_snippet": "Reported Top Ten Drugs Mixed with Fentanyl Rank 2019 2024* 1 Heroin Xylazine 2 Acetyl fentanyl Heroin 3 4-ANPP Acetaminophen 4 Cocaine para-Fluorofentanyl 5 Tramadol 4-ANPP 6 Methamphetamine Fluorofen"
+    },
+    {
+      "id": "en-033",
+      "question": "미국에서 니타젠이 정제 형태로 발견될 때 어떤 알약과 유사한 모습으로 나타나는가?",
+      "answer_chunk_index": 37,
+      "token_start": 14208,
+      "token_end": 14720,
+      "token_count": 512,
+      "answer_snippet": "NITAZENES Figure 17. N-pyrrolidino Protonitazene Source: DEA NITAZENES NITAZENES HAVE BEEN SEEN IN HAVE BEEN SEEN IN TABLET FORM TABLET FORM LIKE LIKE M-30 M-30 PILLS --- [page 33] --- Figure 18. Nita"
+    },
+    {
+      "id": "en-034",
+      "question": "미국 DEA 감정 결과, 펜타닐과 헤로인이 함께 검출된 시료에서 5년 전과 2024년의 주된 약물 비율은 어떻게 달라졌는가?",
+      "answer_chunk_index": 40,
+      "token_start": 15360,
+      "token_end": 15872,
+      "token_count": 512,
+      "answer_snippet": "on drug samples containing both fentanyl and heroin demonstrates how this trend has evolved. Five years ago, heroin was the primary drug in 66 percent of opiate exhibits submitted by DEA divisions, co"
+    },
+    {
+      "id": "en-035",
+      "question": "멕시코 카르텔이 미국으로 메스암페타민을 밀수할 때 차량에 은닉하는 방법에는 어떤 것들이 있는가?",
+      "answer_chunk_index": 43,
+      "token_start": 16512,
+      "token_end": 17024,
+      "token_count": 512,
+      "answer_snippet": "or methamphetamine in solution), natural voids in vehicle bodies, and inside tires. They also maintain a network of couriers, tunnels, and stash houses throughout Mexico and the United States to suppo"
+    },
+    {
+      "id": "en-036",
+      "question": "미국에서 2024년 메스암페타민 실험실 압수 건수는 2023년 대비 몇 퍼센트 감소했는가?",
+      "answer_chunk_index": 46,
+      "token_start": 17664,
+      "token_end": 18176,
+      "token_count": 512,
+      "answer_snippet": "2024, an enormous 73 percent decrease since 2023 when 34 labs were seized. Seizures of methamphetamine in solution decreased by a similar 75 percent, according to NSS reporting, corresponding to curre"
+    },
+    {
+      "id": "en-037",
+      "question": "미국에서 유통되는 가짜 애더럴(Adderall)이나 가짜 MDMA 정제에 실제로 들어 있는 물질은 무엇이며 왜 위험한가?",
+      "answer_chunk_index": 48,
+      "token_start": 18432,
+      "token_end": 18944,
+      "token_count": 512,
+      "answer_snippet": "replacing a more expensive product (MDMA) with a cheaper, more easily obtained drug (methamphetamine). The prevalence of fake Adderall pills, or fake MDMA tablets, containing methamphetamine heightens"
+    },
+    {
+      "id": "en-038",
+      "question": "2024년 미국 법집행기관이 압수한 코카인 분말의 총량과 2023년 대비 증감률은?",
+      "answer_chunk_index": 51,
+      "token_start": 19584,
+      "token_end": 20096,
+      "token_count": 512,
+      "answer_snippet": "SS reporting, a total of approximately 63 metric tons of cocaine powder was seized by U.S. law enforcement in 2024, an 18 percent increase from approximately 53 metric tons seized in 2023. Mexican TCO"
+    },
+    {
+      "id": "en-039",
+      "question": "중국계 초국가적 범죄조직이 미국에서 대마가 합법화된 주에 침투하는 방식과 생산하는 대마의 THC 함량 수준은?",
+      "answer_chunk_index": 54,
+      "token_start": 20736,
+      "token_end": 21248,
+      "token_count": 512,
+      "answer_snippet": "in states where the cannabis industry is “legal,” though most do not follow the established licensure process or have obtained their licenses through falsified means. They face little prison time, if "
+    },
+    {
+      "id": "en-040",
+      "question": "캘리포니아 불법 대마 근절·예방 프로그램이 2024년 7월부터 9월까지 거둔 성과는 무엇인가?",
+      "answer_chunk_index": 56,
+      "token_start": 21504,
+      "token_end": 22016,
+      "token_count": 512,
+      "answer_snippet": "s employ to repatriate drug proceeds are the laundering of money through registered marijuana grows using straw owners, casinos, and mortgage fraud. 50 UNCLASSIFIED UNCLASSIFIED 2025 NATIONAL DRUG THR"
+    },
+    {
+      "id": "en-041",
+      "question": "2023년 미국인의 대마·THC 사용 응답 비율과 사용률이 가장 높은 연령대는?",
+      "answer_chunk_index": 58,
+      "token_start": 22272,
+      "token_end": 22784,
+      "token_count": 512,
+      "answer_snippet": "marijuana/THC use increased in every age group in 2022. During 2023, the percentage of Americans reporting regular use of marijuana and/or THC products remained elevated: almost 22 percent of all resp"
+    },
+    {
+      "id": "en-042",
+      "question": "미국 DEA 국가마약위협평가에서 신종향정신성물질(NPS)로 분류하는 물질에는 어떤 것들이 있는가?",
+      "answer_chunk_index": 61,
+      "token_start": 23424,
+      "token_end": 23936,
+      "token_count": 512,
+      "answer_snippet": "page 60] --- Overview New Psychoactive Substances (NPS), many of which are unregulated and untested, are a diverse group of synthetic substances designed to have effects similar to controlled substanc"
+    },
+    {
+      "id": "en-043",
+      "question": "DEA 감정실에 가장 많이 제출된 페네틸아민 상위 세 가지는 무엇인가?",
+      "answer_chunk_index": 63,
+      "token_start": 24192,
+      "token_end": 24704,
+      "token_count": 512,
+      "answer_snippet": "are the most common types of phenethylamines. The ingestion of very small amounts of these drugs can result in seizures, cardiac and respiratory arrest, and death. According to DEA reporting, the top "
+    },
+    {
+      "id": "en-044",
+      "question": "미국에서 합성 카티논의 길거리 명칭에는 어떤 것들이 있으며 자연 상태의 카티논은 어느 식물에서 유래하는가?",
+      "answer_chunk_index": 64,
+      "token_start": 24576,
+      "token_end": 25088,
+      "token_count": 512,
+      "answer_snippet": "sold as ecstasy in the form of a pill. Some of the street names associated with synthetic cathinones are Ivory Wave, MTV, Meow Meow, Snow Leopard, Super Coke, Bath Salts, Bliss, Blizzard, Drone, DOB, "
+    },
+    {
+      "id": "en-045",
+      "question": "미국 조사에서 오남용된 진통제를 처방을 통해 얻었다는 응답과 마약상·낯선 사람에게서 구입했다는 응답 비율은?",
+      "answer_chunk_index": 66,
+      "token_start": 25344,
+      "token_end": 25856,
+      "token_count": 512,
+      "answer_snippet": ". This statistic marked the first time in the past three years that more respondents reported obtaining misused pain relief products via prescription rather than from friends or relatives (39 percent)"
+    },
+    {
+      "id": "en-046",
+      "question": "2024년 5월 16일 미국 뉴욕 동부지검 등이 발표한 옥시코돈 유통 공모 기소 사건의 개요는?",
+      "answer_chunk_index": 68,
+      "token_start": 26112,
+      "token_end": 26624,
+      "token_count": 512,
+      "answer_snippet": "CLASSIFIED UNCLASSIFIED Controlled Prescription Drugs Florida Man Charged with Conspiracy to Distribute Oxycodone for Prescription Drug Diversion Scheme On May 16, 2024, the United States Attorney for"
+    },
+    {
+      "id": "en-047",
+      "question": "미국에서 합법 의약품 오피오이드의 도난·유출이 증가한 원인으로 무엇이 지목되는가?",
+      "answer_chunk_index": 70,
+      "token_start": 26880,
+      "token_end": 27392,
+      "token_count": 512,
+      "answer_snippet": "dosage units have been lost than in all of 2023 (see Figure 53). An 62 UNCLASSIFIED UNCLASSIFIED 2025 NATIONAL DRUG THREAT ASSESSMENT Controlled Prescription Drugs --- [page 67] --- increase in the nu"
+    },
+    {
+      "id": "en-048",
+      "question": "미국에서 활동하는 자금세탁조직(MLO)은 초국가적 범죄조직과 어떤 관계로 수익을 얻으며, 중국계 지하은행(CUBS)은 왜 생겨났는가?",
+      "answer_chunk_index": 72,
+      "token_start": 27648,
+      "token_end": 28160,
+      "token_count": 512,
+      "answer_snippet": "etly into useable assets without detection is a tedious process, so TCOs have come to rely on experienced criminal launderers. For their part, money laundering organizations (MLOs), independent of TCO"
+    },
+    {
+      "id": "en-049",
+      "question": "2020년부터 2024년까지 압수된 가상자산 가치와 미국 통화 가치는 각각 얼마이며 무엇을 시사하는가?",
+      "answer_chunk_index": 74,
+      "token_start": 28416,
+      "token_end": 28928,
+      "token_count": 512,
+      "answer_snippet": "have declined steadily over the past five years. This could indicate a change in TCOs’ money laundering preferences, such as a greater reliance on cryptocurrency. At $2.5 billion, the 2020-2024 virtua"
+    },
+    {
+      "id": "en-050",
+      "question": "2022년 몬태나주 블랙피트 부족이 비상사태를 선포한 이유와 그 주간의 과다복용 건수는?",
+      "answer_chunk_index": 79,
+      "token_start": 30336,
+      "token_end": 30848,
+      "token_count": 512,
+      "answer_snippet": "yl and methamphetamine into these communities – continues to challenge law enforcement and public health officials at the federal, state, local, and tribal levels. In 2022, the Blackfeet Nation in Mon"
     }
   ]
 }
