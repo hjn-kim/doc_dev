@@ -1,0 +1,196 @@
+{
+  "source": "en국가마약위협평가.txt",
+  "embedding_file": "en국가마약위협평가_embeddings.npz",
+  "chunking": {
+    "model": "BAAI/bge-m3",
+    "dim": 1024,
+    "chunk_size": 512,
+    "overlap": 128,
+    "n_chunks": 82
+  },
+  "question_language": "ko",
+  "n_qa": 20,
+  "note": "정답 위치는 answer_chunk_index(0-based)이며 token_start/token_end는 해당 청크의 BGE-M3 토큰 구간입니다. overlap=128이므로 인접 청크에 정답 근거가 부분적으로 중복될 수 있습니다.",
+  "qa_pairs": [
+    {
+      "id": "en-001",
+      "question": "1985년 멕시코 과달라하라에서 납치·살해된 DEA 특별수사관은 누구이며, 그 사건을 계기로 시작된 수사 작전의 이름은 무엇인가?",
+      "answer_chunk_index": 3,
+      "token_start": 1152,
+      "token_end": 1664,
+      "token_count": 512,
+      "answer_snippet": "--- [page 6] --- Dedication to Special Agent Dedication to Special Agent Enrique “Kiki” Camarena Enrique “Kiki” Camarena Special Agent Enrique “Kiki” Camarena was more than a DEA agent – he was a Mari"
+    },
+    {
+      "id": "en-002",
+      "question": "2024년 10월까지 12개월간 미국의 약물 과다복용 사망자 수는 몇 명이며, 전년 동기 대비 어떻게 변화했는가?",
+      "answer_chunk_index": 6,
+      "token_start": 2304,
+      "token_end": 2816,
+      "token_count": 512,
+      "answer_snippet": "other drugs into the United States. In the 12-month period ending in October 2024, 84,076 Americans died from a drug overdose, according to the most recent available provisional statistics from the Ce"
+    },
+    {
+      "id": "en-003",
+      "question": "미국이 외국테러조직(FTO)으로 지정한 초국가적 범죄조직(TCO)은 몇 개이며, 이들이 사용하는 자금세탁 수단에는 어떤 것들이 있는가?",
+      "answer_chunk_index": 8,
+      "token_start": 3072,
+      "token_end": 3584,
+      "token_count": 512,
+      "answer_snippet": "These organizations launder millions of dollars in illicit proceeds from criminal activities using Chinese money laundering networks (CMLNs), money service businesses (MSBs), front and shell companies"
+    },
+    {
+      "id": "en-004",
+      "question": "시날로아 카르텔(CDS)과 연계된 마약 도매업자들이 활동하는 미국 내 주요 도시로 언급된 곳은 어디인가?",
+      "answer_chunk_index": 11,
+      "token_start": 4224,
+      "token_end": 4736,
+      "token_count": 512,
+      "answer_snippet": "CDS associates, facilitators, and affiliates operate in almost all 50 U.S. states, and these thousands of CDS-linked drug traffickers supply illicit drugs and drive violence across American communitie"
+    },
+    {
+      "id": "en-005",
+      "question": "CJNG는 멕시코 국경 밖 몇 개국에 진출해 있으며, 어떤 형태의 지휘 구조를 갖고 있는가?",
+      "answer_chunk_index": 14,
+      "token_start": 5376,
+      "token_end": 5888,
+      "token_count": 512,
+      "answer_snippet": "supplier of illicit fentanyl to the United States (see Figure 2). CJNG has expanded its operations beyond Mexico’s borders, establishing a presence in over 40 countries. The cartel uses its vast finan"
+    },
+    {
+      "id": "en-006",
+      "question": "북동부 카르텔(CDN)이 리오그란데강을 건너는 이주민을 상대로 벌이는 범죄 행위는 무엇인가?",
+      "answer_chunk_index": 17,
+      "token_start": 6528,
+      "token_end": 7040,
+      "token_count": 512,
+      "answer_snippet": "Source: DEA Criminal Activity CDN is involved in a diverse range of criminal activities, including kidnapping, extortion, vehicle theft, human smuggling, money laundering, prostitution, and armed robb"
+    },
+    {
+      "id": "en-007",
+      "question": "연합 카르텔(Cárteles Unidos, CU)은 어떤 목적으로 결성되었으며 주요 거점은 어디인가?",
+      "answer_chunk_index": 20,
+      "token_start": 7680,
+      "token_end": 8192,
+      "token_count": 512,
+      "answer_snippet": "), bulk cash shipments, and wire transfers through various cartel-affiliated money services business (MSBs). LNFM is also involved in money laundering activities in the United States using unsuspectin"
+    },
+    {
+      "id": "en-008",
+      "question": "걸프 카르텔(CDG)의 주요 파벌은 어떻게 나뉘며, Los Metros 파벌은 어느 조직과 제휴하고 있는가?",
+      "answer_chunk_index": 22,
+      "token_start": 8448,
+      "token_end": 8960,
+      "token_count": 512,
+      "answer_snippet": "of trafficking routes and territory—especially the Port of Altamira—as well as for overall control of CDG. The Los Metros faction is aligned with CJNG for protection from Los Mayos, CDN, and other CDG"
+    },
+    {
+      "id": "en-009",
+      "question": "트렌 데 아라과(TdA)가 베네수엘라 이주민을 상대로 벌이는 범죄 수법은 무엇인가?",
+      "answer_chunk_index": 25,
+      "token_start": 9600,
+      "token_end": 10112,
+      "token_count": 512,
+      "answer_snippet": "operates within Venezuelan migrant communities. TdA facilitates the smuggling of thousands of Venezuelan migrants into the United States and then extorts the migrants, forcing them into prostitution o"
+    },
+    {
+      "id": "en-010",
+      "question": "멕시코 초국가적 범죄조직이 미국으로 마약을 밀수할 때 사용하는 운송 수단과 시설에는 어떤 것들이 있는가?",
+      "answer_chunk_index": 28,
+      "token_start": 10752,
+      "token_end": 11264,
+      "token_count": 512,
+      "answer_snippet": "from the previous year (see Figure 10). Figure 10. Fentanyl Seizures, in kilograms, 2019-2024 Source: El Paso Intelligence Center, National Seizure System 21 DRUG ENFORCEMENT ADMINISTRATION UNCLASSIFI"
+    },
+    {
+      "id": "en-011",
+      "question": "미국 내 마약상들이 펜타닐에 섞는 첨가물로 언급된 물질에는 어떤 것들이 있는가?",
+      "answer_chunk_index": 31,
+      "token_start": 11904,
+      "token_end": 12416,
+      "token_count": 512,
+      "answer_snippet": "obtaining some key precursor chemicals. DEA reporting indicates that some China-based chemical suppliers are wary of supplying controlled precursors to its international customers, demonstrating an aw"
+    },
+    {
+      "id": "en-012",
+      "question": "NFLIS 분석 결과, 코카인과 메스암페타민 제출물 중 펜타닐이 검출된 비율은 각각 어느 정도인가?",
+      "answer_chunk_index": 34,
+      "token_start": 13056,
+      "token_end": 13568,
+      "token_count": 512,
+      "answer_snippet": "(see Figure 15). Figure 15. Fentanyl Seizures along the 10 Most-Traveled U.S. Interstates, by weight, 2024 Source: El Paso Intelligence Center, National Seizure System Fentanyl Cocktails (Co-Reported "
+    },
+    {
+      "id": "en-013",
+      "question": "미국에서 지금까지 확인된 니타젠(nitazene)은 몇 종이며, 2024년에 새로 검출된 것은 무엇인가?",
+      "answer_chunk_index": 36,
+      "token_start": 13824,
+      "token_end": 14336,
+      "token_count": 512,
+      "answer_snippet": "n-pyrrolidino etonitazene, n-desethyl isotonitazene, and isotonitazene (see Figure 17). To reduce accidental drug poisonings and deaths, some U.S. states are pursuing legislation or executive orders t"
+    },
+    {
+      "id": "en-014",
+      "question": "메데토미딘의 효력은 자일라진의 몇 배이며, 왜 문제가 되는가?",
+      "answer_chunk_index": 39,
+      "token_start": 14976,
+      "token_end": 15488,
+      "token_count": 512,
+      "answer_snippet": "y is 200-300 times greater than that of xylazine and makes opioid overdoses more difficult to reverse with naloxone. According to DEA Office of Forensic Sciences, xylazine remains the number one adult"
+    },
+    {
+      "id": "en-015",
+      "question": "미국에서 유통되는 메스암페타민의 주요 생산지는 어디이며, 주된 유입 경로는 무엇인가?",
+      "answer_chunk_index": 42,
+      "token_start": 16128,
+      "token_end": 16640,
+      "token_count": 512,
+      "answer_snippet": "-based companies are the main source of regulated and non- regulated chemicals used in methamphetamine production. Figure 27. Crystal Methamphetamine Source: DEA According to DEA’s Methamphetamine Pro"
+    },
+    {
+      "id": "en-016",
+      "question": "미국 내 메스암페타민 불법 제조 시설이 급감한 이유는 무엇인가?",
+      "answer_chunk_index": 45,
+      "token_start": 17280,
+      "token_end": 17792,
+      "token_count": 512,
+      "answer_snippet": "since the same period last year. 39 DRUG ENFORCEMENT ADMINISTRATION UNCLASSIFIED UNCLASSIFIED Methamphetamine --- [page 44] --- Figure 31. Psychostimulant-Involved Drug Poisoning Deaths, 2011 – 2023 S"
+    },
+    {
+      "id": "en-017",
+      "question": "메스암페타민 P2P 제조법에서 주로 사용되는 전구체는 무엇이며, 압수품의 평균 순도는 몇 퍼센트인가?",
+      "answer_chunk_index": 47,
+      "token_start": 18048,
+      "token_end": 18560,
+      "token_count": 512,
+      "answer_snippet": "phetamine samples analyzed were produced using some variation of the P2P production method, 90 percent of which were produced using the P2P precursor phenyl-acetic acid (PAA). Through 2024, methamphet"
+    },
+    {
+      "id": "en-018",
+      "question": "2024년 10월까지 12개월간 코카인 관련 과다복용 사망자는 몇 명이며, 전년 대비 어떻게 변화했는가?",
+      "answer_chunk_index": 50,
+      "token_start": 19200,
+      "token_end": 19712,
+      "token_count": 512,
+      "answer_snippet": ", and classified to a geographic origin. CSP findings provide a snapshot of current cocaine processing and trafficking trends. --- [page 49] --- Fatalities involving cocaine remain high but are slight"
+    },
+    {
+      "id": "en-019",
+      "question": "미시시피대학 효능 모니터링 프로그램에 따르면 대마초의 THC 함량은 1995년과 2022년에 각각 어느 정도인가?",
+      "answer_chunk_index": 53,
+      "token_start": 20352,
+      "token_end": 20864,
+      "token_count": 512,
+      "answer_snippet": "where marijuana has been legalized. The potency levels in THC-based products, such as dabs and edibles, are often even higher – sometimes as high as 90 percent. Product labeling is not controlled and "
+    },
+    {
+      "id": "en-020",
+      "question": "2016년부터 2022년까지 12세 이하 어린이의 THC 식용제품 섭취 관련 신고 건수는 몇 퍼센트 증가했는가?",
+      "answer_chunk_index": 59,
+      "token_start": 22656,
+      "token_end": 23168,
+      "token_count": 512,
+      "answer_snippet": "enticing product marketing, have resulted in increased injury due to unintentional exposure to marijuana and THC products, particularly among children. Calls to poison control centers and admissions t"
+    }
+  ]
+}

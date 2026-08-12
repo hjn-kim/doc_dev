@@ -1,0 +1,196 @@
+{
+  "source": "uz범죄학및형사사법.txt",
+  "embedding_file": "uz범죄학및형사사법_embeddings.npz",
+  "chunking": {
+    "model": "BAAI/bge-m3",
+    "dim": 1024,
+    "chunk_size": 512,
+    "overlap": 128,
+    "n_chunks": 184
+  },
+  "question_language": "ko",
+  "n_qa": 20,
+  "note": "정답 위치는 answer_chunk_index(0-based)이며 token_start/token_end는 해당 청크의 BGE-M3 토큰 구간입니다. overlap=128이므로 인접 청크에 정답 근거가 부분적으로 중복될 수 있습니다.",
+  "qa_pairs": [
+    {
+      "id": "uz-001",
+      "question": "우즈베키스탄 형법상 여성 대상 범죄의 형사책임을 분석한 논문의 저자는 누구이며 어느 기관 소속인가?",
+      "answer_chunk_index": 6,
+      "token_start": 2304,
+      "token_end": 2816,
+      "token_count": 512,
+      "answer_snippet": "ga qarshi jinoyatlar uchun xorijiy mamlakatlar qonun hujjatlari bilan ayrim taqqoslashlar amalga oshirildi. O‘zbekiston jinoyat qonunchiligini takomillashtirish bo‘yicha amaliy tavsiyalar berildi. Kal"
+    },
+    {
+      "id": "uz-002",
+      "question": "우즈베키스탄 형법에서 여성을 범죄로부터 보호하기 위해 주목해야 할 성적 자유 침해 관련 두 개의 조문은 무엇인가?",
+      "answer_chunk_index": 13,
+      "token_start": 4992,
+      "token_end": 5504,
+      "token_count": 512,
+      "answer_snippet": "совершенные в отношении «жены, мужа, брата, сестры, приемных родителей, приемного сына, приемной дочери, мачехи, отчима, пасынка, падчерицы, тестя, свекра, тещи, свекрови, зятя или снохи» (ст. 449). В"
+    },
+    {
+      "id": "uz-003",
+      "question": "우즈베키스탄 헌법 제53조는 소유 형태와 그 보호에 관해 무엇을 규정하고 있는가?",
+      "answer_chunk_index": 25,
+      "token_start": 9600,
+      "token_end": 10112,
+      "token_count": 512,
+      "answer_snippet": "iga uzviy bog‘liq holda kechgan. Negaki hamma zamon va makonlarda jamiyatning evolyutsion va revolyutsion taraqqiyotida mulk ijtimoiy mavqeni belgilashning asosiy vositalaridan biri sanalgan. Mulk – b"
+    },
+    {
+      "id": "uz-004",
+      "question": "우즈베키스탄 법학계에서 talon-toroj(타인 재산의 불법 취득)는 어떻게 정의되는가?",
+      "answer_chunk_index": 32,
+      "token_start": 12288,
+      "token_end": 12800,
+      "token_count": 512,
+      "answer_snippet": "dik ensiklopediyalarda talon-toroj qilishga – o‘zganing mulkini o‘zining yoki boshqa shaxslarning foydasi uchun, mulkdor yoki ushbu mulkning boshqa egasiga zarar yetkazib, qonunga xilof tarzda va haq "
+    },
+    {
+      "id": "uz-005",
+      "question": "범죄로 얻은 수익을 합법화하는 대표적인 방법으로 이 논문이 제시하는 것은 무엇인가?",
+      "answer_chunk_index": 38,
+      "token_start": 14592,
+      "token_end": 15104,
+      "token_count": 512,
+      "answer_snippet": "tadqiqotlar o‘tkazishga katta eʼtibor qaratilmoqda. Xufyona iqtisodiyotni vujudga keltiruvchi asosiy omillardan biri – bu jinoiy yo‘l bilan olingan daromadlarni legallashtirish hisoblanadi. Jinoiy yo‘"
+    },
+    {
+      "id": "uz-006",
+      "question": "범죄수익 합법화 개념을 규정한 1988년 유엔 협약의 명칭과 해당 조문은 무엇인가?",
+      "answer_chunk_index": 44,
+      "token_start": 16896,
+      "token_end": 17408,
+      "token_count": 512,
+      "answer_snippet": "179 2–3 / 2022 daromadlarning mavjudligi, noqonuniy kelib chiqishi yoki noqonuniy ishlatilishini yashirish, keyin esa bu daromadlarga go‘yoki qonuniy tarzda tus berilishi jarayoni”. Xalqaro huquq doir"
+    },
+    {
+      "id": "uz-007",
+      "question": "우즈베키스탄 조세법전 제210조는 조세 위반(소liq huquqbuzarlik)을 어떻게 정의하는가?",
+      "answer_chunk_index": 57,
+      "token_start": 21888,
+      "token_end": 22400,
+      "token_count": 512,
+      "answer_snippet": "da tutilgan, qasd yoki ehtiyotsizlik natijasida sodir etiluvchi aybli, huquqqa xilof qilmish (harakat yoki harakatsizlik)dir. Bir qator MDH davlatlari soliq qonunchiligini tahlil qilganda, ularning am"
+    },
+    {
+      "id": "uz-008",
+      "question": "공무원이 여러 사람으로부터 동시에 뇌물을 받은 경우 반복범(повторность)으로 인정되는 기준은 무엇인가?",
+      "answer_chunk_index": 69,
+      "token_start": 26496,
+      "token_end": 27008,
+      "token_count": 512,
+      "answer_snippet": "по признаку повторности предполагает совершение одного и того же преступления не менее двух раз, если не истек срок давности привлечения к уголовной ответственности. В судебной практике встречаются за"
+    },
+    {
+      "id": "uz-009",
+      "question": "우즈베키스탄 대법원 전원회의 결정에 따르면 사전공모에 의한 뇌물수수는 언제 기수가 되는가?",
+      "answer_chunk_index": 76,
+      "token_start": 29184,
+      "token_end": 29696,
+      "token_count": 512,
+      "answer_snippet": "Совершение должностным лицом действий, направленных на вымогательство взятки, образует покушение на совершение этого преступления при условии, если предмет взятки не был получен [6, с. 215]. Получение"
+    },
+    {
+      "id": "uz-010",
+      "question": "1년 이하의 자유형이 선고된 경우와 1년을 초과하는 자유형이 선고된 경우, 집행유예 시험기간은 각각 어떻게 정해지는가?",
+      "answer_chunk_index": 88,
+      "token_start": 33792,
+      "token_end": 34304,
+      "token_count": 512,
+      "answer_snippet": ", u tayinlangan jazoni shartli deb hisoblash to‘g‘risida qaror chiqaradi. Bir yilgacha ozodlikdan mahrum qilish yoki yengilroq jazo tayinlangan holda, sinov muddati olti oydan kam va uch yildan ortiq "
+    },
+    {
+      "id": "uz-011",
+      "question": "우즈베키스탄 형법 제72조의 시험기간 규정을 개선하기 위해 제안된 방향은 무엇인가?",
+      "answer_chunk_index": 95,
+      "token_start": 36480,
+      "token_end": 36992,
+      "token_count": 512,
+      "answer_snippet": "nazorat qiluvchi organlar tizimi. Chet el mamlakatlari jinoyat qonunchiligini o‘rganish ayrim mamlakatlarda sinov muddatini tayinlash tartibida farqlar mavjudligini ko‘rsatdi. Masalan, Rossiya Federat"
+    },
+    {
+      "id": "uz-012",
+      "question": "우즈베키스탄 형법 제72조에서 'shartli jazo belgilash'라는 표현을 무엇으로 바꾸자고 제안하는가?",
+      "answer_chunk_index": 101,
+      "token_start": 38784,
+      "token_end": 39296,
+      "token_count": 512,
+      "answer_snippet": "kiritish maqsadga muvo iq: “Shartli jazo belgilash” degan so‘zlar “shartli hukm qilish” degan so‘zlar bilan almashtirilsin. Chunki shartli hukm qilingan shaxsga nisbatan jazo shartli ravishda tayinlan"
+    },
+    {
+      "id": "uz-013",
+      "question": "이 논문이 다루는 행위의 범죄성을 배제하는 사유에는 어떤 것들이 포함되는가?",
+      "answer_chunk_index": 107,
+      "token_start": 41088,
+      "token_end": 41600,
+      "token_count": 512,
+      "answer_snippet": "Procedure Code of the Republic of Uzbekistan and other legislative acts. Keywords: insigni icance of the act, necessary defense, extreme necessity, refusal, act. Dunyoda jinoiy jazolarni liberallashti"
+    },
+    {
+      "id": "uz-014",
+      "question": "행위의 범죄성을 배제하는 사유가 확인된 경우 형사소송법 제83조 적용을 둘러싼 학계의 대립된 견해는 무엇인가?",
+      "answer_chunk_index": 114,
+      "token_start": 43776,
+      "token_end": 44288,
+      "token_count": 512,
+      "answer_snippet": "essual – jinoyat protsessual kodeksida ushbu huquqni amalga oshirish shakli va meʼyori mavjud emas. Bu borada ham olimlarning turfa qarashlari mavjud bo‘lib, unga ko‘ra, bir guruh olimlar qilmishning "
+    },
+    {
+      "id": "uz-015",
+      "question": "피고인이 해당 범죄에 관여하지 않았음이 확인된 경우 법원은 형사소송법 몇 조 몇 항에 따라 무죄를 선고하는가?",
+      "answer_chunk_index": 120,
+      "token_start": 46080,
+      "token_end": 46592,
+      "token_count": 512,
+      "answer_snippet": "JK 41-modda); shaxs jinoyat sodir etishdan ixtiyoriy qaytganda (JK 26-modda) va h. k. Аgar ijtimoiy xav li qilmish fakti va oqibatining kelib chiqqanligi aniqlangan bo‘lib, biroq sud muhokamasida taqd"
+    },
+    {
+      "id": "uz-016",
+      "question": "형사소송에서 수사(tergov) 단계와 재판(sud) 단계는 각각 어떤 원리에 따르는가?",
+      "answer_chunk_index": 133,
+      "token_start": 51072,
+      "token_end": 51584,
+      "token_count": 512,
+      "answer_snippet": ", tekshiradi va baholaydi; b) aybdorlik isbot qilish predmetining bir elementi hisoblanadi. Shu tariqa biz XX asr davomida mavjud bo‘lgan – protsessual funksiyalar birbiridan ajratilmagan, tortishuvch"
+    },
+    {
+      "id": "uz-017",
+      "question": "법원이 직접 입증 기능을 수행한 사례로 제시된 사건에서, 법원은 어느 기관에 무엇을 조회했는가?",
+      "answer_chunk_index": 139,
+      "token_start": 53376,
+      "token_end": 53888,
+      "token_count": 512,
+      "answer_snippet": "+” rusumli telefon apparati bo‘lganligi, uni 2019-yil avgust oyida АQShdan uchib kelgan “Nigina” ismli dugonasi olib kelganligi, “Nigina” sudga kela olmasligi, sababi u yana qaytib uchib ketganligini "
+    },
+    {
+      "id": "uz-018",
+      "question": "법원을 입증 과정의 의무적 주체 지위에서 배제하자는 주장의 근거는 무엇인가?",
+      "answer_chunk_index": 145,
+      "token_start": 55680,
+      "token_end": 56192,
+      "token_count": 512,
+      "answer_snippet": "vida ikki usulda o‘rnatilishi mumkin: sudning aktiv faoliyati yordamida, jumladan, dalillar to‘plash borasida yoki tara larning protsessual faolligi, ayniqsa, dalillar bazasini shakllantirishdagi faol"
+    },
+    {
+      "id": "uz-019",
+      "question": "규제영향평가(RIA) 제도는 언제 어느 나라에서 처음 도입되었으며 이후 어느 나라로 확산되었는가?",
+      "answer_chunk_index": 151,
+      "token_start": 57984,
+      "token_end": 58496,
+      "token_count": 512,
+      "answer_snippet": "sirini baholash” milliy qonunchilikdagi nisbatan yosh institutlardan biri hisoblanadi. Uning negizi bevosita “taʼsirni baholash” institutiga borib taqalishini inobatga olib, dastlab mazkur institutnin"
+    },
+    {
+      "id": "uz-020",
+      "question": "공공조달 분야의 부패 방지 사례로 제시된 캐나다의 제도는 무엇이며 어떤 법률을 통합하고 있는가?",
+      "answer_chunk_index": 170,
+      "token_start": 65280,
+      "token_end": 65792,
+      "token_count": 512,
+      "answer_snippet": "whistleblowers) tizimini yo‘lga qo‘yish, bunda qonun buzilishi holatlari yuzasidan belgilangan tartibda xabar bergan shaxslarni moddiy tomondan rag‘batlantirish, ularni turli tazyiqlar, huquqlari chek"
+    }
+  ]
+}

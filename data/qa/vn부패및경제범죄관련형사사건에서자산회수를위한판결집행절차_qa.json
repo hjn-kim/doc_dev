@@ -1,0 +1,196 @@
+{
+  "source": "vn부패및경제범죄관련형사사건에서자산회수를위한판결집행절차.txt",
+  "embedding_file": "vn부패및경제범죄관련형사사건에서자산회수를위한판결집행절차_embeddings.npz",
+  "chunking": {
+    "model": "BAAI/bge-m3",
+    "dim": 1024,
+    "chunk_size": 512,
+    "overlap": 128,
+    "n_chunks": 243
+  },
+  "question_language": "ko",
+  "n_qa": 20,
+  "note": "정답 위치는 answer_chunk_index(0-based)이며 token_start/token_end는 해당 청크의 BGE-M3 토큰 구간입니다. overlap=128이므로 인접 청크에 정답 근거가 부분적으로 중복될 수 있습니다.",
+  "qa_pairs": [
+    {
+      "id": "vn-001",
+      "question": "이 실무 매뉴얼이 근거로 삼은 법률과 당 지시(Chỉ thị)에는 어떤 것들이 있는가?",
+      "answer_chunk_index": 8,
+      "token_start": 3072,
+      "token_end": 3584,
+      "token_count": 512,
+      "answer_snippet": "hiệu quả công tác THADS của hệ thống THADS. II. CĂN CỨ XÂY DỰNG SỔ TAY - Văn kiện Đại hội đại biểu toàn quốc lần thứ XIII của Đảng; - Chỉ thị số 04-CT/TW ngày 02/6/2021 của Ban Bí thư về tăng cường sự"
+    },
+    {
+      "id": "vn-002",
+      "question": "법원이 압수물이나 관련 서류를 인계하지 않거나 불완전하게 인계한 경우 민사판결집행기관은 어떻게 해야 하는가?",
+      "answer_chunk_index": 17,
+      "token_start": 6528,
+      "token_end": 7040,
+      "token_count": 512,
+      "answer_snippet": "án, quyết định; + Thực hiện theo đúng quy định tại khoản 4 Điều 28 Luật THADS; + Đối với trường hợp bản án, quyết định tuyên kê biên, tạm giữ tài sản, thu giữ vật chứng, hoặc thu giữ tài liệu khác có "
+    },
+    {
+      "id": "vn-003",
+      "question": "피해자가 1만 명에 이르는 사건에서 직접 통지 의무가 만들어내는 문제점과 제안된 해결책은 무엇인가?",
+      "answer_chunk_index": 25,
+      "token_start": 9600,
+      "token_end": 10112,
+      "token_count": 512,
+      "answer_snippet": ": - Khó khăn, vướng mắc: Theo quy định, cơ quan THADS sẽ phải thực hiện thông báo trực tiếp cho 10.000 người bị hại theo quy định tại Điều 41 Luật THADS (giả thiết người phải thi hành án yêu cầu thi h"
+    },
+    {
+      "id": "vn-004",
+      "question": "집행 대상자의 공유재산 지분이 확정되지 않은 경우 집행관은 어떤 절차를 밟아야 하는가?",
+      "answer_chunk_index": 33,
+      "token_start": 12672,
+      "token_end": 13184,
+      "token_count": 512,
+      "answer_snippet": "ày 18/7/2015 c ủa Chính ph ủ quy định chi ti ết và hư ớng dẫn thi h ành m ột s ố đi ều c ủa Lu ật THADS (đã được s ửa đổi, bổ sung tại Ngh ị định s ố 33/2020/NĐ-CP ng ày 17/3/2020). Trong trường hợp n"
+    },
+    {
+      "id": "vn-005",
+      "question": "부패·경제 범죄 사건에서 공유재산에 대한 요구나 분쟁이 있을 때 집행관이 유의해야 할 점은 무엇인가?",
+      "answer_chunk_index": 42,
+      "token_start": 16128,
+      "token_end": 16640,
+      "token_count": 512,
+      "answer_snippet": "quy định thì đưa vào lưu trữ. 44 | SỔ TAY HƯỚNG DẪN KỸ NĂNG, NGHIỆP VỤ TỔ CHỨC THI HÀNH ÁN THU HỒI TÀI SẢN TRONG CÁC VỤ ÁN HÌNH SỰ VỀ THAM NHŨNG, KINH TẾ PHẦN III: NHỮNG VẤN ĐỀ CẦN LƯU Ý TRONG MỘT SỐ "
+    },
+    {
+      "id": "vn-006",
+      "question": "형사 분야 사법공조 경로를 이용할 수 없는 경우, 베트남 법원의 판결을 해외에서 집행하려면 어떤 방법을 사용하는가?",
+      "answer_chunk_index": 50,
+      "token_start": 19200,
+      "token_end": 19712,
+      "token_count": 512,
+      "answer_snippet": "NHŨNG, KINH TẾ PHẦN III: NHỮNG VẤN ĐỀ CẦN LƯU Ý TRONG MỘT SỐ TRƯỜNG HỢP | 53 (ii) Trường hợp không thể thực hiện theo kênh tương trợ tư pháp về hình sự thì cơ quan THADS hướng dẫn người được thi hành "
+    },
+    {
+      "id": "vn-007",
+      "question": "UNCAC 제55조는 자산 몰수를 위한 국제협력에 대해 어떤 내용을 규정하고 있는가?",
+      "answer_chunk_index": 58,
+      "token_start": 22272,
+      "token_end": 22784,
+      "token_count": 512,
+      "answer_snippet": "trong việc tịch thu tài sản, bao gồm tương trợ tư pháp và các biện pháp cần thiết khác để cho phép các cơ quan có thẩm quyền của mỗi quốc gia thi hành lệnh tịch thu do tòa án của một Quốc gia thành vi"
+    },
+    {
+      "id": "vn-008",
+      "question": "베트남 형사소송법 제507조는 외국 기관과의 자산 수색·동결·몰수 협력에 대해 무엇을 규정하는가?",
+      "answer_chunk_index": 67,
+      "token_start": 25728,
+      "token_end": 26240,
+      "token_count": 512,
+      "answer_snippet": "thu tài sản nước ngoài. 39. Các quy định nêu trên tại Điều 91 và 93 của Luật Phòng, chống tham nhũng là phù hợp với Đoạn 2 và 3 của Điều 57 UNCAC, cho phép các cơ quan có thẩm quyền của một Quốc gia t"
+    },
+    {
+      "id": "vn-009",
+      "question": "외국의 몰수 명령이 형사사법공조법에 따라 법원에 등록되면 어떤 효력을 갖는가?",
+      "answer_chunk_index": 75,
+      "token_start": 28800,
+      "token_end": 29312,
+      "token_count": 512,
+      "answer_snippet": "này. 63. Nếu một quốc gia yêu cầu Bộ trưởng Tư pháp sắp xếp việc thi hành lệnh cấm của nước ngoài, Bộ trưởng Tư pháp có thể ủy quyền bằng văn bản cho cơ quan có liên quan nộp đơn xin đăng ký lệnh này."
+    },
+    {
+      "id": "vn-010",
+      "question": "해외에 예금을 보유하고도 신고하지 않은 중국 공무원에 대한 처벌은 무엇인가?",
+      "answer_chunk_index": 83,
+      "token_start": 31872,
+      "token_end": 32384,
+      "token_count": 512,
+      "answer_snippet": "tháng 6 năm 2024), https://www.warnathgroup.com/wp-content/uploads/2015/03/ China-Bộ luật hình sự.pdf 82 | SỔ TAY HƯỚNG DẪN KỸ NĂNG, NGHIỆP VỤ TỔ CHỨC THI HÀNH ÁN THU HỒI TÀI SẢN TRONG CÁC VỤ ÁN HÌNH "
+    },
+    {
+      "id": "vn-011",
+      "question": "이탈리아에서 외국 법원의 몰수 판결을 승인·집행하려면 어떤 절차를 거쳐야 하는가?",
+      "answer_chunk_index": 92,
+      "token_start": 35328,
+      "token_end": 35840,
+      "token_count": 512,
+      "answer_snippet": "ra phiên điều trần tại các phòng và phải đảm bảo rằng các bên và luật sư của họ được thông báo về ngày đó bằng cách đưa ra thông báo tối đa năm ngày trước phiên điều trần. Phiên điều trần phải diễn ra"
+    },
+    {
+      "id": "vn-012",
+      "question": "증거 수집과 자산 추적, 몰수 및 반환의 효율을 높이기 위해 제안된 조치에는 어떤 것들이 있는가?",
+      "answer_chunk_index": 100,
+      "token_start": 38400,
+      "token_end": 38912,
+      "token_count": 512,
+      "answer_snippet": "chống rửa tiền của Việt Nam, một trung tâm phòng, chống tham nhũng duy nhất để thực hiện Luật Phòng, chống tham nhũng của Việt Nam hoặc một trung tâm phòng, chống rửa tiền và phòng, chống tham nhũng c"
+    },
+    {
+      "id": "vn-013",
+      "question": "직접 통지가 어려운 경우 어떤 방법으로 통지하며, 수감 또는 구금 중인 사람에게는 누가 통지 문서를 전달하는가?",
+      "answer_chunk_index": 108,
+      "token_start": 41472,
+      "token_end": 41984,
+      "token_count": 512,
+      "answer_snippet": "DS. - Trường hợp do đường sá xa xôi, giao thông không thuận tiện; người được thông báo có nhiều địa chỉ, nơi ở không cố định, thường vắng mặt ở nhà vào giờ hành chính; đương sự đang bị giam, tạm giam;"
+    },
+    {
+      "id": "vn-014",
+      "question": "재산 처리 위탁(ủy thác) 결정은 며칠 이내에 내려야 하며, 긴급보전조치를 집행하는 경우의 기한은 얼마인가?",
+      "answer_chunk_index": 117,
+      "token_start": 44928,
+      "token_end": 45440,
+      "token_count": 512,
+      "answer_snippet": "ủy thác: + Ra Quyết định thi hành án trong thời hạn 5 ngày làm việc kể từ ngày nhận ủy thác; + Trường hợp thi hành quyết định áp dụng biện pháp khẩn cấp tạm thời: Ra ngay quyết định thi hành án; + Gửi"
+    },
+    {
+      "id": "vn-015",
+      "question": "계좌 또는 재산에 대한 동결 결정을 내린 후 며칠 이내에 강제집행 결정이나 동결 종료 결정을 해야 하는가?",
+      "answer_chunk_index": 125,
+      "token_start": 48000,
+      "token_end": 48512,
+      "token_count": 512,
+      "answer_snippet": "đương sự, cơ quan, tổ chức, cá nhân có liên quan về quyền khởi kiện yêu cầu xác định quyền sở hữu, sử dụng đối với tài sản, giấy tờ tạm giữ. Trường hợp cần thiết, Chấp hành viên phải tiến hành xác min"
+    },
+    {
+      "id": "vn-016",
+      "question": "잠겨 있거나 포장된 물건을 압류할 때 집행관이 취할 수 있는 조치와 작성해야 할 서류는 무엇인가?",
+      "answer_chunk_index": 134,
+      "token_start": 51456,
+      "token_end": 51968,
+      "token_count": 512,
+      "answer_snippet": ". c) Đương sự có quyền yêu cầu Toà án xác định phần vốn góp của người phải thi hành án. 6. Kê biên đồ vật bị khóa, đóng gói a) Yêu cầu người phải thi hành án, người đang sử dụng, quản lý đồ vật mở kho"
+    },
+    {
+      "id": "vn-017",
+      "question": "판결 확정 이후에 토지 위에 형성된 재산이 있는 경우 집행관은 어떻게 처리하며 비용은 누가 부담하는가?",
+      "answer_chunk_index": 142,
+      "token_start": 54528,
+      "token_end": 55040,
+      "token_count": 512,
+      "answer_snippet": "đất hình thành sau khi có bản án, quyết định có hiệu lực pháp luật thì Chấp hành viên yêu cầu người có tài sản đó tháo dỡ hoặc chuyển tài sản ra khỏi diện tích đất phải chuyển giao cho người được thi "
+    },
+    {
+      "id": "vn-018",
+      "question": "하나의 경매에서 여러 재산을 처분하는 경우 어떤 순서로 경매하며, 어떤 경우에 나머지 재산의 경매를 중단하는가?",
+      "answer_chunk_index": 150,
+      "token_start": 57600,
+      "token_end": 58112,
+      "token_count": 512,
+      "answer_snippet": "01 ngày làm việc, người phải thi hành án có quyền nhận lại tài sản nếu nộp đủ tiền thi hành án và thanh toán các chi phí thực tế, hợp lý đã phát sinh từ việc cưỡng chế thi hành án, tổ chức bán đấu giá"
+    },
+    {
+      "id": "vn-019",
+      "question": "UNCAC은 부패 예방을 담당하는 기구의 독립성과 역할에 대해 무엇을 요구하는가?",
+      "answer_chunk_index": 167,
+      "token_start": 64128,
+      "token_end": 64640,
+      "token_count": 512,
+      "answer_snippet": "nguyên tắc cơ bản của pháp luật nước mình, mỗi quốc gia thành viên đảm bảo việc có một cơ quan hoặc một số cơ quan khí thích hợp, có trách nhiệm phòng ngừa tham nhũng bằng các biện pháp như: (a) Thi h"
+    },
+    {
+      "id": "vn-020",
+      "question": "UNCAC에 따른 사법공조 요청서에 반드시 포함되어야 하는 사항은 무엇인가?",
+      "answer_chunk_index": 209,
+      "token_start": 80256,
+      "token_end": 80768,
+      "token_count": 512,
+      "answer_snippet": "miệng có thể được chấp nhận nhưng sau đó phải có xác nhận lại bằng văn bản. 15. Văn bản yêu cầu tương trợ pháp lý phải bao gồm: (a) Đặc trưng nhận biết của cơ quan đưa yêu cầu; (b) Đối tượng và bản ch"
+    }
+  ]
+}
