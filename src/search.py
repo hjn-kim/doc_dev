@@ -622,8 +622,11 @@ def task_compare(all_rows, cfg_names):
 
 
 def matrix_block(all_rows, cfg_names, prefix: str, title: str, note: str,
-                 metric: str = "ndcg@10"):
-    """행=그룹, 열=구성, 값=지정 지표. 그룹이 많을 때 폭을 아끼려고 한 지표만 보여준다."""
+                 metric: str = "ndcg@10", sort_by: str = "bb-hybrid"):
+    """행=그룹, 열=구성, 값=지정 지표. 그룹이 많을 때 폭을 아끼려고 한 지표만 보여준다.
+
+    행 순서는 sort_by 구성의 지표 내림차순. 그 구성이 없으면 첫 번째 구성 기준.
+    """
     rows = [r for r in all_rows if r["document"].startswith(prefix)]
     if not rows:
         return
@@ -634,6 +637,11 @@ def matrix_block(all_rows, cfg_names, prefix: str, title: str, note: str,
             groups.append(r["document"])
     present = [c for c in cfg_names if any(r["config"] == c for r in rows)]
     tbl = {(r["config"], r["document"]): r for r in rows}
+
+    ref = sort_by if sort_by in present else (present[0] if present else None)
+    if ref:
+        groups.sort(key=lambda g: -(tbl[(ref, g)][metric] if (ref, g) in tbl else -1.0))
+        title = f"{title}  [{ref} 기준 내림차순]"
     label_w = max(len(g) for g in groups) + 2
     width = label_w + 6 + 12 * len(present)
     print(f"{title}  ({metric})")
@@ -688,7 +696,7 @@ def print_comparison(all_rows, cfg_names):
     task_compare(all_rows, cfg_names)
     print(GAP, end="")
     matrix_block(all_rows, cfg_names, "TYPE(", "■ 4. 증거유형별 — 무엇이 잘 찾히는가",
-                 "합성증거 19종 증거블록. 문항 많은 순")
+                 "합성증거 19종 증거블록")
     print(GAP, end="")
     matrix_block(all_rows, cfg_names, "LANG(", "■ 5. 언어별 — 어느 언어가 어려운가",
                  "각 언어의 합성증거 + 법령 문서를 합산")
