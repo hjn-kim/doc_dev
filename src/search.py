@@ -47,6 +47,7 @@ from __future__ import annotations
 import argparse
 import csv
 import glob
+import io
 import json
 import math
 import os
@@ -471,6 +472,22 @@ def _owner_of(layout, global_id: int) -> str:
 # --------------------------------------------------------------------------
 # 출력
 # --------------------------------------------------------------------------
+class _Tee:
+    """화면과 문자열 버퍼에 동시에 쓴다 (표를 파일로도 남기기 위해)."""
+
+    def __init__(self, *streams):
+        self.streams = streams
+
+    def write(self, text):
+        for st in self.streams:
+            st.write(text)
+        return len(text)
+
+    def flush(self):
+        for st in self.streams:
+            st.flush()
+
+
 def next_available_path(path: str) -> str:
     """result.csv 가 이미 있으면 result(1).csv, result(2).csv ... 로 비켜 쓴다."""
     if not os.path.exists(path):
@@ -643,13 +660,13 @@ def single_config_block(all_rows, cfg: str, title: str, note: str):
     if not rows:
         return
     rows.sort(key=lambda r: -r["ndcg@10"])
-    label_w = max(len(r["document"]) for r in rows) + 2
-    width = label_w + 6 + 34
+    label_w = max(max(len(r["document"]) for r in rows), len("document")) + 2
+    width = label_w + 6 + 9 + 8 + 9 + 9
     print(f"{title}")
     if note:
         print(f"  {note}")
     print("-" * width)
-    print(f"{'document':<{label_w}}{'N':>6}{'R@5':>9}{'R@10':>8}{'MRR@10':>9}{'nDCG@10':>9}"[:width])
+    print(f"{'document':<{label_w}}{'N':>6}{'R@5':>9}{'R@10':>8}{'MRR@10':>9}{'nDCG@10':>9}")
     print("-" * width)
     for r in rows:
         print(f"{r['document']:<{label_w}}{r['n_queries']:>6}{r['recall@5']:>9.3f}"
@@ -746,6 +763,11 @@ def main():
     enc_cache: dict[tuple[str, bool], Encoder] = {}
     all_rows, dumps = [], {}
 
+    # 표를 화면에 찍으면서 동시에 모아 둔다 (result.txt 용).
+    report = io.StringIO()
+    real_stdout = sys.stdout
+    sys.stdout = _Tee(real_stdout, report)
+
     for cfg in cfg_names:
         qm, dm, mode = CONFIGS[cfg]
         need_sparse = mode in ("sparse", "hybrid")
@@ -784,6 +806,7 @@ def main():
             print_misses(results, args.show_misses)
 
     print_comparison(all_rows, cfg_names)
+    sys.stdout = real_stdout
 
     csv_path = args.csv if args.overwrite else next_available_path(args.csv)
     os.makedirs(os.path.dirname(os.path.abspath(csv_path)) or ".", exist_ok=True)
@@ -792,6 +815,26 @@ def main():
         w.writeheader()
         w.writerows(all_rows)
     print(f"\nCSV 저장: {csv_path}  ({len(all_rows)}행)")
+
+    # CSV 와 같은 이름의 .txt 로 표를 남긴다.
+    txt_path = os.path.splitext(csv_path)[0] + ".txt"
+    head = [
+        "=" * 78,
+        "BGE-M3 / KURE-v1 검색 평가 결과",
+        "=" * 78,
+        f"구성        : {', '.join(cfg_names)}",
+        f"검색 범위   : {args.scope}",
+        f"sparse 가중 : {args.sparse_weight}",
+        f"인접 청크   : ±{args.neighbor_tolerance}",
+        f"문서 / 질의 : {len(target)}개 / {n_q}개",
+        f"데이터      : {os.path.relpath(csv_path, ROOT)}",
+        "=" * 78,
+        "",
+    ]
+    with open(txt_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(head))
+        f.write(report.getvalue())
+    print(f"표  저장: {txt_path}")
 
     if args.dump:
         dump_path = args.dump if args.overwrite else next_available_path(args.dump)
