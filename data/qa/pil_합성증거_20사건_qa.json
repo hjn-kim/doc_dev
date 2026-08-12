@@ -16,7 +16,7 @@
       "id": "pil-001",
       "case_no": 1,
       "evidence_id": "A-001",
-      "question": "Kim Do-yun·Lee Tae-hoon 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "question": "pagpupuslit ng droga, lokal na distribusyon, pagtatago ng criminal proceeds 혐의 사건의 Kim Do-yun·Lee Tae-hoon 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         1,
         2,
@@ -48,7 +48,8 @@
           "token_end": 2048,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "pil-002",
@@ -241,7 +242,7 @@
       "id": "pil-006",
       "case_no": 2,
       "evidence_id": "B-002",
-      "question": "Kang Tae-sung → Seo Yoon-ho 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "question": "panunuhol, bid-rigging, embezzlement, pagbuo ng off-book funds 혐의 사건의 Kang Tae-sung → Seo Yoon-ho 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         54,
         55,
@@ -280,7 +281,8 @@
           "token_end": 22784,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "pil-007",
@@ -466,7 +468,7 @@
       "id": "pil-011",
       "case_no": 3,
       "evidence_id": "C-003",
-      "question": "Jung Min-ho → Kim Ye-rin 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "question": "malakihang fraud at misappropriation ng investment funds 혐의 사건의 Jung Min-ho → Kim Ye-rin 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         110,
         111,
@@ -512,7 +514,8 @@
           "token_end": 44672,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "pil-012",
@@ -670,7 +673,7 @@
       "id": "pil-016",
       "case_no": 4,
       "evidence_id": "D-004",
-      "question": "Jo Hyun-woo·Park Se-young 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "question": "misappropriation at unauthorized disclosure ng trade secrets 혐의 사건의 Jo Hyun-woo·Park Se-young 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         166,
         167,
@@ -702,7 +705,8 @@
           "token_end": 65408,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "pil-017",
@@ -3039,7 +3043,7 @@
       "id": "pil-080",
       "case_no": 16,
       "evidence_id": "P-001",
-      "question": "Kim Do-yun·Lee Tae-hoon 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "question": "unlawful processing at disclosure ng personal information 혐의 사건의 Kim Do-yun·Lee Tae-hoon 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         768,
         769,
@@ -3064,7 +3068,8 @@
           "token_end": 296192,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "pil-081",
@@ -3201,7 +3206,7 @@
       "id": "pil-085",
       "case_no": 17,
       "evidence_id": "Q-002",
-      "question": "Kang Tae-sung → Seo Yoon-ho 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "question": "foreign-exchange violations at concealment of assets offshore 혐의 사건의 Kang Tae-sung → Seo Yoon-ho 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         820,
         821,
@@ -3240,7 +3245,8 @@
           "token_end": 316928,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "pil-086",
@@ -3370,7 +3376,7 @@
       "id": "pil-090",
       "case_no": 18,
       "evidence_id": "R-003",
-      "question": "Jung Min-ho → Kim Ye-rin 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "question": "fraud at unlawful use of nominee ownership in real property 혐의 사건의 Jung Min-ho → Kim Ye-rin 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         875,
         876,
@@ -3416,7 +3422,8 @@
           "token_end": 338432,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "pil-091",
@@ -3581,7 +3588,7 @@
       "id": "pil-095",
       "case_no": 19,
       "evidence_id": "S-004",
-      "question": "Jo Hyun-woo·Park Se-young 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "question": "subsidy fraud at false claims 혐의 사건의 Jo Hyun-woo·Park Se-young 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         931,
         932,
@@ -3606,7 +3613,8 @@
           "token_end": 358784,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "pil-096",

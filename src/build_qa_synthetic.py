@@ -49,22 +49,28 @@ MAX_GOLD = 8                      # 정답이 이보다 많은 청크에 걸치�
 # 헤더에 없는 필드는 None 이고, 아래 fallback 순서로 대체한다.
 LABELS = {
     "ko":  {"people": "주요 관계인", "orgs": "관련 법인·기관", "places": "주요 장소",
-            "keywords": None},
+            "keywords": None, "charge": "관련 혐의"},
     "ch":  {"people": "主要相关人员", "orgs": "相关法人·机构", "places": "主要地点",
-            "keywords": "主要检索词"},
+            "keywords": "主要检索词", "charge": "涉嫌犯罪"},
     "en":  {"people": "Principal Persons", "orgs": "Relevant Organizations",
-            "places": "Principal Locations", "keywords": None},
+            "places": "Principal Locations", "keywords": None,
+            "charge": "Suspected Offenses"},
     "vn":  {"people": "Những người chính", "orgs": "Tổ chức liên quan",
-            "places": "Địa điểm chính", "keywords": None},
+            "places": "Địa điểm chính", "keywords": None,
+            "charge": "Hành vi bị nghi ngờ"},
     "uz":  {"people": "Asosiy shaxslar",
             "orgs": "Tegishli yuridik shaxslar va tashkilotlar",
-            "places": "Asosiy joylar", "keywords": "Asosiy qidiruv terminlari"},
+            "places": "Asosiy joylar", "keywords": "Asosiy qidiruv terminlari",
+            "charge": "Gumon qilinayotgan jinoyatlar"},
     "rs":  {"people": "Основные лица",
             "orgs": "Связанные юридические лица и учреждения",
-            "places": "Основные места", "keywords": "Основные поисковые термины"},
+            "places": "Основные места", "keywords": "Основные поисковые термины",
+            "charge": "Предполагаемые преступления"},
     "pil": {"people": "Mga pangunahing taong sangkot",
             "orgs": "Mga kaugnay na korporasyon at institusyon",
-            "places": "Mga pangunahing lokasyon", "keywords": "Mga pangunahing search term"},
+            "places": "Mga pangunahing lokasyon",
+            "keywords": "Mga pangunahing search term",
+            "charge": "Mga pinaghihinalaang krimen"},
 }
 SPLIT_RE = r"\s*[,、·]\s*"
 
@@ -76,6 +82,14 @@ def _field(head: str, label: str | None) -> list[str]:
     if not m:
         return []
     return [x.strip() for x in re.split(SPLIT_RE, m.group(1)) if x.strip()]
+
+
+def _field_raw(head: str, label: str | None) -> str:
+    """쉼표로 쪼개지 않고 한 줄 통째로 읽는다 (혐의처럼 목록 자체가 하나의 값일 때)."""
+    if not label:
+        return ""
+    m = re.search(re.escape(label) + r"\s*[:：]\s*([^\n]+)", head)
+    return m.group(1).strip() if m else ""
 
 
 def profiles_for(tag: str, text: str, spans: dict[str, tuple[int, int]]) -> dict[int, dict]:
@@ -97,7 +111,8 @@ def profiles_for(tag: str, text: str, spans: dict[str, tuple[int, int]]) -> dict
             orgs = keywords[:3] or people
         if not places:
             places = keywords[:4] or people
-        out[i] = {"people": people, "orgs": orgs, "places": places}
+        out[i] = {"people": people, "orgs": orgs, "places": places,
+                  "charge": _field_raw(head, labels.get("charge"))}
     return out
 
 
@@ -199,7 +214,8 @@ def build_for(tag: str, txt_path: str, npz_path: str, per_case: int,
     cuts = sorted({c for se in spans.values() for c in se})
     tokmap = char_to_token_offsets(text, cuts, tokenizer)
 
-    pairs, stats = [], {"missing_block": 0, "too_many": 0, "short": []}
+    pairs, stats = [], {"missing_block": 0, "too_many": 0, "short": [],
+                        "disambiguated": 0}
     seq = 0
 
     for letter in LETTERS:
@@ -242,6 +258,24 @@ def build_for(tag: str, txt_path: str, npz_path: str, per_case: int,
             })
         if made < per_case:
             stats["short"].append((no, made))
+
+    # 한 문서 안에서 질문이 겹치면(인물 이름 재사용) 정답이 서로 달라 반드시
+    # 한쪽이 틀린다. 겹치는 것에만 혐의를 붙여 구분한다.
+    seen: dict[str, list[dict]] = {}
+    for pair in pairs:
+        seen.setdefault(pair["question"], []).append(pair)
+    n_disambiguated = 0
+    for q, group in seen.items():
+        if len(group) < 2:
+            continue
+        for pair in group:
+            charge = profiles.get(pair["case_no"], {}).get("charge", "")
+            if not charge:
+                continue
+            pair["question"] = f"{charge} 혐의 사건의 " + q
+            pair["disambiguated_by"] = "charge"
+            n_disambiguated += 1
+    stats["disambiguated"] = n_disambiguated
 
     doc = {
         "source": os.path.basename(txt_path),
@@ -287,7 +321,7 @@ def main():
 
     os.makedirs(QA_DIR, exist_ok=True)
     print(f"{'doc':5} {'문항':>5} {'청크':>6} {'gold=1':>7} {'gold>=2':>8} {'평균gold':>8} "
-          f"{'제외(블록)':>10} {'제외(과다)':>10}")
+          f"{'제외(블록)':>10} {'제외(과다)':>10} {'혐의구분':>9}")
     print("-" * 74)
     for tag, txt, npz in targets:
         doc, st = build_for(tag, txt, npz, args.per_case, tokenizer)
@@ -295,7 +329,8 @@ def main():
         g = [len(p["answer_chunk_indices"]) for p in doc["qa_pairs"]]
         one = sum(1 for x in g if x == 1)
         print(f"{tag:5} {n:>5} {doc['chunking']['n_chunks']:>6} {one:>7} {n - one:>8} "
-              f"{np.mean(g) if g else 0:>8.2f} {st['missing_block']:>10} {st['too_many']:>10}")
+              f"{np.mean(g) if g else 0:>8.2f} {st['missing_block']:>10} {st['too_many']:>10} "
+              f"{st['disambiguated']:>9}")
         if st["short"]:
             print(f"      [!] 문항 부족 사건: {st['short']}")
         if not args.dry_run:

@@ -16,7 +16,7 @@
       "id": "uz-001",
       "case_no": 1,
       "evidence_id": "A-001",
-      "question": "Kim Do-yun·Lee Tae-hoon 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "question": "giyohvand moddalarni kontrabanda qilish, ichki tarqatish, jinoiy daromadlarni yashirish 혐의 사건의 Kim Do-yun·Lee Tae-hoon 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         1,
         2,
@@ -48,7 +48,8 @@
           "token_end": 2048,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "uz-002",
@@ -241,7 +242,7 @@
       "id": "uz-006",
       "case_no": 2,
       "evidence_id": "B-002",
-      "question": "Kang Tae-sung → Seo Yoon-ho 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "question": "pora berish va olish, tenderda til biriktirish, mablag‘larni o‘zlashtirish, yashirin jamg‘arma tuzish 혐의 사건의 Kang Tae-sung → Seo Yoon-ho 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         55,
         56,
@@ -287,7 +288,8 @@
           "token_end": 23552,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "uz-007",
@@ -466,7 +468,7 @@
       "id": "uz-011",
       "case_no": 3,
       "evidence_id": "C-003",
-      "question": "Jung Min-ho → Kim Ye-rin 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "question": "yirik miqdordagi firibgarlik, investitsiya mablag‘larini o‘zlashtirish 혐의 사건의 Jung Min-ho → Kim Ye-rin 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         111,
         112,
@@ -519,7 +521,8 @@
           "token_end": 45440,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "uz-012",
@@ -663,7 +666,7 @@
       "id": "uz-016",
       "case_no": 4,
       "evidence_id": "D-004",
-      "question": "Jo Hyun-woo·Park Se-young 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "question": "tijorat sirini o‘zlashtirish va ruxsatsiz oshkor qilish 혐의 사건의 Jo Hyun-woo·Park Se-young 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         169,
         170,
@@ -688,7 +691,8 @@
           "token_end": 66176,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "uz-017",
@@ -3074,7 +3078,7 @@
       "id": "uz-080",
       "case_no": 16,
       "evidence_id": "P-001",
-      "question": "Kim Do-yun·Lee Tae-hoon 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "question": "shaxsiy ma’lumotlarni noqonuniy qayta ishlash va uchinchi tomonga berish 혐의 사건의 Kim Do-yun·Lee Tae-hoon 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         782,
         783,
@@ -3099,7 +3103,8 @@
           "token_end": 301568,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "uz-081",
@@ -3222,7 +3227,7 @@
       "id": "uz-085",
       "case_no": 17,
       "evidence_id": "Q-002",
-      "question": "Kang Tae-sung → Seo Yoon-ho 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "question": "valyuta qoidalarini buzish, aktivlarni xorijda yashirish 혐의 사건의 Kang Tae-sung → Seo Yoon-ho 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         836,
         837,
@@ -3261,7 +3266,8 @@
           "token_end": 323072,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "uz-086",
@@ -3398,7 +3404,7 @@
       "id": "uz-090",
       "case_no": 18,
       "evidence_id": "R-003",
-      "question": "Jung Min-ho → Kim Ye-rin 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "question": "firibgarlik, ko‘chmas mulkni nominal egalardan noqonuniy foydalanib ushlab turish 혐의 사건의 Jung Min-ho → Kim Ye-rin 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         891,
         892,
@@ -3451,7 +3457,8 @@
           "token_end": 344960,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "uz-091",
@@ -3637,7 +3644,7 @@
       "id": "uz-095",
       "case_no": 19,
       "evidence_id": "S-004",
-      "question": "Jo Hyun-woo·Park Se-young 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "question": "subsidiya firibgarligi, yolg‘on talablar taqdim etish 혐의 사건의 Jo Hyun-woo·Park Se-young 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         948,
         949,
@@ -3669,7 +3676,8 @@
           "token_end": 365696,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "uz-096",

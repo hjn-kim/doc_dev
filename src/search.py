@@ -22,9 +22,17 @@ sparse 를 쓰는 구성은 bge-bge 뿐이다. sparse 헤드(sparse_linear.pt)�
     bge  -> data/emb/bgem3   (embedding_bge_txt.py 로 생성, dense + sparse)
     kure -> data/emb/kurev1  (embedding_kure_txt.py 로 생성, dense 전용)
 
-검색 범위는 기본이 --scope doc (질문이 속한 문서 안에서만 검색) 이다.
-합성증거 문서 7종은 같은 20사건을 7개 언어로 번역한 것이라, --scope corpus 로 두면
-한국어 질의가 다른 언어판 대신 한국어판 청크를 집어내 다국어 점수가 무너진다.
+검색 범위 (--scope, 기본 auto)
+
+    auto    증거찾기 -> 자기 문서 안에서만 / 답변찾기 -> 답변찾기 문서 7종 통합
+    doc     모든 질문을 자기 문서 안에서만
+    corpus  모든 질문을 전체 14개 문서에서
+
+  합성증거 7종은 같은 20사건을 7개 언어로 번역한 것이라 통합 검색을 하면
+  한국어 질의가 다른 언어판 대신 한국어판 청크를 집어내 점수가 무너진다.
+  반면 법령·보고서 7종은 주제가 서로 달라 통합 검색이 의미가 있다. 그래서
+  auto 는 두 컬렉션을 따로 취급한다. 두 과제군의 후보 청크 수가 다르므로
+  (증거찾기 536~1040, 답변찾기 약 1100) 절대 수치를 직접 비교할 때 주의한다.
 
 사용 예:
     python src/search.py                                      # 6개 구성 -> result.csv
@@ -344,19 +352,22 @@ def evaluate(docs, target_docs, dense_all, sparse_all, layout, encoder,
              scope: str, tolerance: int, sparse_weight: float,
              batch_size: int, verbose: bool, mode: str = "dense"):
     results = []
+    pools = build_pools(docs, layout)
+    pool_cache: dict[str, tuple] = {}
+
     for doc in target_docs:
         lay = layout[doc["tag"]]
-        off, n_chunks = lay["offset"], lay["n_chunks"]
+        n_chunks = lay["n_chunks"]
+        pkey, eff_scope = pool_key_for(doc, scope)
+        ids = pools[pkey]
+        if pkey not in pool_cache:
+            pool_cache[pkey] = (dense_all[ids],
+                                None if sparse_all is None else sparse_all[ids])
+        dpool, spool = pool_cache[pkey]
+
         questions = [p["question"] for p in doc["qa_pairs"]]
         qd, qs = encoder.encode(questions, batch_size=batch_size,
                                 label=f"질문 {doc['tag'][:14]}", verbose=verbose)
-
-        # 검색 범위에 맞춰 문서 벡터를 자른다.
-        if scope == "doc":
-            dpool = dense_all[off:off + n_chunks]
-            spool = None if sparse_all is None else sparse_all[off:off + n_chunks]
-        else:
-            dpool, spool = dense_all, sparse_all
 
         sparse_scores = None
         if mode in ("sparse", "hybrid"):
@@ -376,17 +387,14 @@ def evaluate(docs, target_docs, dense_all, sparse_all, layout, encoder,
         top = np.argsort(-scores, axis=1)[:, :K_MAX]
 
         for row, (pair, cand) in enumerate(zip(doc["qa_pairs"], top)):
-            if scope == "doc":
-                ranked = [int(c) for c in cand]
-                ranked_docs = [doc["tag"]] * len(ranked)
-            else:
-                ranked, ranked_docs = [], []
-                for gid in cand:
-                    owner = _owner_of(layout, int(gid))
-                    ranked.append(int(gid) - layout[owner]["offset"])
-                    ranked_docs.append(owner)
+            ranked, ranked_docs = [], []
+            for pos in cand:
+                gid = int(ids[pos])
+                owner = _owner_of(layout, gid)
+                ranked.append(gid - layout[owner]["offset"])
+                ranked_docs.append(owner)
 
-            # 전역 검색에서는 다른 문서의 같은 로컬 인덱스가 정답으로 오인되면 안 된다.
+            # 통합 검색에서는 다른 문서의 같은 로컬 인덱스가 정답으로 오인되면 안 된다.
             rel = relevant_set(pair["_gold"], n_chunks, tolerance)
             masked = [cid if dtag == doc["tag"] else -1
                       for cid, dtag in zip(ranked, ranked_docs)]
@@ -394,12 +402,41 @@ def evaluate(docs, target_docs, dense_all, sparse_all, layout, encoder,
             m = query_metrics(masked, rel)
             results.append({
                 "doc": doc["tag"], "language": doc["language"], "task": doc["task"],
+                "eff_scope": eff_scope, "n_candidates": int(len(ids)),
                 "id": pair["id"], "question": pair["question"], "gold": pair["_gold"],
                 "rank": m["rank"], "top_chunks": ranked, "top_docs": ranked_docs,
-                "top_scores": [round(float(scores[row, g]), 4) for g in cand],
+                "top_scores": [round(float(scores[row, p]), 4) for p in cand],
                 **{k: m[k] for k in ("recall@5", "recall@10", "mrr@10", "ndcg@10")},
             })
     return results
+
+
+def build_pools(docs, layout):
+    """검색 범위별 후보 청크의 전역 인덱스 배열."""
+    total = sum(l["n_chunks"] for l in layout.values())
+    pools = {"__all__": np.arange(total, dtype=np.int64)}
+    ans = [d["tag"] for d in docs if d["task"] == TASK_ANSWER]
+    if ans:
+        pools["__answer__"] = np.concatenate([
+            np.arange(layout[t]["offset"], layout[t]["offset"] + layout[t]["n_chunks"],
+                      dtype=np.int64) for t in ans])
+    for d in docs:
+        l = layout[d["tag"]]
+        pools[d["tag"]] = np.arange(l["offset"], l["offset"] + l["n_chunks"],
+                                    dtype=np.int64)
+    return pools
+
+
+def pool_key_for(doc, scope: str) -> tuple[str, str]:
+    """(pool 키, 그 문서에 실제로 적용된 범위 이름)."""
+    if scope == "doc":
+        return doc["tag"], "doc"
+    if scope == "corpus":
+        return "__all__", "corpus"
+    # auto
+    if doc["task"] == TASK_ANSWER:
+        return "__answer__", "corpus(답변찾기 7종)"
+    return doc["tag"], "doc"
 
 
 def _owner_of(layout, global_id: int) -> str:
@@ -425,13 +462,17 @@ def next_available_path(path: str) -> str:
 
 def build_rows(results, cfg_name: str, qm: str, dm: str, mode: str,
                sparse_weight: float, scope: str, tolerance: int) -> list[dict]:
+    def _scopes(subset):
+        v = sorted({r["eff_scope"] for r in subset})
+        return v[0] if len(v) == 1 else "mixed"
+
     def row(document, language, task, subset):
         a = average(subset)
         return {
             "config": cfg_name, "question_model": qm, "doc_model": dm,
             "mode": mode,
             "sparse_weight": sparse_weight if mode == "hybrid" else "",
-            "scope": scope, "neighbor_tolerance": tolerance,
+            "scope": _scopes(subset), "neighbor_tolerance": tolerance,
             "language": language, "task": task, "document": document,
             "n_queries": len(subset),
             **{k: round(a[k], 4) for k in ("recall@5", "recall@10", "mrr@10", "ndcg@10")},
@@ -487,7 +528,8 @@ def compare_block(all_rows, cfg_names, group: str, title: str, note: str = ""):
         return
     n = picked[present[0]]["n_queries"]
     width = 14 + 12 * len(present)
-    print(f"{title}  (질의 {n}개)")
+    sc = sorted({r["scope"] for r in all_rows if r["document"] == group})
+    print(f"{title}  (질의 {n}개, 검색범위 {'/'.join(sc)})")
     if note:
         print(f"  {note}")
     print("-" * width)
@@ -566,8 +608,10 @@ def main():
                     help="하이브리드 점수 = dense + w x sparse (기본 0.3)")
     ap.add_argument("--device", default=None, help="cuda / cpu (기본: 자동)")
     ap.add_argument("--batch-size", type=int, default=16)
-    ap.add_argument("--scope", choices=("doc", "corpus"), default="doc",
-                    help="doc: 질문이 속한 문서 안에서만 검색(기본) / corpus: 전체 문서")
+    ap.add_argument("--scope", choices=("auto", "doc", "corpus"), default="auto",
+                    help="auto: 증거찾기는 자기 문서, 답변찾기는 답변찾기 7종 통합(기본)\n"
+                         "doc: 모든 질문을 자기 문서 안에서만\n"
+                         "corpus: 모든 질문을 전체 14개 문서에서")
     ap.add_argument("--neighbor-tolerance", type=int, default=0,
                     help="정답 청크 ±N 을 정답으로 인정 (overlap 보정용)")
     ap.add_argument("--doc", default=None, help="특정 문서만 평가 (파일명 앞부분)")

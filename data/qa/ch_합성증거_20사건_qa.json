@@ -16,7 +16,7 @@
       "id": "ch-001",
       "case_no": 1,
       "evidence_id": "A-001",
-      "question": "金道允·李泰勋 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "question": "毒品走私、境内分销、隐匿犯罪所得 혐의 사건의 金道允·李泰勋 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         1,
         2,
@@ -41,7 +41,8 @@
           "token_end": 1664,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "ch-002",
@@ -220,7 +221,7 @@
       "id": "ch-006",
       "case_no": 2,
       "evidence_id": "B-002",
-      "question": "姜泰成 → 徐允浩 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "question": "行贿受贿、串通投标、侵占资金、设立账外资金 혐의 사건의 姜泰成 → 徐允浩 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         49,
         50,
@@ -259,7 +260,8 @@
           "token_end": 20864,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "ch-007",
@@ -431,7 +433,7 @@
       "id": "ch-011",
       "case_no": 3,
       "evidence_id": "C-003",
-      "question": "郑民浩 → 金艺琳 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "question": "大额诈骗、挪用投资资金 혐의 사건의 郑民浩 → 金艺琳 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         99,
         100,
@@ -477,7 +479,8 @@
           "token_end": 40448,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "ch-012",
@@ -628,7 +631,7 @@
       "id": "ch-016",
       "case_no": 4,
       "evidence_id": "D-004",
-      "question": "赵贤宇·朴世英 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "question": "侵占及未经授权披露商业秘密 혐의 사건의 赵贤宇·朴世英 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         151,
         152,
@@ -660,7 +663,8 @@
           "token_end": 59648,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "ch-017",
@@ -2878,7 +2882,7 @@
       "id": "ch-080",
       "case_no": 16,
       "evidence_id": "P-001",
-      "question": "金道允·李泰勋 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "question": "违法处理及对外提供个人信息 혐의 사건의 金道允·李泰勋 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         701,
         702,
@@ -2903,7 +2907,8 @@
           "token_end": 270464,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "ch-081",
@@ -3026,7 +3031,7 @@
       "id": "ch-085",
       "case_no": 17,
       "evidence_id": "Q-002",
-      "question": "姜泰成 → 徐允浩 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "question": "违反外汇交易规定、向境外隐匿资产 혐의 사건의 姜泰成 → 徐允浩 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         749,
         750,
@@ -3058,7 +3063,8 @@
           "token_end": 289280,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "ch-086",
@@ -3181,7 +3187,7 @@
       "id": "ch-090",
       "case_no": 18,
       "evidence_id": "R-003",
-      "question": "郑民浩 → 金艺琳 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "question": "诈骗、违法利用名义持有人持有不动产 혐의 사건의 郑民浩 → 金艺琳 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         799,
         800,
@@ -3227,7 +3233,8 @@
           "token_end": 309248,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "ch-091",
@@ -3371,7 +3378,7 @@
       "id": "ch-095",
       "case_no": 19,
       "evidence_id": "S-004",
-      "question": "赵贤宇·朴世英 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "question": "补助资金诈骗、虚假申领 혐의 사건의 赵贤宇·朴世英 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
       "answer_chunk_indices": [
         850,
         851,
@@ -3403,7 +3410,8 @@
           "token_end": 328064,
           "token_count": 512
         }
-      ]
+      ],
+      "disambiguated_by": "charge"
     },
     {
       "id": "ch-096",
