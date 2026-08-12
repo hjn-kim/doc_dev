@@ -46,8 +46,19 @@ MODELS = {
 STORED_CHUNK_MODEL = "bge-m3"      # data/emb 의 청크 벡터를 만든 모델
 K_LIST = (5, 10)
 K_MAX = 10
+
+# 문서 태그 앞부분에서 언어를 판별한다. 질문은 항상 한국어이므로 ko 문서는
+# 동일언어 검색, 나머지는 교차언어 검색이 되어 성격이 다르다. 그래서 따로 집계한다.
+LANG_PREFIXES = ("ko", "ch", "en", "pil", "pl", "rs", "uz", "vn")
+KO_LANG = "ko"
+GROUP_ALL = "ALL"
+GROUP_KO = "ALL(한국어)"
+GROUP_MULTI = "ALL(다국어)"
+GROUP_ROWS = (GROUP_ALL, GROUP_KO, GROUP_MULTI)
+
 CSV_FIELDS = ["model", "model_id", "chunk_encoder", "scope", "neighbor_tolerance",
-              "document", "n_queries", "recall@5", "recall@10", "mrr@10", "ndcg@10"]
+              "language", "document", "n_queries",
+              "recall@5", "recall@10", "mrr@10", "ndcg@10"]
 
 
 # --------------------------------------------------------------------------
@@ -82,12 +93,21 @@ def load_corpus(qa_dir: str, emb_dir: str):
         n_chunks = emb.shape[0]
 
         for pair in qa["qa_pairs"]:
-            gold = pair["answer_chunk_index"]
-            if not (0 <= gold < n_chunks):
-                raise ValueError(
-                    f"{qa['source']} {pair['id']}: answer_chunk_index={gold} 가 "
-                    f"청크 범위(0~{n_chunks - 1})를 벗어납니다."
-                )
+            # 구버전은 정답 청크가 하나(answer_chunk_index),
+            # 합성증거 QA 는 여러 개(answer_chunk_indices)일 수 있다. 리스트로 통일한다.
+            if "answer_chunk_indices" in pair:
+                gold = list(pair["answer_chunk_indices"])
+            else:
+                gold = [pair["answer_chunk_index"]]
+            if not gold:
+                raise ValueError(f"{qa['source']} {pair['id']}: 정답 청크가 비어 있습니다.")
+            for g in gold:
+                if not (0 <= g < n_chunks):
+                    raise ValueError(
+                        f"{qa['source']} {pair['id']}: 정답 청크 {g} 가 "
+                        f"청크 범위(0~{n_chunks - 1})를 벗어납니다."
+                    )
+            pair["_gold"] = gold
 
         docs.append({
             "source": qa["source"],
@@ -186,18 +206,24 @@ def chunk_matrix(docs, emb_all, model_key: str, encoder, reencode: bool,
 # --------------------------------------------------------------------------
 # 지표
 # --------------------------------------------------------------------------
-def relevant_set(gold: int, n_chunks: int, tolerance: int) -> set[int]:
-    """overlap 때문에 정답 근거가 인접 청크에 걸칠 수 있어 허용 범위를 둔다."""
-    return set(range(max(0, gold - tolerance), min(n_chunks - 1, gold + tolerance) + 1))
+def relevant_set(gold: list[int], n_chunks: int, tolerance: int) -> set[int]:
+    """정답 청크(여러 개일 수 있음)와, overlap 보정용 인접 청크를 합친 집합."""
+    rel: set[int] = set()
+    for g in gold:
+        rel.update(range(max(0, g - tolerance), min(n_chunks - 1, g + tolerance) + 1))
+    return rel
 
 
 def query_metrics(ranked: list[int], rel: set[int]) -> dict:
-    """단일 질의 지표.
+    """단일 질의 지표. 모두 '첫 적중' 기준이다.
 
-    질의마다 정답 청크는 하나다. tolerance>0 으로 rel 이 여러 개가 되더라도
-    그것은 "인접 청크를 맞혀도 정답으로 인정한다"는 관대한 매칭을 뜻하지,
-    회수해야 할 정답이 늘어난다는 뜻이 아니다. 따라서 첫 적중만 센다.
-    (tolerance=0 이면 정답 1개짜리 표준 지표와 정확히 같아진다.)
+    주의 - recall@k 는 표준 Recall 이 아니라 hit-rate(= success@k) 다.
+      표준 Recall@k = |상위 k ∩ 정답| / |정답| 이라 정답 청크가 많을수록 불리하다.
+      여기서는 정답 청크 중 하나라도 상위 k 에 들면 1.0 으로 센다. 정답이 여러
+      청크에 걸치는 것은 하나의 증거블록이 overlap 때문에 쪼개진 결과일 뿐,
+      전부 회수해야 하는 별개 정답이 아니기 때문이다. 따라서 정답 청크 수가
+      늘어도 점수가 깎이지 않는다(오히려 적중 기회가 늘어난다).
+      nDCG/MRR 도 같은 이유로 첫 적중 순위만 사용한다.
     """
     first_rank = 0
     for pos, cid in enumerate(ranked[:K_MAX], start=1):
@@ -254,7 +280,7 @@ def evaluate(all_docs, target_docs, chunk_emb, encoder, scope: str, tolerance: i
                     ranked_docs.append(owner["tag"])
 
             # 전역 검색에서는 다른 문서의 같은 로컬 인덱스가 정답으로 오인되면 안 된다.
-            rel = relevant_set(pair["answer_chunk_index"], doc["n_chunks"], tolerance)
+            rel = relevant_set(pair["_gold"], doc["n_chunks"], tolerance)
             masked = [cid if dtag == doc["tag"] else -1
                       for cid, dtag in zip(ranked, ranked_docs)]
 
@@ -263,7 +289,7 @@ def evaluate(all_docs, target_docs, chunk_emb, encoder, scope: str, tolerance: i
                 "doc": doc["tag"],
                 "id": pair["id"],
                 "question": pair["question"],
-                "gold": pair["answer_chunk_index"],
+                "gold": pair["_gold"],
                 "rank": m["rank"],
                 "top_chunks": ranked,
                 "top_docs": ranked_docs,
@@ -295,6 +321,14 @@ def next_available_path(path: str) -> str:
     return f"{stem}({i}){ext}"
 
 
+def doc_language(tag: str) -> str:
+    """문서 태그 앞부분에서 언어코드를 얻는다. 'pil' 이 'pl' 보다 먼저 걸리도록 긴 것부터."""
+    for pre in sorted(LANG_PREFIXES, key=len, reverse=True):
+        if tag.startswith(pre):
+            return pre
+    return "?"
+
+
 def build_rows(results, model_key: str, model_id: str, chunk_encoder: str,
                scope: str, tolerance: int) -> list[dict]:
     rows = []
@@ -302,22 +336,27 @@ def build_rows(results, model_key: str, model_id: str, chunk_encoder: str,
     for r in results:
         by_doc.setdefault(r["doc"], []).append(r)
 
-    for tag in sorted(by_doc):
-        a = average(by_doc[tag])
-        rows.append({
+    def row(document: str, language: str, subset: list[dict]) -> dict:
+        a = average(subset)
+        return {
             "model": model_key, "model_id": model_id, "chunk_encoder": chunk_encoder,
             "scope": scope, "neighbor_tolerance": tolerance,
-            "document": tag, "n_queries": len(by_doc[tag]),
+            "language": language, "document": document, "n_queries": len(subset),
             **{k: round(a[k], 4) for k in ("recall@5", "recall@10", "mrr@10", "ndcg@10")},
-        })
+        }
 
-    a = average(results)
-    rows.append({
-        "model": model_key, "model_id": model_id, "chunk_encoder": chunk_encoder,
-        "scope": scope, "neighbor_tolerance": tolerance,
-        "document": "ALL", "n_queries": len(results),
-        **{k: round(a[k], 4) for k in ("recall@5", "recall@10", "mrr@10", "ndcg@10")},
-    })
+    for tag in sorted(by_doc):
+        rows.append(row(tag, doc_language(tag), by_doc[tag]))
+
+    # 언어 그룹 집계: 한국어 문서만 / 한국어를 뺀 다국어 문서만
+    ko = [r for r in results if doc_language(r["doc"]) == KO_LANG]
+    multi = [r for r in results if doc_language(r["doc"]) != KO_LANG]
+    if ko:
+        rows.append(row(GROUP_KO, KO_LANG, ko))
+    if multi:
+        rows.append(row(GROUP_MULTI, "multi", multi))
+
+    rows.append(row(GROUP_ALL, "all", results))
     return rows
 
 
@@ -330,7 +369,7 @@ def print_table(rows: list[dict], model_key: str, chunk_encoder: str):
     print(header)
     print("-" * len(header))
     for r in rows:
-        if r["document"] == "ALL":
+        if r["document"] in GROUP_ROWS and r["document"] == GROUP_KO:
             print("-" * len(header))
         print(f"{r['document'].ljust(width)}  {r['n_queries']:>4} "
               f"{r['recall@5']:>7.3f} {r['recall@10']:>7.3f} "
@@ -338,24 +377,38 @@ def print_table(rows: list[dict], model_key: str, chunk_encoder: str):
     print("-" * len(header))
 
 
-def print_comparison(all_rows: list[dict], model_keys: list[str]):
-    """모델별 ALL 행을 나란히 비교."""
-    alls = {r["model"]: r for r in all_rows if r["document"] == "ALL"}
-    if len(alls) < 2:
+def _compare_block(all_rows, model_keys, group: str, title: str, note: str = ""):
+    """한 그룹(전체/한국어/다국어)에 대해 모델을 나란히 비교하는 표."""
+    picked = {r["model"]: r for r in all_rows if r["document"] == group}
+    present = [m for m in model_keys if m in picked]
+    if len(present) < 2:
         return
     metrics = ("recall@5", "recall@10", "mrr@10", "ndcg@10")
-    base = model_keys[0]
-    print("\n모델 비교 (ALL, micro)")
-    print("-" * 58)
-    print(f"{'metric':<12}" + "".join(f"{m:>12}" for m in model_keys) + f"{'차이':>12}")
-    print("-" * 58)
+    n = picked[present[0]]["n_queries"]
+    width = 14 + 12 * len(present) + 12
+    print(f"\n{title}  (질의 {n}개)")
+    if note:
+        print(f"  {note}")
+    print("-" * width)
+    print(f"{'metric':<14}" + "".join(f"{m:>12}" for m in present) + f"{'차이':>12}")
+    print("-" * width)
     for k in metrics:
-        vals = [alls[m][k] for m in model_keys if m in alls]
-        diff = vals[-1] - vals[0] if len(vals) >= 2 else 0.0
-        print(f"{k:<12}" + "".join(f"{v:>12.3f}" for v in vals)
-              + f"{diff:>+12.3f}")
-    print("-" * 58)
-    print(f"(차이 = {model_keys[-1]} − {base})")
+        vals = [picked[m][k] for m in present]
+        print(f"{k:<14}" + "".join(f"{v:>12.3f}" for v in vals)
+              + f"{vals[-1] - vals[0]:>+12.3f}")
+    print("-" * width)
+    print(f"  (차이 = {present[-1]} − {present[0]})")
+
+
+def print_comparison(all_rows: list[dict], model_keys: list[str]):
+    """전체 / 한국어 문서 / 다국어 문서 세 가지 기준으로 모델을 비교한다."""
+    _compare_block(all_rows, model_keys, GROUP_ALL, "■ 모델 비교 — 전체")
+    _compare_block(all_rows, model_keys, GROUP_KO, "■ 모델 비교 — 한국어 문서",
+                   "질문·본문이 모두 한국어 (동일언어 검색)")
+    _compare_block(all_rows, model_keys, GROUP_MULTI, "■ 모델 비교 — 다국어 문서 (한국어 제외)",
+                   "질문은 한국어, 본문은 ch/en/pil/rs/uz/vn (교차언어 검색)")
+    print("\n※ recall@k 는 hit-rate 입니다. 정답 청크 중 하나라도 상위 k 에 들면 1.0 으로"
+          " 세며, 표준 Recall(|상위k ∩ 정답| / |정답|)이 아닙니다.")
 
 
 def print_misses(results, limit: int):

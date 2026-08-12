@@ -1,0 +1,3767 @@
+{
+  "source": "pil_합성증거_20사건.txt",
+  "embedding_file": "pil_합성증거_20사건_embeddings.npz",
+  "chunking": {
+    "model": "BAAI/bge-m3",
+    "dim": 1024,
+    "chunk_size": 512,
+    "overlap": 128,
+    "n_chunks": 1020
+  },
+  "question_language": "ko",
+  "n_qa": 100,
+  "note": "질의는 '<대상> <증거유형>에 해당하는 증거를 찾아주세요' 형태의 한국어 문장이다. 정답은 해당 증거블록이 걸쳐 있는 청크 전부(answer_chunk_indices, 0-based)이며 overlap=128 때문에 여러 개인 것이 정상이다. 질문은 한국어이고 본문은 문서 언어이므로 교차언어 검색 평가가 된다.",
+  "qa_pairs": [
+    {
+      "id": "pil-001",
+      "case_no": 1,
+      "evidence_id": "A-001",
+      "question": "Kim Do-yun·Lee Tae-hoon 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1,
+        2,
+        3
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 1,
+          "token_start": 384,
+          "token_end": 896,
+          "token_count": 512
+        },
+        {
+          "chunk": 2,
+          "token_start": 768,
+          "token_end": 1280,
+          "token_count": 512
+        },
+        {
+          "chunk": 3,
+          "token_start": 1152,
+          "token_end": 1664,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-002",
+      "case_no": 1,
+      "evidence_id": "A-002",
+      "question": "Kim Do-yun → Lee Tae-hoon 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 3,
+          "token_start": 1152,
+          "token_end": 1664,
+          "token_count": 512
+        },
+        {
+          "chunk": 4,
+          "token_start": 1536,
+          "token_end": 2048,
+          "token_count": 512
+        },
+        {
+          "chunk": 5,
+          "token_start": 1920,
+          "token_end": 2432,
+          "token_count": 512
+        },
+        {
+          "chunk": 6,
+          "token_start": 2304,
+          "token_end": 2816,
+          "token_count": 512
+        },
+        {
+          "chunk": 7,
+          "token_start": 2688,
+          "token_end": 3200,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-003",
+      "case_no": 1,
+      "evidence_id": "A-003",
+      "question": "Kim Do-yun → Lee Tae-hoon 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 6,
+          "token_start": 2304,
+          "token_end": 2816,
+          "token_count": 512
+        },
+        {
+          "chunk": 7,
+          "token_start": 2688,
+          "token_end": 3200,
+          "token_count": 512
+        },
+        {
+          "chunk": 8,
+          "token_start": 3072,
+          "token_end": 3584,
+          "token_count": 512
+        },
+        {
+          "chunk": 9,
+          "token_start": 3456,
+          "token_end": 3968,
+          "token_count": 512
+        },
+        {
+          "chunk": 10,
+          "token_start": 3840,
+          "token_end": 4352,
+          "token_count": 512
+        },
+        {
+          "chunk": 11,
+          "token_start": 4224,
+          "token_end": 4736,
+          "token_count": 512
+        },
+        {
+          "chunk": 12,
+          "token_start": 4608,
+          "token_end": 5120,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-004",
+      "case_no": 1,
+      "evidence_id": "A-004",
+      "question": "Kim Do-yun·Lee Tae-hoon 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 11,
+          "token_start": 4224,
+          "token_end": 4736,
+          "token_count": 512
+        },
+        {
+          "chunk": 12,
+          "token_start": 4608,
+          "token_end": 5120,
+          "token_count": 512
+        },
+        {
+          "chunk": 13,
+          "token_start": 4992,
+          "token_end": 5504,
+          "token_count": 512
+        },
+        {
+          "chunk": 14,
+          "token_start": 5376,
+          "token_end": 5888,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-005",
+      "case_no": 1,
+      "evidence_id": "A-005",
+      "question": "bearing 부근 기지국·GPS·Wi-Fi 위치기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 14,
+          "token_start": 5376,
+          "token_end": 5888,
+          "token_count": 512
+        },
+        {
+          "chunk": 15,
+          "token_start": 5760,
+          "token_end": 6272,
+          "token_count": 512
+        },
+        {
+          "chunk": 16,
+          "token_start": 6144,
+          "token_end": 6656,
+          "token_count": 512
+        },
+        {
+          "chunk": 17,
+          "token_start": 6528,
+          "token_end": 7040,
+          "token_count": 512
+        },
+        {
+          "chunk": 18,
+          "token_start": 6912,
+          "token_end": 7424,
+          "token_count": 512
+        },
+        {
+          "chunk": 19,
+          "token_start": 7296,
+          "token_end": 7808,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-006",
+      "case_no": 2,
+      "evidence_id": "B-002",
+      "question": "Kang Tae-sung → Seo Yoon-ho 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        54,
+        55,
+        56,
+        57,
+        58
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 54,
+          "token_start": 20736,
+          "token_end": 21248,
+          "token_count": 512
+        },
+        {
+          "chunk": 55,
+          "token_start": 21120,
+          "token_end": 21632,
+          "token_count": 512
+        },
+        {
+          "chunk": 56,
+          "token_start": 21504,
+          "token_end": 22016,
+          "token_count": 512
+        },
+        {
+          "chunk": 57,
+          "token_start": 21888,
+          "token_end": 22400,
+          "token_count": 512
+        },
+        {
+          "chunk": 58,
+          "token_start": 22272,
+          "token_end": 22784,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-007",
+      "case_no": 2,
+      "evidence_id": "B-003",
+      "question": "Kang Tae-sung → Seo Yoon-ho 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 58,
+          "token_start": 22272,
+          "token_end": 22784,
+          "token_count": 512
+        },
+        {
+          "chunk": 59,
+          "token_start": 22656,
+          "token_end": 23168,
+          "token_count": 512
+        },
+        {
+          "chunk": 60,
+          "token_start": 23040,
+          "token_end": 23552,
+          "token_count": 512
+        },
+        {
+          "chunk": 61,
+          "token_start": 23424,
+          "token_end": 23936,
+          "token_count": 512
+        },
+        {
+          "chunk": 62,
+          "token_start": 23808,
+          "token_end": 24320,
+          "token_count": 512
+        },
+        {
+          "chunk": 63,
+          "token_start": 24192,
+          "token_end": 24704,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-008",
+      "case_no": 2,
+      "evidence_id": "B-004",
+      "question": "Kang Tae-sung·Seo Yoon-ho 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        63,
+        64,
+        65
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 63,
+          "token_start": 24192,
+          "token_end": 24704,
+          "token_count": 512
+        },
+        {
+          "chunk": 64,
+          "token_start": 24576,
+          "token_end": 25088,
+          "token_count": 512
+        },
+        {
+          "chunk": 65,
+          "token_start": 24960,
+          "token_end": 25472,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-009",
+      "case_no": 2,
+      "evidence_id": "B-005",
+      "question": "40 milyon 부근 기지국·GPS·Wi-Fi 위치기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 65,
+          "token_start": 24960,
+          "token_end": 25472,
+          "token_count": 512
+        },
+        {
+          "chunk": 66,
+          "token_start": 25344,
+          "token_end": 25856,
+          "token_count": 512
+        },
+        {
+          "chunk": 67,
+          "token_start": 25728,
+          "token_end": 26240,
+          "token_count": 512
+        },
+        {
+          "chunk": 68,
+          "token_start": 26112,
+          "token_end": 26624,
+          "token_count": 512
+        },
+        {
+          "chunk": 69,
+          "token_start": 26496,
+          "token_end": 27008,
+          "token_count": 512
+        },
+        {
+          "chunk": 70,
+          "token_start": 26880,
+          "token_end": 27392,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-010",
+      "case_no": 2,
+      "evidence_id": "B-006",
+      "question": "pagkatapos ng approval 60 출입 차량 GPS·번호판 인식 및 주차기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        70,
+        71
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 70,
+          "token_start": 26880,
+          "token_end": 27392,
+          "token_count": 512
+        },
+        {
+          "chunk": 71,
+          "token_start": 27264,
+          "token_end": 27776,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-011",
+      "case_no": 3,
+      "evidence_id": "C-003",
+      "question": "Jung Min-ho → Kim Ye-rin 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 109,
+          "token_start": 41856,
+          "token_end": 42368,
+          "token_count": 512
+        },
+        {
+          "chunk": 110,
+          "token_start": 42240,
+          "token_end": 42752,
+          "token_count": 512
+        },
+        {
+          "chunk": 111,
+          "token_start": 42624,
+          "token_end": 43136,
+          "token_count": 512
+        },
+        {
+          "chunk": 112,
+          "token_start": 43008,
+          "token_end": 43520,
+          "token_count": 512
+        },
+        {
+          "chunk": 113,
+          "token_start": 43392,
+          "token_end": 43904,
+          "token_count": 512
+        },
+        {
+          "chunk": 114,
+          "token_start": 43776,
+          "token_end": 44288,
+          "token_count": 512
+        },
+        {
+          "chunk": 115,
+          "token_start": 44160,
+          "token_end": 44672,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-012",
+      "case_no": 3,
+      "evidence_id": "C-004",
+      "question": "Jung Min-ho·Kim Ye-rin 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        114,
+        115,
+        116,
+        117
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 114,
+          "token_start": 43776,
+          "token_end": 44288,
+          "token_count": 512
+        },
+        {
+          "chunk": 115,
+          "token_start": 44160,
+          "token_end": 44672,
+          "token_count": 512
+        },
+        {
+          "chunk": 116,
+          "token_start": 44544,
+          "token_end": 45056,
+          "token_count": 512
+        },
+        {
+          "chunk": 117,
+          "token_start": 44928,
+          "token_end": 45440,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-013",
+      "case_no": 3,
+      "evidence_id": "C-005",
+      "question": "demo 부근 기지국·GPS·Wi-Fi 위치기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        117,
+        118,
+        119,
+        120,
+        121,
+        122
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 117,
+          "token_start": 44928,
+          "token_end": 45440,
+          "token_count": 512
+        },
+        {
+          "chunk": 118,
+          "token_start": 45312,
+          "token_end": 45824,
+          "token_count": 512
+        },
+        {
+          "chunk": 119,
+          "token_start": 45696,
+          "token_end": 46208,
+          "token_count": 512
+        },
+        {
+          "chunk": 120,
+          "token_start": 46080,
+          "token_end": 46592,
+          "token_count": 512
+        },
+        {
+          "chunk": 121,
+          "token_start": 46464,
+          "token_end": 46976,
+          "token_count": 512
+        },
+        {
+          "chunk": 122,
+          "token_start": 46848,
+          "token_end": 47360,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-014",
+      "case_no": 3,
+      "evidence_id": "C-006",
+      "question": "walang live connection 출입 차량 GPS·번호판 인식 및 주차기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        121,
+        122,
+        123
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 121,
+          "token_start": 46464,
+          "token_end": 46976,
+          "token_count": 512
+        },
+        {
+          "chunk": 122,
+          "token_start": 46848,
+          "token_end": 47360,
+          "token_count": 512
+        },
+        {
+          "chunk": 123,
+          "token_start": 47232,
+          "token_end": 47744,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-015",
+      "case_no": 3,
+      "evidence_id": "C-007",
+      "question": "demo CCTV 영상 메타데이터 및 관찰기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        123,
+        124
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 123,
+          "token_start": 47232,
+          "token_end": 47744,
+          "token_count": 512
+        },
+        {
+          "chunk": 124,
+          "token_start": 47616,
+          "token_end": 48128,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-016",
+      "case_no": 4,
+      "evidence_id": "D-004",
+      "question": "Jo Hyun-woo·Park Se-young 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        165,
+        166,
+        167,
+        168
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 165,
+          "token_start": 63360,
+          "token_end": 63872,
+          "token_count": 512
+        },
+        {
+          "chunk": 166,
+          "token_start": 63744,
+          "token_end": 64256,
+          "token_count": 512
+        },
+        {
+          "chunk": 167,
+          "token_start": 64128,
+          "token_end": 64640,
+          "token_count": 512
+        },
+        {
+          "chunk": 168,
+          "token_start": 64512,
+          "token_end": 65024,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-017",
+      "case_no": 4,
+      "evidence_id": "D-005",
+      "question": "NX7 부근 기지국·GPS·Wi-Fi 위치기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        168,
+        169,
+        170,
+        171,
+        172,
+        173
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 168,
+          "token_start": 64512,
+          "token_end": 65024,
+          "token_count": 512
+        },
+        {
+          "chunk": 169,
+          "token_start": 64896,
+          "token_end": 65408,
+          "token_count": 512
+        },
+        {
+          "chunk": 170,
+          "token_start": 65280,
+          "token_end": 65792,
+          "token_count": 512
+        },
+        {
+          "chunk": 171,
+          "token_start": 65664,
+          "token_end": 66176,
+          "token_count": 512
+        },
+        {
+          "chunk": 172,
+          "token_start": 66048,
+          "token_end": 66560,
+          "token_count": 512
+        },
+        {
+          "chunk": 173,
+          "token_start": 66432,
+          "token_end": 66944,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-018",
+      "case_no": 4,
+      "evidence_id": "D-006",
+      "question": "USB-X92-7718 출입 차량 GPS·번호판 인식 및 주차기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        172,
+        173,
+        174
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 172,
+          "token_start": 66048,
+          "token_end": 66560,
+          "token_count": 512
+        },
+        {
+          "chunk": 173,
+          "token_start": 66432,
+          "token_end": 66944,
+          "token_count": 512
+        },
+        {
+          "chunk": 174,
+          "token_start": 66816,
+          "token_end": 67328,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-019",
+      "case_no": 4,
+      "evidence_id": "D-007",
+      "question": "NX7 CCTV 영상 메타데이터 및 관찰기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        174,
+        175
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 174,
+          "token_start": 66816,
+          "token_end": 67328,
+          "token_count": 512
+        },
+        {
+          "chunk": 175,
+          "token_start": 67200,
+          "token_end": 67712,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-020",
+      "case_no": 4,
+      "evidence_id": "D-008",
+      "question": "Jo Hyun-woo·Ryu Ji-hoon 명의 가상계좌 입출금 거래 내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        175,
+        176,
+        177,
+        178
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 175,
+          "token_start": 67200,
+          "token_end": 67712,
+          "token_count": 512
+        },
+        {
+          "chunk": 176,
+          "token_start": 67584,
+          "token_end": 68096,
+          "token_count": 512
+        },
+        {
+          "chunk": 177,
+          "token_start": 67968,
+          "token_end": 68480,
+          "token_count": 512
+        },
+        {
+          "chunk": 178,
+          "token_start": 68352,
+          "token_end": 68864,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-021",
+      "case_no": 5,
+      "evidence_id": "E-005",
+      "question": "Prosecution Team 1 부근 기지국·GPS·Wi-Fi 위치기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        219,
+        220,
+        221,
+        222,
+        223,
+        224
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 219,
+          "token_start": 84096,
+          "token_end": 84608,
+          "token_count": 512
+        },
+        {
+          "chunk": 220,
+          "token_start": 84480,
+          "token_end": 84992,
+          "token_count": 512
+        },
+        {
+          "chunk": 221,
+          "token_start": 84864,
+          "token_end": 85376,
+          "token_count": 512
+        },
+        {
+          "chunk": 222,
+          "token_start": 85248,
+          "token_end": 85760,
+          "token_count": 512
+        },
+        {
+          "chunk": 223,
+          "token_start": 85632,
+          "token_end": 86144,
+          "token_count": 512
+        },
+        {
+          "chunk": 224,
+          "token_start": 86016,
+          "token_end": 86528,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-022",
+      "case_no": 5,
+      "evidence_id": "E-006",
+      "question": "safe account 출입 차량 GPS·번호판 인식 및 주차기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        224,
+        225
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 224,
+          "token_start": 86016,
+          "token_end": 86528,
+          "token_count": 512
+        },
+        {
+          "chunk": 225,
+          "token_start": 86400,
+          "token_end": 86912,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-023",
+      "case_no": 5,
+      "evidence_id": "E-007",
+      "question": "Prosecution Team 1 CCTV 영상 메타데이터 및 관찰기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        225,
+        226
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 225,
+          "token_start": 86400,
+          "token_end": 86912,
+          "token_count": 512
+        },
+        {
+          "chunk": 226,
+          "token_start": 86784,
+          "token_end": 87296,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-024",
+      "case_no": 5,
+      "evidence_id": "E-008",
+      "question": "Lim Ji-hwan·Kwon So-hee 명의 가상계좌 입출금 거래 내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        226,
+        227,
+        228,
+        229,
+        230
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 226,
+          "token_start": 86784,
+          "token_end": 87296,
+          "token_count": 512
+        },
+        {
+          "chunk": 227,
+          "token_start": 87168,
+          "token_end": 87680,
+          "token_count": 512
+        },
+        {
+          "chunk": 228,
+          "token_start": 87552,
+          "token_end": 88064,
+          "token_count": 512
+        },
+        {
+          "chunk": 229,
+          "token_start": 87936,
+          "token_end": 88448,
+          "token_count": 512
+        },
+        {
+          "chunk": 230,
+          "token_start": 88320,
+          "token_end": 88832,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-025",
+      "case_no": 5,
+      "evidence_id": "E-009",
+      "question": "Prosecution Team 1 법인카드·간편결제·영수증 사용 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        229,
+        230,
+        231,
+        232
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 229,
+          "token_start": 87936,
+          "token_end": 88448,
+          "token_count": 512
+        },
+        {
+          "chunk": 230,
+          "token_start": 88320,
+          "token_end": 88832,
+          "token_count": 512
+        },
+        {
+          "chunk": 231,
+          "token_start": 88704,
+          "token_end": 89216,
+          "token_count": 512
+        },
+        {
+          "chunk": 232,
+          "token_start": 89088,
+          "token_end": 89600,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-026",
+      "case_no": 6,
+      "evidence_id": "F-006",
+      "question": "huwag markahang leave 출입 차량 GPS·번호판 인식 및 주차기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        275,
+        276
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 275,
+          "token_start": 105600,
+          "token_end": 106112,
+          "token_count": 512
+        },
+        {
+          "chunk": 276,
+          "token_start": 105984,
+          "token_end": 106496,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-027",
+      "case_no": 6,
+      "evidence_id": "F-007",
+      "question": "Room 306 CCTV 영상 메타데이터 및 관찰기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        276,
+        277
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 276,
+          "token_start": 105984,
+          "token_end": 106496,
+          "token_count": 512
+        },
+        {
+          "chunk": 277,
+          "token_start": 106368,
+          "token_end": 106880,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-028",
+      "case_no": 6,
+      "evidence_id": "F-008",
+      "question": "Kim Do-yun·Park Seo-jin 명의 가상계좌 입출금 거래 내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        277,
+        278,
+        279,
+        280,
+        281
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 277,
+          "token_start": 106368,
+          "token_end": 106880,
+          "token_count": 512
+        },
+        {
+          "chunk": 278,
+          "token_start": 106752,
+          "token_end": 107264,
+          "token_count": 512
+        },
+        {
+          "chunk": 279,
+          "token_start": 107136,
+          "token_end": 107648,
+          "token_count": 512
+        },
+        {
+          "chunk": 280,
+          "token_start": 107520,
+          "token_end": 108032,
+          "token_count": 512
+        },
+        {
+          "chunk": 281,
+          "token_start": 107904,
+          "token_end": 108416,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-029",
+      "case_no": 6,
+      "evidence_id": "F-009",
+      "question": "Room 306 법인카드·간편결제·영수증 사용 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        280,
+        281,
+        282,
+        283
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 280,
+          "token_start": 107520,
+          "token_end": 108032,
+          "token_count": 512
+        },
+        {
+          "chunk": 281,
+          "token_start": 107904,
+          "token_end": 108416,
+          "token_count": 512
+        },
+        {
+          "chunk": 282,
+          "token_start": 108288,
+          "token_end": 108800,
+          "token_count": 512
+        },
+        {
+          "chunk": 283,
+          "token_start": 108672,
+          "token_end": 109184,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-030",
+      "case_no": 6,
+      "evidence_id": "F-010",
+      "question": "Kim Do-yun 웹브라우저 검색어 및 다운로드 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        282,
+        283,
+        284
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 282,
+          "token_start": 108288,
+          "token_end": 108800,
+          "token_count": 512
+        },
+        {
+          "chunk": 283,
+          "token_start": 108672,
+          "token_end": 109184,
+          "token_count": 512
+        },
+        {
+          "chunk": 284,
+          "token_start": 109056,
+          "token_end": 109568,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-031",
+      "case_no": 7,
+      "evidence_id": "G-007",
+      "question": "42 CCTV 영상 메타데이터 및 관찰기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        327,
+        328
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 327,
+          "token_start": 125568,
+          "token_end": 126080,
+          "token_count": 512
+        },
+        {
+          "chunk": 328,
+          "token_start": 125952,
+          "token_end": 126464,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-032",
+      "case_no": 7,
+      "evidence_id": "G-008",
+      "question": "Kang Tae-sung·Oh Jin-seok 명의 가상계좌 입출금 거래 내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        328,
+        329,
+        330,
+        331,
+        332
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 328,
+          "token_start": 125952,
+          "token_end": 126464,
+          "token_count": 512
+        },
+        {
+          "chunk": 329,
+          "token_start": 126336,
+          "token_end": 126848,
+          "token_count": 512
+        },
+        {
+          "chunk": 330,
+          "token_start": 126720,
+          "token_end": 127232,
+          "token_count": 512
+        },
+        {
+          "chunk": 331,
+          "token_start": 127104,
+          "token_end": 127616,
+          "token_count": 512
+        },
+        {
+          "chunk": 332,
+          "token_start": 127488,
+          "token_end": 128000,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-033",
+      "case_no": 7,
+      "evidence_id": "G-009",
+      "question": "42 법인카드·간편결제·영수증 사용 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        331,
+        332,
+        333
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 331,
+          "token_start": 127104,
+          "token_end": 127616,
+          "token_count": 512
+        },
+        {
+          "chunk": 332,
+          "token_start": 127488,
+          "token_end": 128000,
+          "token_count": 512
+        },
+        {
+          "chunk": 333,
+          "token_start": 127872,
+          "token_end": 128384,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-034",
+      "case_no": 7,
+      "evidence_id": "G-010",
+      "question": "Kang Tae-sung 웹브라우저 검색어 및 다운로드 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        333,
+        334,
+        335
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 333,
+          "token_start": 127872,
+          "token_end": 128384,
+          "token_count": 512
+        },
+        {
+          "chunk": 334,
+          "token_start": 128256,
+          "token_end": 128768,
+          "token_count": 512
+        },
+        {
+          "chunk": 335,
+          "token_start": 128640,
+          "token_end": 129152,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-035",
+      "case_no": 7,
+      "evidence_id": "G-011",
+      "question": "42 업무서버 계정별 접속 감사로그에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 335,
+          "token_start": 128640,
+          "token_end": 129152,
+          "token_count": 512
+        },
+        {
+          "chunk": 336,
+          "token_start": 129024,
+          "token_end": 129536,
+          "token_count": 512
+        },
+        {
+          "chunk": 337,
+          "token_start": 129408,
+          "token_end": 129920,
+          "token_count": 512
+        },
+        {
+          "chunk": 338,
+          "token_start": 129792,
+          "token_end": 130304,
+          "token_count": 512
+        },
+        {
+          "chunk": 339,
+          "token_start": 130176,
+          "token_end": 130688,
+          "token_count": 512
+        },
+        {
+          "chunk": 340,
+          "token_start": 130560,
+          "token_end": 131072,
+          "token_count": 512
+        },
+        {
+          "chunk": 341,
+          "token_start": 130944,
+          "token_end": 131456,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-036",
+      "case_no": 8,
+      "evidence_id": "H-008",
+      "question": "Jung Min-ho·Oh Seung-chan 명의 가상계좌 입출금 거래 내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        379,
+        380,
+        381,
+        382
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 379,
+          "token_start": 145536,
+          "token_end": 146048,
+          "token_count": 512
+        },
+        {
+          "chunk": 380,
+          "token_start": 145920,
+          "token_end": 146432,
+          "token_count": 512
+        },
+        {
+          "chunk": 381,
+          "token_start": 146304,
+          "token_end": 146816,
+          "token_count": 512
+        },
+        {
+          "chunk": 382,
+          "token_start": 146688,
+          "token_end": 147200,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-037",
+      "case_no": 8,
+      "evidence_id": "H-009",
+      "question": "server equipment 법인카드·간편결제·영수증 사용 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        382,
+        383,
+        384
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 382,
+          "token_start": 146688,
+          "token_end": 147200,
+          "token_count": 512
+        },
+        {
+          "chunk": 383,
+          "token_start": 147072,
+          "token_end": 147584,
+          "token_count": 512
+        },
+        {
+          "chunk": 384,
+          "token_start": 147456,
+          "token_end": 147968,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-038",
+      "case_no": 8,
+      "evidence_id": "H-010",
+      "question": "Jung Min-ho 웹브라우저 검색어 및 다운로드 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        384,
+        385,
+        386
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 384,
+          "token_start": 147456,
+          "token_end": 147968,
+          "token_count": 512
+        },
+        {
+          "chunk": 385,
+          "token_start": 147840,
+          "token_end": 148352,
+          "token_count": 512
+        },
+        {
+          "chunk": 386,
+          "token_start": 148224,
+          "token_end": 148736,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-039",
+      "case_no": 8,
+      "evidence_id": "H-011",
+      "question": "server equipment 업무서버 계정별 접속 감사로그에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 386,
+          "token_start": 148224,
+          "token_end": 148736,
+          "token_count": 512
+        },
+        {
+          "chunk": 387,
+          "token_start": 148608,
+          "token_end": 149120,
+          "token_count": 512
+        },
+        {
+          "chunk": 388,
+          "token_start": 148992,
+          "token_end": 149504,
+          "token_count": 512
+        },
+        {
+          "chunk": 389,
+          "token_start": 149376,
+          "token_end": 149888,
+          "token_count": 512
+        },
+        {
+          "chunk": 390,
+          "token_start": 149760,
+          "token_end": 150272,
+          "token_count": 512
+        },
+        {
+          "chunk": 391,
+          "token_start": 150144,
+          "token_end": 150656,
+          "token_count": 512
+        },
+        {
+          "chunk": 392,
+          "token_start": 150528,
+          "token_end": 151040,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-040",
+      "case_no": 8,
+      "evidence_id": "H-012",
+      "question": "Jung Min-ho 클라우드 업로드·삭제파일 복구 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        392,
+        393,
+        394,
+        395
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 392,
+          "token_start": 150528,
+          "token_end": 151040,
+          "token_count": 512
+        },
+        {
+          "chunk": 393,
+          "token_start": 150912,
+          "token_end": 151424,
+          "token_count": 512
+        },
+        {
+          "chunk": 394,
+          "token_start": 151296,
+          "token_end": 151808,
+          "token_count": 512
+        },
+        {
+          "chunk": 395,
+          "token_start": 151680,
+          "token_end": 152192,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-041",
+      "case_no": 9,
+      "evidence_id": "I-009",
+      "question": "6 wallets 법인카드·간편결제·영수증 사용 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        433,
+        434,
+        435
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 433,
+          "token_start": 166272,
+          "token_end": 166784,
+          "token_count": 512
+        },
+        {
+          "chunk": 434,
+          "token_start": 166656,
+          "token_end": 167168,
+          "token_count": 512
+        },
+        {
+          "chunk": 435,
+          "token_start": 167040,
+          "token_end": 167552,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-042",
+      "case_no": 9,
+      "evidence_id": "I-010",
+      "question": "Jo Hyun-woo 웹브라우저 검색어 및 다운로드 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        435,
+        436,
+        437
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 435,
+          "token_start": 167040,
+          "token_end": 167552,
+          "token_count": 512
+        },
+        {
+          "chunk": 436,
+          "token_start": 167424,
+          "token_end": 167936,
+          "token_count": 512
+        },
+        {
+          "chunk": 437,
+          "token_start": 167808,
+          "token_end": 168320,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-043",
+      "case_no": 9,
+      "evidence_id": "I-011",
+      "question": "6 wallets 업무서버 계정별 접속 감사로그에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        437,
+        438,
+        439,
+        440,
+        441,
+        442,
+        443
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 437,
+          "token_start": 167808,
+          "token_end": 168320,
+          "token_count": 512
+        },
+        {
+          "chunk": 438,
+          "token_start": 168192,
+          "token_end": 168704,
+          "token_count": 512
+        },
+        {
+          "chunk": 439,
+          "token_start": 168576,
+          "token_end": 169088,
+          "token_count": 512
+        },
+        {
+          "chunk": 440,
+          "token_start": 168960,
+          "token_end": 169472,
+          "token_count": 512
+        },
+        {
+          "chunk": 441,
+          "token_start": 169344,
+          "token_end": 169856,
+          "token_count": 512
+        },
+        {
+          "chunk": 442,
+          "token_start": 169728,
+          "token_end": 170240,
+          "token_count": 512
+        },
+        {
+          "chunk": 443,
+          "token_start": 170112,
+          "token_end": 170624,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-044",
+      "case_no": 9,
+      "evidence_id": "I-012",
+      "question": "Jo Hyun-woo 클라우드 업로드·삭제파일 복구 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        443,
+        444,
+        445,
+        446
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 443,
+          "token_start": 170112,
+          "token_end": 170624,
+          "token_count": 512
+        },
+        {
+          "chunk": 444,
+          "token_start": 170496,
+          "token_end": 171008,
+          "token_count": 512
+        },
+        {
+          "chunk": 445,
+          "token_start": 170880,
+          "token_end": 171392,
+          "token_count": 512
+        },
+        {
+          "chunk": 446,
+          "token_start": 171264,
+          "token_end": 171776,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-045",
+      "case_no": 9,
+      "evidence_id": "I-013",
+      "question": "6 wallets 문서 버전관리·ERP·전자결재 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        446,
+        447,
+        448,
+        449,
+        450
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 446,
+          "token_start": 171264,
+          "token_end": 171776,
+          "token_count": 512
+        },
+        {
+          "chunk": 447,
+          "token_start": 171648,
+          "token_end": 172160,
+          "token_count": 512
+        },
+        {
+          "chunk": 448,
+          "token_start": 172032,
+          "token_end": 172544,
+          "token_count": 512
+        },
+        {
+          "chunk": 449,
+          "token_start": 172416,
+          "token_end": 172928,
+          "token_count": 512
+        },
+        {
+          "chunk": 450,
+          "token_start": 172800,
+          "token_end": 173312,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-046",
+      "case_no": 10,
+      "evidence_id": "J-010",
+      "question": "Lim Ji-hwan 웹브라우저 검색어 및 다운로드 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        486,
+        487,
+        488
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 486,
+          "token_start": 186624,
+          "token_end": 187136,
+          "token_count": 512
+        },
+        {
+          "chunk": 487,
+          "token_start": 187008,
+          "token_end": 187520,
+          "token_count": 512
+        },
+        {
+          "chunk": 488,
+          "token_start": 187392,
+          "token_end": 187904,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-047",
+      "case_no": 10,
+      "evidence_id": "J-011",
+      "question": "December sales 업무서버 계정별 접속 감사로그에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        488,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 488,
+          "token_start": 187392,
+          "token_end": 187904,
+          "token_count": 512
+        },
+        {
+          "chunk": 489,
+          "token_start": 187776,
+          "token_end": 188288,
+          "token_count": 512
+        },
+        {
+          "chunk": 490,
+          "token_start": 188160,
+          "token_end": 188672,
+          "token_count": 512
+        },
+        {
+          "chunk": 491,
+          "token_start": 188544,
+          "token_end": 189056,
+          "token_count": 512
+        },
+        {
+          "chunk": 492,
+          "token_start": 188928,
+          "token_end": 189440,
+          "token_count": 512
+        },
+        {
+          "chunk": 493,
+          "token_start": 189312,
+          "token_end": 189824,
+          "token_count": 512
+        },
+        {
+          "chunk": 494,
+          "token_start": 189696,
+          "token_end": 190208,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-048",
+      "case_no": 10,
+      "evidence_id": "J-012",
+      "question": "Lim Ji-hwan 클라우드 업로드·삭제파일 복구 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        494,
+        495,
+        496,
+        497
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 494,
+          "token_start": 189696,
+          "token_end": 190208,
+          "token_count": 512
+        },
+        {
+          "chunk": 495,
+          "token_start": 190080,
+          "token_end": 190592,
+          "token_count": 512
+        },
+        {
+          "chunk": 496,
+          "token_start": 190464,
+          "token_end": 190976,
+          "token_count": 512
+        },
+        {
+          "chunk": 497,
+          "token_start": 190848,
+          "token_end": 191360,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-049",
+      "case_no": 10,
+      "evidence_id": "J-013",
+      "question": "December sales 문서 버전관리·ERP·전자결재 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        497,
+        498,
+        499,
+        500,
+        501
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 497,
+          "token_start": 190848,
+          "token_end": 191360,
+          "token_count": 512
+        },
+        {
+          "chunk": 498,
+          "token_start": 191232,
+          "token_end": 191744,
+          "token_count": 512
+        },
+        {
+          "chunk": 499,
+          "token_start": 191616,
+          "token_end": 192128,
+          "token_count": 512
+        },
+        {
+          "chunk": 500,
+          "token_start": 192000,
+          "token_end": 192512,
+          "token_count": 512
+        },
+        {
+          "chunk": 501,
+          "token_start": 192384,
+          "token_end": 192896,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-050",
+      "case_no": 10,
+      "evidence_id": "J-014",
+      "question": "Nam Gyu-seok SNS 게시물 및 비공개 메시지에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        500,
+        501,
+        502
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 500,
+          "token_start": 192000,
+          "token_end": 192512,
+          "token_count": 512
+        },
+        {
+          "chunk": 501,
+          "token_start": 192384,
+          "token_end": 192896,
+          "token_count": 512
+        },
+        {
+          "chunk": 502,
+          "token_start": 192768,
+          "token_end": 193280,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-051",
+      "case_no": 11,
+      "evidence_id": "K-011",
+      "question": "trial success 업무서버 계정별 접속 감사로그에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        539,
+        540,
+        541,
+        542,
+        543,
+        544,
+        545
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 539,
+          "token_start": 206976,
+          "token_end": 207488,
+          "token_count": 512
+        },
+        {
+          "chunk": 540,
+          "token_start": 207360,
+          "token_end": 207872,
+          "token_count": 512
+        },
+        {
+          "chunk": 541,
+          "token_start": 207744,
+          "token_end": 208256,
+          "token_count": 512
+        },
+        {
+          "chunk": 542,
+          "token_start": 208128,
+          "token_end": 208640,
+          "token_count": 512
+        },
+        {
+          "chunk": 543,
+          "token_start": 208512,
+          "token_end": 209024,
+          "token_count": 512
+        },
+        {
+          "chunk": 544,
+          "token_start": 208896,
+          "token_end": 209408,
+          "token_count": 512
+        },
+        {
+          "chunk": 545,
+          "token_start": 209280,
+          "token_end": 209792,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-052",
+      "case_no": 11,
+      "evidence_id": "K-012",
+      "question": "Kim Do-yun 클라우드 업로드·삭제파일 복구 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        544,
+        545,
+        546,
+        547,
+        548
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 544,
+          "token_start": 208896,
+          "token_end": 209408,
+          "token_count": 512
+        },
+        {
+          "chunk": 545,
+          "token_start": 209280,
+          "token_end": 209792,
+          "token_count": 512
+        },
+        {
+          "chunk": 546,
+          "token_start": 209664,
+          "token_end": 210176,
+          "token_count": 512
+        },
+        {
+          "chunk": 547,
+          "token_start": 210048,
+          "token_end": 210560,
+          "token_count": 512
+        },
+        {
+          "chunk": 548,
+          "token_start": 210432,
+          "token_end": 210944,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-053",
+      "case_no": 11,
+      "evidence_id": "K-013",
+      "question": "trial success 문서 버전관리·ERP·전자결재 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        547,
+        548,
+        549,
+        550,
+        551,
+        552
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 547,
+          "token_start": 210048,
+          "token_end": 210560,
+          "token_count": 512
+        },
+        {
+          "chunk": 548,
+          "token_start": 210432,
+          "token_end": 210944,
+          "token_count": 512
+        },
+        {
+          "chunk": 549,
+          "token_start": 210816,
+          "token_end": 211328,
+          "token_count": 512
+        },
+        {
+          "chunk": 550,
+          "token_start": 211200,
+          "token_end": 211712,
+          "token_count": 512
+        },
+        {
+          "chunk": 551,
+          "token_start": 211584,
+          "token_end": 212096,
+          "token_count": 512
+        },
+        {
+          "chunk": 552,
+          "token_start": 211968,
+          "token_end": 212480,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-054",
+      "case_no": 11,
+      "evidence_id": "K-014",
+      "question": "Lee Tae-hoon SNS 게시물 및 비공개 메시지에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        551,
+        552,
+        553
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 551,
+          "token_start": 211584,
+          "token_end": 212096,
+          "token_count": 512
+        },
+        {
+          "chunk": 552,
+          "token_start": 211968,
+          "token_end": 212480,
+          "token_count": 512
+        },
+        {
+          "chunk": 553,
+          "token_start": 212352,
+          "token_end": 212864,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-055",
+      "case_no": 11,
+      "evidence_id": "K-015",
+      "question": "trial success 압수수색 현장 압수물 목록 및 감정자료에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        553,
+        554
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 553,
+          "token_start": 212352,
+          "token_end": 212864,
+          "token_count": 512
+        },
+        {
+          "chunk": 554,
+          "token_start": 212736,
+          "token_end": 213248,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-056",
+      "case_no": 12,
+      "evidence_id": "L-012",
+      "question": "Kang Tae-sung 클라우드 업로드·삭제파일 복구 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        596,
+        597,
+        598,
+        599
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 596,
+          "token_start": 228864,
+          "token_end": 229376,
+          "token_count": 512
+        },
+        {
+          "chunk": 597,
+          "token_start": 229248,
+          "token_end": 229760,
+          "token_count": 512
+        },
+        {
+          "chunk": 598,
+          "token_start": 229632,
+          "token_end": 230144,
+          "token_count": 512
+        },
+        {
+          "chunk": 599,
+          "token_start": 230016,
+          "token_end": 230528,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-057",
+      "case_no": 12,
+      "evidence_id": "L-013",
+      "question": "presyo bawat tonelada 문서 버전관리·ERP·전자결재 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        599,
+        600,
+        601,
+        602,
+        603
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 599,
+          "token_start": 230016,
+          "token_end": 230528,
+          "token_count": 512
+        },
+        {
+          "chunk": 600,
+          "token_start": 230400,
+          "token_end": 230912,
+          "token_count": 512
+        },
+        {
+          "chunk": 601,
+          "token_start": 230784,
+          "token_end": 231296,
+          "token_count": 512
+        },
+        {
+          "chunk": 602,
+          "token_start": 231168,
+          "token_end": 231680,
+          "token_count": 512
+        },
+        {
+          "chunk": 603,
+          "token_start": 231552,
+          "token_end": 232064,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-058",
+      "case_no": 12,
+      "evidence_id": "L-014",
+      "question": "Seo Yoon-ho SNS 게시물 및 비공개 메시지에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        602,
+        603,
+        604
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 602,
+          "token_start": 231168,
+          "token_end": 231680,
+          "token_count": 512
+        },
+        {
+          "chunk": 603,
+          "token_start": 231552,
+          "token_end": 232064,
+          "token_count": 512
+        },
+        {
+          "chunk": 604,
+          "token_start": 231936,
+          "token_end": 232448,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-059",
+      "case_no": 12,
+      "evidence_id": "L-015",
+      "question": "presyo bawat tonelada 압수수색 현장 압수물 목록 및 감정자료에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        604,
+        605
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 604,
+          "token_start": 231936,
+          "token_end": 232448,
+          "token_count": 512
+        },
+        {
+          "chunk": 605,
+          "token_start": 232320,
+          "token_end": 232832,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-060",
+      "case_no": 12,
+      "evidence_id": "L-016",
+      "question": "Kang Tae-sung 일정·캘린더 및 출입통제 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        605,
+        606,
+        607,
+        608,
+        609
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 605,
+          "token_start": 232320,
+          "token_end": 232832,
+          "token_count": 512
+        },
+        {
+          "chunk": 606,
+          "token_start": 232704,
+          "token_end": 233216,
+          "token_count": 512
+        },
+        {
+          "chunk": 607,
+          "token_start": 233088,
+          "token_end": 233600,
+          "token_count": 512
+        },
+        {
+          "chunk": 608,
+          "token_start": 233472,
+          "token_end": 233984,
+          "token_count": 512
+        },
+        {
+          "chunk": 609,
+          "token_start": 233856,
+          "token_end": 234368,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-061",
+      "case_no": 13,
+      "evidence_id": "M-013",
+      "question": "score sheet 문서 버전관리·ERP·전자결재 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        649,
+        650,
+        651,
+        652,
+        653
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 649,
+          "token_start": 249216,
+          "token_end": 249728,
+          "token_count": 512
+        },
+        {
+          "chunk": 650,
+          "token_start": 249600,
+          "token_end": 250112,
+          "token_count": 512
+        },
+        {
+          "chunk": 651,
+          "token_start": 249984,
+          "token_end": 250496,
+          "token_count": 512
+        },
+        {
+          "chunk": 652,
+          "token_start": 250368,
+          "token_end": 250880,
+          "token_count": 512
+        },
+        {
+          "chunk": 653,
+          "token_start": 250752,
+          "token_end": 251264,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-062",
+      "case_no": 13,
+      "evidence_id": "M-014",
+      "question": "Kim Ye-rin SNS 게시물 및 비공개 메시지에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        653,
+        654,
+        655
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 653,
+          "token_start": 250752,
+          "token_end": 251264,
+          "token_count": 512
+        },
+        {
+          "chunk": 654,
+          "token_start": 251136,
+          "token_end": 251648,
+          "token_count": 512
+        },
+        {
+          "chunk": 655,
+          "token_start": 251520,
+          "token_end": 252032,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-063",
+      "case_no": 13,
+      "evidence_id": "M-015",
+      "question": "score sheet 압수수색 현장 압수물 목록 및 감정자료에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        654,
+        655,
+        656
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 654,
+          "token_start": 251136,
+          "token_end": 251648,
+          "token_count": 512
+        },
+        {
+          "chunk": 655,
+          "token_start": 251520,
+          "token_end": 252032,
+          "token_count": 512
+        },
+        {
+          "chunk": 656,
+          "token_start": 251904,
+          "token_end": 252416,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-064",
+      "case_no": 13,
+      "evidence_id": "M-016",
+      "question": "Jung Min-ho 일정·캘린더 및 출입통제 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        655,
+        656,
+        657,
+        658,
+        659
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 655,
+          "token_start": 251520,
+          "token_end": 252032,
+          "token_count": 512
+        },
+        {
+          "chunk": 656,
+          "token_start": 251904,
+          "token_end": 252416,
+          "token_count": 512
+        },
+        {
+          "chunk": 657,
+          "token_start": 252288,
+          "token_end": 252800,
+          "token_count": 512
+        },
+        {
+          "chunk": 658,
+          "token_start": 252672,
+          "token_end": 253184,
+          "token_count": 512
+        },
+        {
+          "chunk": 659,
+          "token_start": 253056,
+          "token_end": 253568,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-065",
+      "case_no": 13,
+      "evidence_id": "M-017",
+      "question": "Jung Min-ho·Kim Ye-rin 관련 교차증거 타임라인에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        658,
+        659,
+        660
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 658,
+          "token_start": 252672,
+          "token_end": 253184,
+          "token_count": 512
+        },
+        {
+          "chunk": 659,
+          "token_start": 253056,
+          "token_end": 253568,
+          "token_count": 512
+        },
+        {
+          "chunk": 660,
+          "token_start": 253440,
+          "token_end": 253952,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-066",
+      "case_no": 14,
+      "evidence_id": "N-014",
+      "question": "Park Se-young SNS 게시물 및 비공개 메시지에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        703,
+        704,
+        705
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 703,
+          "token_start": 269952,
+          "token_end": 270464,
+          "token_count": 512
+        },
+        {
+          "chunk": 704,
+          "token_start": 270336,
+          "token_end": 270848,
+          "token_count": 512
+        },
+        {
+          "chunk": 705,
+          "token_start": 270720,
+          "token_end": 271232,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-067",
+      "case_no": 14,
+      "evidence_id": "N-015",
+      "question": "deposit 압수수색 현장 압수물 목록 및 감정자료에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        705,
+        706
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 705,
+          "token_start": 270720,
+          "token_end": 271232,
+          "token_count": 512
+        },
+        {
+          "chunk": 706,
+          "token_start": 271104,
+          "token_end": 271616,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-068",
+      "case_no": 14,
+      "evidence_id": "N-016",
+      "question": "Jo Hyun-woo 일정·캘린더 및 출입통제 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        706,
+        707,
+        708,
+        709
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 706,
+          "token_start": 271104,
+          "token_end": 271616,
+          "token_count": 512
+        },
+        {
+          "chunk": 707,
+          "token_start": 271488,
+          "token_end": 272000,
+          "token_count": 512
+        },
+        {
+          "chunk": 708,
+          "token_start": 271872,
+          "token_end": 272384,
+          "token_count": 512
+        },
+        {
+          "chunk": 709,
+          "token_start": 272256,
+          "token_end": 272768,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-069",
+      "case_no": 14,
+      "evidence_id": "N-017",
+      "question": "Jo Hyun-woo·Park Se-young 관련 교차증거 타임라인에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        709,
+        710,
+        711
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 709,
+          "token_start": 272256,
+          "token_end": 272768,
+          "token_count": 512
+        },
+        {
+          "chunk": 710,
+          "token_start": 272640,
+          "token_end": 273152,
+          "token_count": 512
+        },
+        {
+          "chunk": 711,
+          "token_start": 273024,
+          "token_end": 273536,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-070",
+      "case_no": 14,
+      "evidence_id": "N-019",
+      "question": "Jo Hyun-woo 기기 포렌식 이미지 해시 등 보충 수사보고용 원시자료에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        712,
+        713,
+        714
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 712,
+          "token_start": 273408,
+          "token_end": 273920,
+          "token_count": 512
+        },
+        {
+          "chunk": 713,
+          "token_start": 273792,
+          "token_end": 274304,
+          "token_count": 512
+        },
+        {
+          "chunk": 714,
+          "token_start": 274176,
+          "token_end": 274688,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-071",
+      "case_no": 15,
+      "evidence_id": "O-015",
+      "question": "settlement 압수수색 현장 압수물 목록 및 감정자료에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        756,
+        757
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 756,
+          "token_start": 290304,
+          "token_end": 290816,
+          "token_count": 512
+        },
+        {
+          "chunk": 757,
+          "token_start": 290688,
+          "token_end": 291200,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-072",
+      "case_no": 15,
+      "evidence_id": "O-016",
+      "question": "Lim Ji-hwan 일정·캘린더 및 출입통제 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        757,
+        758,
+        759,
+        760
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 757,
+          "token_start": 290688,
+          "token_end": 291200,
+          "token_count": 512
+        },
+        {
+          "chunk": 758,
+          "token_start": 291072,
+          "token_end": 291584,
+          "token_count": 512
+        },
+        {
+          "chunk": 759,
+          "token_start": 291456,
+          "token_end": 291968,
+          "token_count": 512
+        },
+        {
+          "chunk": 760,
+          "token_start": 291840,
+          "token_end": 292352,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-073",
+      "case_no": 15,
+      "evidence_id": "O-017",
+      "question": "Lim Ji-hwan·Nam Gyu-seok 관련 교차증거 타임라인에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        760,
+        761,
+        762
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 760,
+          "token_start": 291840,
+          "token_end": 292352,
+          "token_count": 512
+        },
+        {
+          "chunk": 761,
+          "token_start": 292224,
+          "token_end": 292736,
+          "token_count": 512
+        },
+        {
+          "chunk": 762,
+          "token_start": 292608,
+          "token_end": 293120,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-074",
+      "case_no": 15,
+      "evidence_id": "O-019",
+      "question": "Lim Ji-hwan 기기 포렌식 이미지 해시 등 보충 수사보고용 원시자료에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        763,
+        764
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 763,
+          "token_start": 292992,
+          "token_end": 293504,
+          "token_count": 512
+        },
+        {
+          "chunk": 764,
+          "token_start": 293376,
+          "token_end": 293888,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-075",
+      "case_no": 15,
+      "evidence_id": "O-020",
+      "question": "Lim Ji-hwan·Nam Gyu-seok·Kwon So-hee 사건 증거 연결 인덱스 및 핵심 검색어에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        764,
+        765,
+        766
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 764,
+          "token_start": 293376,
+          "token_end": 293888,
+          "token_count": 512
+        },
+        {
+          "chunk": 765,
+          "token_start": 293760,
+          "token_end": 294272,
+          "token_count": 512
+        },
+        {
+          "chunk": 766,
+          "token_start": 294144,
+          "token_end": 294656,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-076",
+      "case_no": 16,
+      "evidence_id": "P-016",
+      "question": "Kim Do-yun 일정·캘린더 및 출입통제 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        807,
+        808,
+        809,
+        810,
+        811
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 807,
+          "token_start": 309888,
+          "token_end": 310400,
+          "token_count": 512
+        },
+        {
+          "chunk": 808,
+          "token_start": 310272,
+          "token_end": 310784,
+          "token_count": 512
+        },
+        {
+          "chunk": 809,
+          "token_start": 310656,
+          "token_end": 311168,
+          "token_count": 512
+        },
+        {
+          "chunk": 810,
+          "token_start": 311040,
+          "token_end": 311552,
+          "token_count": 512
+        },
+        {
+          "chunk": 811,
+          "token_start": 311424,
+          "token_end": 311936,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-077",
+      "case_no": 16,
+      "evidence_id": "P-017",
+      "question": "Kim Do-yun·Lee Tae-hoon 관련 교차증거 타임라인에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        811,
+        812
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 811,
+          "token_start": 311424,
+          "token_end": 311936,
+          "token_count": 512
+        },
+        {
+          "chunk": 812,
+          "token_start": 311808,
+          "token_end": 312320,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-078",
+      "case_no": 16,
+      "evidence_id": "P-019",
+      "question": "Kim Do-yun 기기 포렌식 이미지 해시 등 보충 수사보고용 원시자료에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        813,
+        814,
+        815
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 813,
+          "token_start": 312192,
+          "token_end": 312704,
+          "token_count": 512
+        },
+        {
+          "chunk": 814,
+          "token_start": 312576,
+          "token_end": 313088,
+          "token_count": 512
+        },
+        {
+          "chunk": 815,
+          "token_start": 312960,
+          "token_end": 313472,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-079",
+      "case_no": 16,
+      "evidence_id": "P-020",
+      "question": "Kim Do-yun·Lee Tae-hoon·Park Seo-jin 사건 증거 연결 인덱스 및 핵심 검색어에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        815,
+        816
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 815,
+          "token_start": 312960,
+          "token_end": 313472,
+          "token_count": 512
+        },
+        {
+          "chunk": 816,
+          "token_start": 313344,
+          "token_end": 313856,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-080",
+      "case_no": 16,
+      "evidence_id": "P-001",
+      "question": "Kim Do-yun·Lee Tae-hoon 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        765,
+        766,
+        767,
+        768
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 765,
+          "token_start": 293760,
+          "token_end": 294272,
+          "token_count": 512
+        },
+        {
+          "chunk": 766,
+          "token_start": 294144,
+          "token_end": 294656,
+          "token_count": 512
+        },
+        {
+          "chunk": 767,
+          "token_start": 294528,
+          "token_end": 295040,
+          "token_count": 512
+        },
+        {
+          "chunk": 768,
+          "token_start": 294912,
+          "token_end": 295424,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-081",
+      "case_no": 17,
+      "evidence_id": "Q-017",
+      "question": "Kang Tae-sung·Seo Yoon-ho 관련 교차증거 타임라인에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        862,
+        863,
+        864
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 862,
+          "token_start": 331008,
+          "token_end": 331520,
+          "token_count": 512
+        },
+        {
+          "chunk": 863,
+          "token_start": 331392,
+          "token_end": 331904,
+          "token_count": 512
+        },
+        {
+          "chunk": 864,
+          "token_start": 331776,
+          "token_end": 332288,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-082",
+      "case_no": 17,
+      "evidence_id": "Q-019",
+      "question": "Kang Tae-sung 기기 포렌식 이미지 해시 등 보충 수사보고용 원시자료에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        865,
+        866
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 865,
+          "token_start": 332160,
+          "token_end": 332672,
+          "token_count": 512
+        },
+        {
+          "chunk": 866,
+          "token_start": 332544,
+          "token_end": 333056,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-083",
+      "case_no": 17,
+      "evidence_id": "Q-020",
+      "question": "Kang Tae-sung·Seo Yoon-ho·Oh Jin-seok 사건 증거 연결 인덱스 및 핵심 검색어에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        866,
+        867,
+        868
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 866,
+          "token_start": 332544,
+          "token_end": 333056,
+          "token_count": 512
+        },
+        {
+          "chunk": 867,
+          "token_start": 332928,
+          "token_end": 333440,
+          "token_count": 512
+        },
+        {
+          "chunk": 868,
+          "token_start": 333312,
+          "token_end": 333824,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-084",
+      "case_no": 17,
+      "evidence_id": "Q-001",
+      "question": "Kang Tae-sung·Seo Yoon-ho 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        816,
+        817,
+        818
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 816,
+          "token_start": 313344,
+          "token_end": 313856,
+          "token_count": 512
+        },
+        {
+          "chunk": 817,
+          "token_start": 313728,
+          "token_end": 314240,
+          "token_count": 512
+        },
+        {
+          "chunk": 818,
+          "token_start": 314112,
+          "token_end": 314624,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-085",
+      "case_no": 17,
+      "evidence_id": "Q-002",
+      "question": "Kang Tae-sung → Seo Yoon-ho 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        818,
+        819,
+        820,
+        821,
+        822
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 818,
+          "token_start": 314112,
+          "token_end": 314624,
+          "token_count": 512
+        },
+        {
+          "chunk": 819,
+          "token_start": 314496,
+          "token_end": 315008,
+          "token_count": 512
+        },
+        {
+          "chunk": 820,
+          "token_start": 314880,
+          "token_end": 315392,
+          "token_count": 512
+        },
+        {
+          "chunk": 821,
+          "token_start": 315264,
+          "token_end": 315776,
+          "token_count": 512
+        },
+        {
+          "chunk": 822,
+          "token_start": 315648,
+          "token_end": 316160,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-086",
+      "case_no": 18,
+      "evidence_id": "R-019",
+      "question": "Jung Min-ho 기기 포렌식 이미지 해시 등 보충 수사보고용 원시자료에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        915,
+        916,
+        917
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 915,
+          "token_start": 351360,
+          "token_end": 351872,
+          "token_count": 512
+        },
+        {
+          "chunk": 916,
+          "token_start": 351744,
+          "token_end": 352256,
+          "token_count": 512
+        },
+        {
+          "chunk": 917,
+          "token_start": 352128,
+          "token_end": 352640,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-087",
+      "case_no": 18,
+      "evidence_id": "R-020",
+      "question": "Jung Min-ho·Kim Ye-rin·Oh Seung-chan 사건 증거 연결 인덱스 및 핵심 검색어에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        916,
+        917,
+        918
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 916,
+          "token_start": 351744,
+          "token_end": 352256,
+          "token_count": 512
+        },
+        {
+          "chunk": 917,
+          "token_start": 352128,
+          "token_end": 352640,
+          "token_count": 512
+        },
+        {
+          "chunk": 918,
+          "token_start": 352512,
+          "token_end": 353024,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-088",
+      "case_no": 18,
+      "evidence_id": "R-001",
+      "question": "Jung Min-ho·Kim Ye-rin 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        867,
+        868,
+        869
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 867,
+          "token_start": 332928,
+          "token_end": 333440,
+          "token_count": 512
+        },
+        {
+          "chunk": 868,
+          "token_start": 333312,
+          "token_end": 333824,
+          "token_count": 512
+        },
+        {
+          "chunk": 869,
+          "token_start": 333696,
+          "token_end": 334208,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-089",
+      "case_no": 18,
+      "evidence_id": "R-002",
+      "question": "Jung Min-ho → Kim Ye-rin 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        869,
+        870,
+        871,
+        872,
+        873
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 869,
+          "token_start": 333696,
+          "token_end": 334208,
+          "token_count": 512
+        },
+        {
+          "chunk": 870,
+          "token_start": 334080,
+          "token_end": 334592,
+          "token_count": 512
+        },
+        {
+          "chunk": 871,
+          "token_start": 334464,
+          "token_end": 334976,
+          "token_count": 512
+        },
+        {
+          "chunk": 872,
+          "token_start": 334848,
+          "token_end": 335360,
+          "token_count": 512
+        },
+        {
+          "chunk": 873,
+          "token_start": 335232,
+          "token_end": 335744,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-090",
+      "case_no": 18,
+      "evidence_id": "R-003",
+      "question": "Jung Min-ho → Kim Ye-rin 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        873,
+        874,
+        875,
+        876,
+        877,
+        878
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 873,
+          "token_start": 335232,
+          "token_end": 335744,
+          "token_count": 512
+        },
+        {
+          "chunk": 874,
+          "token_start": 335616,
+          "token_end": 336128,
+          "token_count": 512
+        },
+        {
+          "chunk": 875,
+          "token_start": 336000,
+          "token_end": 336512,
+          "token_count": 512
+        },
+        {
+          "chunk": 876,
+          "token_start": 336384,
+          "token_end": 336896,
+          "token_count": 512
+        },
+        {
+          "chunk": 877,
+          "token_start": 336768,
+          "token_end": 337280,
+          "token_count": 512
+        },
+        {
+          "chunk": 878,
+          "token_start": 337152,
+          "token_end": 337664,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-091",
+      "case_no": 19,
+      "evidence_id": "S-020",
+      "question": "Jo Hyun-woo·Park Se-young·Ryu Ji-hoon 사건 증거 연결 인덱스 및 핵심 검색어에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        968,
+        969
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 968,
+          "token_start": 371712,
+          "token_end": 372224,
+          "token_count": 512
+        },
+        {
+          "chunk": 969,
+          "token_start": 372096,
+          "token_end": 372608,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-092",
+      "case_no": 19,
+      "evidence_id": "S-001",
+      "question": "Jo Hyun-woo·Park Se-young 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        918,
+        919,
+        920
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 918,
+          "token_start": 352512,
+          "token_end": 353024,
+          "token_count": 512
+        },
+        {
+          "chunk": 919,
+          "token_start": 352896,
+          "token_end": 353408,
+          "token_count": 512
+        },
+        {
+          "chunk": 920,
+          "token_start": 353280,
+          "token_end": 353792,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-093",
+      "case_no": 19,
+      "evidence_id": "S-002",
+      "question": "Jo Hyun-woo → Park Se-young 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        919,
+        920,
+        921,
+        922,
+        923
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 919,
+          "token_start": 352896,
+          "token_end": 353408,
+          "token_count": 512
+        },
+        {
+          "chunk": 920,
+          "token_start": 353280,
+          "token_end": 353792,
+          "token_count": 512
+        },
+        {
+          "chunk": 921,
+          "token_start": 353664,
+          "token_end": 354176,
+          "token_count": 512
+        },
+        {
+          "chunk": 922,
+          "token_start": 354048,
+          "token_end": 354560,
+          "token_count": 512
+        },
+        {
+          "chunk": 923,
+          "token_start": 354432,
+          "token_end": 354944,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-094",
+      "case_no": 19,
+      "evidence_id": "S-003",
+      "question": "Jo Hyun-woo → Park Se-young 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        923,
+        924,
+        925,
+        926,
+        927,
+        928
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 923,
+          "token_start": 354432,
+          "token_end": 354944,
+          "token_count": 512
+        },
+        {
+          "chunk": 924,
+          "token_start": 354816,
+          "token_end": 355328,
+          "token_count": 512
+        },
+        {
+          "chunk": 925,
+          "token_start": 355200,
+          "token_end": 355712,
+          "token_count": 512
+        },
+        {
+          "chunk": 926,
+          "token_start": 355584,
+          "token_end": 356096,
+          "token_count": 512
+        },
+        {
+          "chunk": 927,
+          "token_start": 355968,
+          "token_end": 356480,
+          "token_count": 512
+        },
+        {
+          "chunk": 928,
+          "token_start": 356352,
+          "token_end": 356864,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-095",
+      "case_no": 19,
+      "evidence_id": "S-004",
+      "question": "Jo Hyun-woo·Park Se-young 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        928,
+        929,
+        930,
+        931
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 928,
+          "token_start": 356352,
+          "token_end": 356864,
+          "token_count": 512
+        },
+        {
+          "chunk": 929,
+          "token_start": 356736,
+          "token_end": 357248,
+          "token_count": 512
+        },
+        {
+          "chunk": 930,
+          "token_start": 357120,
+          "token_end": 357632,
+          "token_count": 512
+        },
+        {
+          "chunk": 931,
+          "token_start": 357504,
+          "token_end": 358016,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-096",
+      "case_no": 20,
+      "evidence_id": "T-001",
+      "question": "Lim Ji-hwan·Nam Gyu-seok 참여 업무방 메신저 대화 원문에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        969,
+        970,
+        971
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 969,
+          "token_start": 372096,
+          "token_end": 372608,
+          "token_count": 512
+        },
+        {
+          "chunk": 970,
+          "token_start": 372480,
+          "token_end": 372992,
+          "token_count": 512
+        },
+        {
+          "chunk": 971,
+          "token_start": 372864,
+          "token_end": 373376,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-097",
+      "case_no": 20,
+      "evidence_id": "T-002",
+      "question": "Lim Ji-hwan → Nam Gyu-seok 삭제 메신저 복구 레코드에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        971,
+        972,
+        973,
+        974,
+        975
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 971,
+          "token_start": 372864,
+          "token_end": 373376,
+          "token_count": 512
+        },
+        {
+          "chunk": 972,
+          "token_start": 373248,
+          "token_end": 373760,
+          "token_count": 512
+        },
+        {
+          "chunk": 973,
+          "token_start": 373632,
+          "token_end": 374144,
+          "token_count": 512
+        },
+        {
+          "chunk": 974,
+          "token_start": 374016,
+          "token_end": 374528,
+          "token_count": 512
+        },
+        {
+          "chunk": 975,
+          "token_start": 374400,
+          "token_end": 374912,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-098",
+      "case_no": 20,
+      "evidence_id": "T-003",
+      "question": "Lim Ji-hwan → Nam Gyu-seok 이메일 송수신 및 첨부파일 기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        975,
+        976,
+        977,
+        978,
+        979,
+        980
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 975,
+          "token_start": 374400,
+          "token_end": 374912,
+          "token_count": 512
+        },
+        {
+          "chunk": 976,
+          "token_start": 374784,
+          "token_end": 375296,
+          "token_count": 512
+        },
+        {
+          "chunk": 977,
+          "token_start": 375168,
+          "token_end": 375680,
+          "token_count": 512
+        },
+        {
+          "chunk": 978,
+          "token_start": 375552,
+          "token_end": 376064,
+          "token_count": 512
+        },
+        {
+          "chunk": 979,
+          "token_start": 375936,
+          "token_end": 376448,
+          "token_count": 512
+        },
+        {
+          "chunk": 980,
+          "token_start": 376320,
+          "token_end": 376832,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-099",
+      "case_no": 20,
+      "evidence_id": "T-004",
+      "question": "Lim Ji-hwan·Nam Gyu-seok 명의 전화번호 통화 수발신 상세내역에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        980,
+        981,
+        982
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 980,
+          "token_start": 376320,
+          "token_end": 376832,
+          "token_count": 512
+        },
+        {
+          "chunk": 981,
+          "token_start": 376704,
+          "token_end": 377216,
+          "token_count": 512
+        },
+        {
+          "chunk": 982,
+          "token_start": 377088,
+          "token_end": 377600,
+          "token_count": 512
+        }
+      ]
+    },
+    {
+      "id": "pil-100",
+      "case_no": 20,
+      "evidence_id": "T-005",
+      "question": "15 BTC 부근 기지국·GPS·Wi-Fi 위치기록에 해당하는 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        982,
+        983,
+        984,
+        985,
+        986,
+        987
+      ],
+      "answer_chunk_spans": [
+        {
+          "chunk": 982,
+          "token_start": 377088,
+          "token_end": 377600,
+          "token_count": 512
+        },
+        {
+          "chunk": 983,
+          "token_start": 377472,
+          "token_end": 377984,
+          "token_count": 512
+        },
+        {
+          "chunk": 984,
+          "token_start": 377856,
+          "token_end": 378368,
+          "token_count": 512
+        },
+        {
+          "chunk": 985,
+          "token_start": 378240,
+          "token_end": 378752,
+          "token_count": 512
+        },
+        {
+          "chunk": 986,
+          "token_start": 378624,
+          "token_end": 379136,
+          "token_count": 512
+        },
+        {
+          "chunk": 987,
+          "token_start": 379008,
+          "token_end": 379520,
+          "token_count": 512
+        }
+      ]
+    }
+  ]
+}
