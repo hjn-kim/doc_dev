@@ -54,18 +54,21 @@ MAX_GOLD = 8                      # 정답이 이보다 많은 청크에 걸치�
 LABELS = {
     "ko":  {"people": "주요 관계인", "orgs": "관련 법인·기관", "places": "주요 장소",
             "keywords": None},
-    "ch":  {"people": "主要相关人员", "orgs": None, "places": None,
+    "ch":  {"people": "主要相关人员", "orgs": "相关法人·机构", "places": "主要地点",
             "keywords": "主要检索词"},
     "en":  {"people": "Principal Persons", "orgs": "Relevant Organizations",
             "places": "Principal Locations", "keywords": None},
     "vn":  {"people": "Những người chính", "orgs": "Tổ chức liên quan",
             "places": "Địa điểm chính", "keywords": None},
-    "uz":  {"people": "Asosiy shaxslar", "orgs": None, "places": None,
-            "keywords": "Asosiy qidiruv terminlari"},
-    "rs":  {"people": "Основные лица", "orgs": None, "places": None,
-            "keywords": "Основные поисковые термины"},
-    "pil": {"people": "Mga pangunahing taong sangkot", "orgs": None, "places": None,
-            "keywords": "Mga pangunahing search term"},
+    "uz":  {"people": "Asosiy shaxslar",
+            "orgs": "Tegishli yuridik shaxslar va tashkilotlar",
+            "places": "Asosiy joylar", "keywords": "Asosiy qidiruv terminlari"},
+    "rs":  {"people": "Основные лица",
+            "orgs": "Связанные юридические лица и учреждения",
+            "places": "Основные места", "keywords": "Основные поисковые термины"},
+    "pil": {"people": "Mga pangunahing taong sangkot",
+            "orgs": "Mga kaugnay na korporasyon at institusyon",
+            "places": "Mga pangunahing lokasyon", "keywords": "Mga pangunahing search term"},
 }
 SPLIT_RE = r"\s*[,、·]\s*"
 

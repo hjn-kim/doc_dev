@@ -16,6 +16,9 @@ email manzillari, IP manzillar, avtomobil identifikatorlari, joylar, summalar va
 jinoiy harakatlar to‘liq to‘qima hisoblanadi. Dataset faqat RAG baholash uchun yaratilgan va
 hech qanday haqiqiy shaxs yoki haqiqiy jinoyat ishiga aloqador emas.
 
+Jinoyat ishi headerining yagona maydonlari:
+Ish raqami → Gumon qilinayotgan jinoyatlar → Asosiy shaxslar → Tegishli yuridik shaxslar va tashkilotlar → Asosiy tergov holati → Asosiy summa yoki ko‘lam → Asosiy dalil obyekti → Asosiy joylar
+
 DATASETNI TUZISH TAMOYILLARI:
 1. Datasetning asosiy qismini voqeani hikoya qilish emas, balki xom daliliy yozuvlar tashkil etadi.
 2. Asosiy faktlar ataylab turli dalil turlari va hujjatning turli qismlariga tarqatilgan.
@@ -36,10 +39,13 @@ DATASETNI TUZISH TAMOYILLARI:
 # Xalqaro metamfetamin kontrabandasi, ichki tarqatish va jinoiy daromadlarni yashirish ishi
 
 Ish raqami: 2026-UZ-4101
+Gumon qilinayotgan jinoyatlar: giyohvand moddalarni kontrabanda qilish, ichki tarqatish, jinoiy daromadlarni yashirish
 Asosiy shaxslar: Kim Do-yun, Lee Tae-hoon, Park Seo-jin, Jung Woo-seok, Choi Gyu-hyun
+Tegishli yuridik shaxslar va tashkilotlar: Serim Trading, Dongjin Distribution, Fine Logistics, VN Parts Export
 Asosiy tergov holati: taxminan 3 kg metamfetamin sanoat podshipnik korpuslari ichiga yashirilgan, port orqali olib kirilgan, B omborida bo‘lingan va mahalliy tarqatuvchilarga topshirilgan
 Asosiy summa yoki ko‘lam: 96 000 USD va 32 000 000 KRW naqd
-Asosiy qidiruv terminlari: podshipnik, ko‘k belgi, 3 kg, tozalik, B ombor, 500 g, naqd, SGLU-840271
+Asosiy dalil obyekti: metamfetamin, sanoat podshipnik korpuslari, naqd jinoiy daromad
+Asosiy joylar: Janubi-sharqiy port 4-prichal · Dongjin Distribution B ombori · Nambu bekati 2-parking
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -1170,10 +1176,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Shahar rivojlantirish loyihasida poraxo‘rlik, tender til biriktirishi va yashirin jamg‘arma tuzish ishi
 
 Ish raqami: 2026-UZ-4138
+Gumon qilinayotgan jinoyatlar: pora berish va olish, tenderda til biriktirish, mablag‘larni o‘zlashtirish, yashirin jamg‘arma tuzish
 Asosiy shaxslar: Kang Tae-sung, Seo Yoon-ho, Oh Jin-seok, Yoon Jae-min, Hong Se-ra
+Tegishli yuridik shaxslar va tashkilotlar: Cheongmyeong Construction, Daesung Civil Engineering, J1 Consulting, Hanbit shahar rivojlantirish bo‘limi
 Asosiy tergov holati: soxta konsalting xarajatlari naqd pulga aylantirilib loyiha tasdig‘i bilan bog‘liq mansabdor shaxsga berilgan, ayrim pudratchilar esa tender narxlarini oldindan kelishgan
 Asosiy summa yoki ko‘lam: taxminan 100 000 000 KRW pora va 80 000 000 KRW soxta konsalting xarajati
-Asosiy qidiruv terminlari: 40 million, tasdiqdan keyin 60, shartli tasdiq, 48.6 milliard, 51.5 milliard, 52.2 milliard, J1, seyf
+Asosiy dalil obyekti: naqd pul, soxta konsalting shartnomalari, maxfiy tender ma’lumotlari
+Asosiy joylar: Hanbit shahar hokimligi · Cheongyeon restorani · Central golf mashg‘ulot markazi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -2304,10 +2313,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # AI investitsiya firibgarligi va investor mablag‘larini o‘zlashtirish ishi
 
 Ish raqami: 2026-UZ-4175
+Gumon qilinayotgan jinoyatlar: yirik miqdordagi firibgarlik, investitsiya mablag‘larini o‘zlashtirish
 Asosiy shaxslar: Jung Min-ho, Kim Ye-rin, Oh Seung-chan, Moon Ha-rin, Park Ji-ho
+Tegishli yuridik shaxslar va tashkilotlar: River Capital, River AI Fund, RM Mobility
 Asosiy tergov holati: broker API bilan haqiqiy ulanishi bo‘lmagan demo panel amaldagi AI savdo tizimi sifatida ko‘rsatilgan, yangi investorlarning puli esa eski investorlarning to‘lovlariga sarflangan
 Asosiy summa yoki ko‘lam: 3 186 000 000 KRW
-Asosiy qidiruv terminlari: demo, real ulanish yo‘q, yangi depozit, eski to‘lov, oyiga 5 foiz, asosiy summa, GENERATE_RETURN, investor
+Asosiy dalil obyekti: investor mablag‘lari, simulyatsion savdo paneli
+Asosiy joylar: River Capital bosh ofisi · investitsiya taqdimot zali · direktor yashash joyi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -3438,10 +3450,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Yarimo‘tkazgich tijorat sirlarini noqonuniy olib chiqish ishi
 
 Ish raqami: 2026-UZ-4212
+Gumon qilinayotgan jinoyatlar: tijorat sirini o‘zlashtirish va ruxsatsiz oshkor qilish
 Asosiy shaxslar: Jo Hyun-woo, Park Se-young, Ryu Ji-hoon, Han So-ra, Choi Dong-min
+Tegishli yuridik shaxslar va tashkilotlar: Dongsan Electronics, NeoChip Solutions
 Asosiy tergov holati: kompaniyadan ketish arafasidagi muhandis tunda loyiha serveriga kirib maxfiy dizayn va yield fayllarini USB ga ko‘chirgan va keyinchalik raqobatchi kompyuterida ochgan
 Asosiy summa yoki ko‘lam: 30 000 000 KRW maxsus texnik bonus
-Asosiy qidiruv terminlari: NX7, USB-X92-7718, layout, yield, 23:22, hash, NEO-RND, raqobatchi
+Asosiy dalil obyekti: NX7 yarimo‘tkazgich dizayn ma’lumotlari, USB qurilma
+Asosiy joylar: Dongsan Electronics R&D markazi · NeoChip Solutions tadqiqot binosi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -4572,10 +4587,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Prokuratura xodimi sifatida o‘zini tanishtirgan uyushgan voice-phishing guruhi ishi
 
 Ish raqami: 2026-UZ-4249
+Gumon qilinayotgan jinoyatlar: uyushgan firibgarlik, telekommunikatsion-moliyaviy firibgarlik
 Asosiy shaxslar: Lim Ji-hwan, Nam Gyu-seok, Kwon So-hee, Park Jun-oh, Choi Ha-rin
+Tegishli yuridik shaxslar va tashkilotlar: G‘arbiy call-markaz, KX virtual aktivlar birjasi
 Asosiy tergov holati: gumondorlar o‘zlarini prokuror va moliyaviy nazorat xodimi sifatida ko‘rsatib jabrlanuvchilardan pulni 'xavfsiz hisob'ga o‘tkazishni talab qilgan va mablag‘ni mule-account, kuryer hamda virtual aktivlar orqali tarqatgan
 Asosiy summa yoki ko‘lam: 1 874 000 000 KRW
-Asosiy qidiruv terminlari: Prokuratura 1-guruh, xavfsiz hisob, 19 million, saqlash shkafi, SIM, debet karta, mule account, ATM
+Asosiy dalil obyekti: mule hisoblar, SIM-kartalar, jabrlanuvchilar mablag‘lari
+Asosiy joylar: Seobu bekati · call-markaz ofisi · 17 ta ATM joyi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -5706,10 +5724,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Soxta statsionar davolanish orqali sug‘urta firibgarligi ishi
 
 Ish raqami: 2026-UZ-4286
+Gumon qilinayotgan jinoyatlar: sug‘urta firibgarligi, soxta statsionar tibbiy yozuvlarni tuzish
 Asosiy shaxslar: Kim Do-yun, Lee Tae-hoon, Park Seo-jin, Jung Woo-seok, Choi Gyu-hyun
+Tegishli yuridik shaxslar va tashkilotlar: Saebom shifoxonasi, Hangyeol Insurance, Nuri Life
 Asosiy tergov holati: aslida statsionarda qolmagan bemorlar uzluksiz yotqizilgan deb qayd etilgan, soxta davolash va hamshiralik yozuvlari tuzilgan hamda sug‘urta pullarining bir qismi shifoxona nazoratidagi hisoblarga qaytarilgan
 Asosiy summa yoki ko‘lam: 628 000 000 KRW sug‘urta to‘lovi
-Asosiy qidiruv terminlari: 306-xona, leave deb belgilamang, yotqizish, davomat, sug‘urta to‘lovi, 800 000, EMR, bemor
+Asosiy dalil obyekti: soxta yotqizish yozuvlari, sug‘urta to‘lovlari
+Asosiy joylar: Saebom shifoxonasi · bemorlar ish joylari · sug‘urta kompaniyalari
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -6840,10 +6861,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Elektron komponentlar qiymatini ataylab pasaytirib ko‘rsatish orqali bojxona to‘lovlaridan bo‘yin tovlash ishi
 
 Ish raqami: 2026-UZ-4323
+Gumon qilinayotgan jinoyatlar: bojxona to‘lovlaridan bo‘yin tovlash, noqonuniy valyuta operatsiyalari
 Asosiy shaxslar: Kang Tae-sung, Seo Yoon-ho, Oh Jin-seok, Yoon Jae-min, Hong Se-ra
+Tegishli yuridik shaxslar va tashkilotlar: Sungjin Logistics, SJ Trading, Pacific Components
 Asosiy tergov holati: bojxonaga taqdim etilgan commercial invoice haqiqiy bitim qiymatining taxminan o‘ndan birini ko‘rsatgan, qolgan qismi esa bog‘liq kompaniyalar hisoblari orqali o‘tkazilgan
 Asosiy summa yoki ko‘lam: 418 000 USD haqiqiy qiymat va 42 000 USD deklaratsiya qiymati
-Asosiy qidiruv terminlari: 42 000, 418 000, rasmiy, qoldiq, o‘ndan bir, invoice, HS code, bojxona
+Asosiy dalil obyekti: ikki xil invoice, yuqori qiymatli elektron komponentlar
+Asosiy joylar: Janubi-sharqiy bojxona · Sungjin Logistics bosh ofisi · xorijiy yetkazib beruvchi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -7974,10 +7998,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Davlat R&D mablag‘larini o‘zlashtirish va soxta soliq hisob-fakturalari ishi
 
 Ish raqami: 2026-UZ-4360
+Gumon qilinayotgan jinoyatlar: subsidiya firibgarligi, mablag‘larni o‘zlashtirish, soxta soliq invoice berish
 Asosiy shaxslar: Jung Min-ho, Kim Ye-rin, Oh Seung-chan, Moon Ha-rin, Park Ji-ho
+Tegishli yuridik shaxslar va tashkilotlar: MirTech, A1 Systems, Milliy sanoat texnologiyalari agentligi
 Asosiy tergov holati: davlat R&D mablag‘lari yetkazib berilmagan server va o‘lchov uskunalari xaridi sifatida rasmiylashtirilgan, so‘ng mablag‘ yetkazib beruvchi orqali direktorning shaxsiy hisoblariga qaytgan
 Asosiy summa yoki ko‘lam: 210 000 000 KRW
-Asosiy qidiruv terminlari: server uskunasi, soxta soliq invoice, 160 million, kvartira to‘lovi, import avtomobil, qarz yo‘q, R&D, yetkazib beruvchi
+Asosiy dalil obyekti: davlat R&D mablag‘lari, soxta uskuna xarid hujjatlari
+Asosiy joylar: MirTech · A1 Systems · direktor yashash joyi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -9108,10 +9135,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Virtual aktivlarni aralashtirish xizmatlari orqali jinoiy daromadlarni yuvish ishi
 
 Ish raqami: 2026-UZ-4397
+Gumon qilinayotgan jinoyatlar: jinoiy daromadlarni yashirish va pul yuvish
 Asosiy shaxslar: Jo Hyun-woo, Park Se-young, Ryu Ji-hoon, Han So-ra, Choi Dong-min
+Tegishli yuridik shaxslar va tashkilotlar: KEX virtual aktivlar birjasi, OTC Desk R2
 Asosiy tergov holati: firibgarlikdan olingan mablag‘lar USDT ga aylantirilgan, bir necha wallet ga bo‘lingan, mixer xizmatlari orqali o‘tkazilgan va katta qismi gumondorlar nazoratidagi final wallet klasterida qayta jamlangan
 Asosiy summa yoki ko‘lam: 320 000 000 KRW ichidan 200 000 000 KRW kuzatilgan mablag‘
-Asosiy qidiruv terminlari: 6 wallet, mixer, clean, USDT, OTP, 73 foiz, final wallet, birja
+Asosiy dalil obyekti: USDT, virtual aktiv walletlari
+Asosiy joylar: onlayn birja · gumondorlar yashash joyi · OTC uchrashuv joyi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -10242,10 +10272,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Buxgalteriya firibgarligi, soxta savdo va kredit olishdagi firibgarlik ishi
 
 Ish raqami: 2026-UZ-4434
+Gumon qilinayotgan jinoyatlar: buxgalteriya firibgarligi, firibgarlik, ishonchni suiiste’mol qilish
 Asosiy shaxslar: Lim Ji-hwan, Nam Gyu-seok, Kwon So-hee, Park Jun-oh, Choi Ha-rin
+Tegishli yuridik shaxslar va tashkilotlar: Taesan Holdings, TS Distribution, Hansung Bank
 Asosiy tergov holati: bog‘liq kompaniyalar o‘rtasidagi aylana operatsiyalar haqiqiy savdo sifatida ko‘rsatilgan, zaxiralar oshirilgan va buzib ko‘rsatilgan moliyaviy hisobotlar bank krediti olishda ishlatilgan
 Asosiy summa yoki ko‘lam: 12 600 000 000 KRW soxta savdo va 7 000 000 000 KRW kredit
-Asosiy qidiruv terminlari: dekabr savdosi, reverse entry, double inventory, circular, 7 milliard, audit, ERP, kredit
+Asosiy dalil obyekti: soxta savdo, oshirilgan zaxiralar, kredit mablag‘lari
+Asosiy joylar: Taesan Holdings bosh ofisi · tarqatish ombori · Hansung Bank
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -11376,10 +11409,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Oshkor qilinmagan klinik sinov ma’lumotlaridan foydalangan insider trading ishi
 
 Ish raqami: 2026-UZ-4471
+Gumon qilinayotgan jinoyatlar: muhim oshkor qilinmagan ma’lumotlardan foydalangan holda qimmatli qog‘ozlar savdosi
 Asosiy shaxslar: Kim Do-yun, Lee Tae-hoon, Park Seo-jin, Jung Woo-seok, Choi Gyu-hyun
+Tegishli yuridik shaxslar va tashkilotlar: Aurora Bio, AB Investment Advisory
 Asosiy tergov holati: maxfiy klinik sinov natijalari va yirik litsenziya bitimi ommaga e’lon qilinishidan oldin aloqador shaxslarga yetkazilgan va shundan keyin aksiyalar katta miqdorda sotib olingan
 Asosiy summa yoki ko‘lam: taxminan 840 000 000 KRW noqonuniy foyda
-Asosiy qidiruv terminlari: sinov muvaffaqiyatli, e’londan oldin, sotib ol, litsenziya bitimi, ertangi bozor, 840 million, IR, aksiya
+Asosiy dalil obyekti: oshkor qilinmagan klinik sinov natijalari, qimmatli qog‘ozlar savdo yozuvlari
+Asosiy joylar: Aurora Bio bosh ofisi · brokerlik hisoblari · xususiy uchrashuv joyi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -12510,10 +12546,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Qurilish materiallari narxini oshirish va kickback olish ishi
 
 Ish raqami: 2026-UZ-4508
+Gumon qilinayotgan jinoyatlar: tijoriy pora, kickback, ishonchni suiiste’mol qilish
 Asosiy shaxslar: Kang Tae-sung, Seo Yoon-ho, Oh Jin-seok, Yoon Jae-min, Hong Se-ra
+Tegishli yuridik shaxslar va tashkilotlar: Dongwoo Construction, Hangil Materials, Metropolitan Road Project Office
 Asosiy tergov holati: qurilish materiallari bozor narxidan sezilarli yuqori narxda shartnomalashtirilgan va farqning bir qismi loyiha xodimlariga naqd pul yoki sovg‘a sertifikati tarzida qaytarilgan
 Asosiy summa yoki ko‘lam: 2 300 000 000 KRW oshirilgan shartnoma va taxminan 230 000 000 KRW kickback
-Asosiy qidiruv terminlari: tonna narxi, 10 foiz, sovg‘a sertifikati, uchastka boshlig‘i, settlement, farq, konvert, material
+Asosiy dalil obyekti: material to‘lovlari, kickback mablag‘lari
+Asosiy joylar: yo‘l qurilish maydoni · Hangil Materials · mehmonxona parkingi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -13644,10 +13683,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Davlat IT xaridi bo‘yicha maxfiy taklif ma’lumotlarini sizdirish va muayyan ishtirokchiga yordam berish ishi
 
 Ish raqami: 2026-UZ-4545
+Gumon qilinayotgan jinoyatlar: davlat sirini oshkor qilish, davlat xaridiga noqonuniy aralashish
 Asosiy shaxslar: Jung Min-ho, Kim Ye-rin, Oh Seung-chan, Moon Ha-rin, Park Ji-ho
+Tegishli yuridik shaxslar va tashkilotlar: Milliy ma’lumotlar agentligi, Sigma Systems, Onnuri IT
 Asosiy tergov holati: maxfiy baholash mezonlari va raqobatchi taklifining ayrim qismlari baholashdan oldin afzal ko‘rilgan ishtirokchiga berilgan va u taklifini shu ma’lumotlarga moslab o‘zgartirgan
 Asosiy summa yoki ko‘lam: 8 400 000 000 KRW loyiha qiymati
-Asosiy qidiruv terminlari: ball jadvali, raqobatchi, baholash komissiyasi, revision, USB, 8.4 milliard, RFP, xarid
+Asosiy dalil obyekti: maxfiy ball jadvali, raqobatchi taklif hujjatlari
+Asosiy joylar: Milliy ma’lumotlar agentligi · Sigma Systems · baholash markazi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -14778,10 +14820,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Noqonuniy onlayn qimor platformasi va vositachi hisoblar orqali pul yuvish ishi
 
 Ish raqami: 2026-UZ-4582
+Gumon qilinayotgan jinoyatlar: noqonuniy qimor faoliyatini tashkil etish, jinoiy daromadlarni yashirish
 Asosiy shaxslar: Jo Hyun-woo, Park Se-young, Ryu Ji-hoon, Han So-ra, Choi Dong-min
+Tegishli yuridik shaxslar va tashkilotlar: SportsPick24, PayLink
 Asosiy tergov holati: xorijiy serverda ishlagan sport tikish platformasi ko‘plab nominal bank hisoblari orqali depozit qabul qilgan va to‘lovlarni onlayn savdo hamda payment-gateway settlement sifatida yashirgan
 Asosiy summa yoki ko‘lam: taxminan 9 200 000 000 KRW depozitlar
-Asosiy qidiruv terminlari: depozit, chiqarish, agent, 9.2 milliard, administrator, mule account, settlement, tikish
+Asosiy dalil obyekti: qimor mablag‘lari, mule hisoblar, administrator paneli
+Asosiy joylar: operatsion ofis · xorijiy hosting xizmati · mule bank hisoblari
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -15912,10 +15957,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Onlayn marketplace sotuvchilarining hisob-kitob mablag‘larini o‘zlashtirish ishi
 
 Ish raqami: 2026-UZ-4619
+Gumon qilinayotgan jinoyatlar: yirik miqdorda o‘zlashtirish, firibgarlik
 Asosiy shaxslar: Lim Ji-hwan, Nam Gyu-seok, Kwon So-hee, Park Jun-oh, Choi Ha-rin
+Tegishli yuridik shaxslar va tashkilotlar: MarketBridge, MB Pay, H Company
 Asosiy tergov holati: sotuvchilarga berilishi kerak bo‘lgan mablag‘ affiliate kompaniya xarajatlari va direktorning shaxsiy qarzlariga ishlatilgan, keyingi savdo tushumlari esa avvalgi settlement majburiyatlarini yopishga yo‘naltirilgan
 Asosiy summa yoki ko‘lam: 7 400 000 000 KRW to‘lanmagan sotuvchi settlementlari
-Asosiy qidiruv terminlari: settlement, D+7, aylantirish, affiliate, 7.4 milliard, sotuvchi, yetishmovchilik, marketplace
+Asosiy dalil obyekti: sotuvchilarning settlement mablag‘lari
+Asosiy joylar: MarketBridge bosh ofisi · MB Pay hisoblari · affiliate kompaniya ofisi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -17046,10 +17094,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Foydalanuvchilarning shaxsiy ma’lumotlarini data brokerlarga noqonuniy sotish ishi
 
 Ish raqami: 2026-UZ-4656
+Gumon qilinayotgan jinoyatlar: shaxsiy ma’lumotlarni noqonuniy qayta ishlash va uchinchi tomonga berish
 Asosiy shaxslar: Kim Do-yun, Lee Tae-hoon, Park Seo-jin, Jung Woo-seok, Choi Gyu-hyun
+Tegishli yuridik shaxslar va tashkilotlar: ModuApp, DataCube, TargetAd
 Asosiy tergov holati: telefon raqamlari, yosh guruhlari, hudud va xarid tarixlari amaldagi roziliksiz export qilinib reklama/data kompaniyalariga haq evaziga berilgan
 Asosiy summa yoki ko‘lam: 460 000 000 KRW data-transfer to‘lovi
-Asosiy qidiruv terminlari: 1.28 million, CSV, SFTP, rozilik yo‘q, TargetAd, 460 million, export, foydalanuvchi
+Asosiy dalil obyekti: 1.28 million foydalanuvchi shaxsiy ma’lumot yozuvlari
+Asosiy joylar: ModuApp data warehouse · tashqi SFTP server · TargetAd ofisi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -18180,10 +18231,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Eksport tushumini kam ko‘rsatish va aktivlarni xorijda yashirish ishi
 
 Ish raqami: 2026-UZ-4693
+Gumon qilinayotgan jinoyatlar: valyuta qoidalarini buzish, aktivlarni xorijda yashirish
 Asosiy shaxslar: Kang Tae-sung, Seo Yoon-ho, Oh Jin-seok, Yoon Jae-min, Hong Se-ra
+Tegishli yuridik shaxslar va tashkilotlar: KJ Global, Blue Harbor Ltd., Centra Trading
 Asosiy tergov holati: eksport shartnomasi tushumining faqat bir qismi mamlakat ichida ko‘rsatilgan, qolgan mablag‘ xorijdagi paper-company hisobiga to‘g‘ridan-to‘g‘ri yuborilgan
 Asosiy summa yoki ko‘lam: taxminan 5 800 000 USD
-Asosiy qidiruv terminlari: split invoice, Blue Harbor, 5.8 million, xorijiy hisob, qoldiq, eksport tushumi, beneficiary, offshore
+Asosiy dalil obyekti: eksport tushumlari, xorijiy bank hisoblari
+Asosiy joylar: KJ Global · Blue Harbor xorijiy hisobi · xorijiy savdo ofisi
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -19314,10 +19368,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Ijara depozitlari bo‘yicha firibgarlik va ko‘chmas mulkni nominal egalar orqali rasmiylashtirish ishi
 
 Ish raqami: 2026-UZ-4730
+Gumon qilinayotgan jinoyatlar: firibgarlik, ko‘chmas mulkni nominal egalardan noqonuniy foydalanib ushlab turish
 Asosiy shaxslar: Jung Min-ho, Kim Ye-rin, Oh Seung-chan, Moon Ha-rin, Park Ji-ho
+Tegishli yuridik shaxslar va tashkilotlar: Harmony Housing, HL Realty
 Asosiy tergov holati: o‘nlab turar joy obyektlari nominal egalardan foydalanib juda kam o‘z mablag‘i bilan sotib olingan, senior lien yashirilgan va ijarachilar depozitlari keyingi obyektlarni xarid qilishga sarflangan
 Asosiy summa yoki ko‘lam: 5 600 000 000 KRW jabrlanuvchilar depozitlari
-Asosiy qidiruv terminlari: senior lien, depozit, 38 obyekt, nominal ega, yakuniy to‘lov, keyingi obyekt, reyestr, ijara
+Asosiy dalil obyekti: ijara depozitlari, nominal egalar nomidagi ko‘chmas mulk
+Asosiy joylar: poytaxt hududidagi 38 ta officetel · HL Realty ofisi · bank filiali
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -20448,10 +20505,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Soxta ish haqi va qalbaki xizmatlar orqali subsidiya firibgarligi ishi
 
 Ish raqami: 2026-UZ-4767
+Gumon qilinayotgan jinoyatlar: subsidiya firibgarligi, yolg‘on talablar taqdim etish
 Asosiy shaxslar: Jo Hyun-woo, Park Se-young, Ryu Ji-hoon, Han So-ra, Choi Dong-min
+Tegishli yuridik shaxslar va tashkilotlar: Green Future Association, Sharing Planning, Regional Welfare Foundation
 Asosiy tergov holati: aslida ishlamagan shaxslar to‘liq stavkadagi xodim sifatida ko‘rsatilgan va bog‘liq kompaniyalar bilan soxta xizmat shartnomalari orqali davlat subsidiyalari chiqarib olingan
 Asosiy summa yoki ko‘lam: 940 000 000 KRW subsidiyaning taxminan 310 000 000 KRW qismi
-Asosiy qidiruv terminlari: davomat yo‘q, maoshni qaytarish, soxta xizmat, subsidiya, 310 million, xodimlar ro‘yxati, davomat, fond
+Asosiy dalil obyekti: soxta ish haqi yozuvlari, soxta xizmat shartnomalari
+Asosiy joylar: Green Future Association · Sharing Planning · Regional Welfare Foundation
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.
@@ -21582,10 +21642,13 @@ RAG evaluation uchun tavsiya etiladigan ground-truth kombinatsiyalari:
 # Korporativ serverlarni shifrlab virtual aktiv talab qilish orqali tovlamachilik ishi
 
 Ish raqami: 2026-UZ-4804
+Gumon qilinayotgan jinoyatlar: tovlamachilik, axborot tizimlariga ruxsatsiz kirish
 Asosiy shaxslar: Lim Ji-hwan, Nam Gyu-seok, Kwon So-hee, Park Jun-oh, Choi Ha-rin
+Tegishli yuridik shaxslar va tashkilotlar: Segwang Solutions, HN Virtual Hosting
 Asosiy tergov holati: korporativ akkauntlar egallab olingan, server fayllari shifrlangan, tiklash evaziga 15 BTC talab qilingan va gumondor qurilmalarida jabrlanuvchi tizimiga kirish izlari, tovlamachilik xati draftlari hamda wallet boshqaruv ma’lumotlari topilgan
 Asosiy summa yoki ko‘lam: 15 BTC talab
-Asosiy qidiruv terminlari: 15 BTC, readme_restore, access log, VPN, wallet, tovlamachilik xati, restore, shifrlash
+Asosiy dalil obyekti: shifrlangan serverlar, tovlamachilik emaili, virtual aktiv walleti
+Asosiy joylar: Segwang Solutions serverlari · gumondor noutbuki · HN Virtual Hosting
 
 Ushbu bo‘lim musodara qilingan va yig‘ilgan raqamli, moliyaviy, aloqa, geolokatsiya,
 video metadata, korporativ tizim loglari va jismoniy dalillarning integratsiyalashgan to‘plamidir.

@@ -15,6 +15,9 @@ Lahat ng kaso, tao, organisasyon, bank account, telephone number, email address,
 vehicle identifier, lokasyon, halaga, at sinasabing criminal act sa dokumentong ito ay kathang-isip.
 Ginawa lamang ang dataset na ito para sa RAG evaluation at wala itong kaugnayan sa anumang totoong tao o kaso.
 
+Pinag-isang mga field ng case header:
+Case No. → Mga pinaghihinalaang krimen → Mga pangunahing taong sangkot → Mga kaugnay na korporasyon at institusyon → Pangunahing investigative fact pattern → Pangunahing halaga o lawak → Pangunahing evidence object → Mga pangunahing lokasyon
+
 MGA PRINSIPYO SA PAGBUO NG DATA:
 1. Mas malaking bahagi ng dataset ang raw evidence records kaysa narrative case summaries.
 2. Ang mahahalagang facts ay sadyang ipinamahagi sa iba't ibang evidence types at bahagi ng dokumento.
@@ -35,10 +38,13 @@ MGA PRINSIPYO SA PAGBUO NG DATA:
 # Kaso ng internasyonal na pagpupuslit ng methamphetamine, lokal na distribusyon, at pagtatago ng nalikom sa krimen
 
 Case No.: 2026-PIL-4101
+Mga pinaghihinalaang krimen: pagpupuslit ng droga, lokal na distribusyon, pagtatago ng criminal proceeds
 Mga pangunahing taong sangkot: Kim Do-yun, Lee Tae-hoon, Park Seo-jin, Jung Woo-seok, Choi Gyu-hyun
+Mga kaugnay na korporasyon at institusyon: Serim Trading, Dongjin Distribution, Fine Logistics, VN Parts Export
 Pangunahing investigative fact pattern: humigit-kumulang 3 kg ng methamphetamine ang itinago sa loob ng industrial bearing housings, ipinasok sa pamamagitan ng pantalan, hinati sa Warehouse B, at ipinasa sa mga lokal na distributor
 Pangunahing halaga o lawak: USD 96,000 at KRW 32,000,000 cash
-Mga pangunahing search term: bearing, asul na marka, 3 kg, purity, Warehouse B, 500 g, cash, SGLU-840271
+Pangunahing evidence object: methamphetamine, industrial bearing housings, cash proceeds
+Mga pangunahing lokasyon: Southeast Port Pier 4 · Dongjin Distribution Warehouse B · Nambu Station Parking Lot 2
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -1169,10 +1175,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng panunuhol, sabwatan sa bidding, at pagbuo ng lihim na pondo sa proyektong pangkaunlaran ng lungsod
 
 Case No.: 2026-PIL-4138
+Mga pinaghihinalaang krimen: panunuhol, bid-rigging, embezzlement, pagbuo ng off-book funds
 Mga pangunahing taong sangkot: Kang Tae-sung, Seo Yoon-ho, Oh Jin-seok, Yoon Jae-min, Hong Se-ra
+Mga kaugnay na korporasyon at institusyon: Cheongmyeong Construction, Daesung Civil Engineering, J1 Consulting, Hanbit City Development Division
 Pangunahing investigative fact pattern: ang pekeng consulting expenses ay ginawang cash upang maibigay sa isang opisyal kaugnay ng project approval, habang ang ilang contractor ay nagkasundo muna sa kanilang bid prices
 Pangunahing halaga o lawak: humigit-kumulang KRW 100,000,000 na pinaghihinalaang suhol at KRW 80,000,000 na pekeng consulting expense
-Mga pangunahing search term: 40 milyon, pagkatapos ng approval 60, conditional approval, 48.6 bilyon, 51.5 bilyon, 52.2 bilyon, J1, safe
+Pangunahing evidence object: cash, sham consulting contracts, confidential bid information
+Mga pangunahing lokasyon: Hanbit City Hall · Cheongyeon Restaurant · Central Golf Practice Center
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -2303,10 +2312,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng pandaraya sa AI investment at maling paggamit ng pondo ng mga mamumuhunan
 
 Case No.: 2026-PIL-4175
+Mga pinaghihinalaang krimen: malakihang fraud at misappropriation ng investment funds
 Mga pangunahing taong sangkot: Jung Min-ho, Kim Ye-rin, Oh Seung-chan, Moon Ha-rin, Park Ji-ho
+Mga kaugnay na korporasyon at institusyon: River Capital, River AI Fund, RM Mobility
 Pangunahing investigative fact pattern: ang demo dashboard na walang aktuwal na koneksiyon sa brokerage API ay ipinakita bilang totoong AI trading system, habang ang pera ng mga bagong investor ay ginamit pambayad sa naunang investors
 Pangunahing halaga o lawak: KRW 3,186,000,000
-Mga pangunahing search term: demo, walang live connection, bagong deposito, lumang payout, 5 porsiyento, principal, GENERATE_RETURN, investor
+Pangunahing evidence object: investor funds, simulated trading dashboard
+Mga pangunahing lokasyon: River Capital Headquarters · Investor Seminar Hall · CEO Residence
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -3437,10 +3449,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng ilegal na pagkuha at paglipat ng semiconductor trade secrets
 
 Case No.: 2026-PIL-4212
+Mga pinaghihinalaang krimen: misappropriation at unauthorized disclosure ng trade secrets
 Mga pangunahing taong sangkot: Jo Hyun-woo, Park Se-young, Ryu Ji-hoon, Han So-ra, Choi Dong-min
+Mga kaugnay na korporasyon at institusyon: Dongsan Electronics, NeoChip Solutions
 Pangunahing investigative fact pattern: isang engineer na paalis na sa kompanya ang pumasok sa design server sa gabi, kumopya ng confidential design at yield files sa USB, at kalaunan ay binuksan ang mga file sa computer ng competitor
 Pangunahing halaga o lawak: KRW 30,000,000 special technical contribution bonus
-Mga pangunahing search term: NX7, USB-X92-7718, layout, yield, 23:22, hash, NEO-RND, competitor
+Pangunahing evidence object: NX7 semiconductor design data, USB storage media
+Mga pangunahing lokasyon: Dongsan Electronics R&D Center · NeoChip Solutions Research Building
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -4571,10 +4586,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng organisadong voice-phishing na nagpapanggap bilang mga tagausig at regulator
 
 Case No.: 2026-PIL-4249
+Mga pinaghihinalaang krimen: organized fraud at telecommunications-financial fraud
 Mga pangunahing taong sangkot: Lim Ji-hwan, Nam Gyu-seok, Kwon So-hee, Park Jun-oh, Choi Ha-rin
+Mga kaugnay na korporasyon at institusyon: Western Call Center, KX Virtual Exchange
 Pangunahing investigative fact pattern: ang mga suspek ay nagpanggap bilang prosecutors at financial regulators, pinilipit ang mga biktima na maglipat sa tinatawag na safe accounts, at ipinadaan ang pera sa mule accounts, cash couriers, at virtual assets
 Pangunahing halaga o lawak: KRW 1,874,000,000
-Mga pangunahing search term: Prosecution Team 1, safe account, 19 milyon, locker, SIM, debit card, mule account, ATM
+Pangunahing evidence object: mule accounts, SIM cards, victim funds
+Mga pangunahing lokasyon: Seobu Station · Call-Center Office · 17 ATM Locations
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -5705,10 +5723,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng insurance fraud gamit ang pekeng admission sa ospital
 
 Case No.: 2026-PIL-4286
+Mga pinaghihinalaang krimen: insurance fraud at falsification ng medical admission records
 Mga pangunahing taong sangkot: Kim Do-yun, Lee Tae-hoon, Park Seo-jin, Jung Woo-seok, Choi Gyu-hyun
+Mga kaugnay na korporasyon at institusyon: Saebom Hospital, Hangyeol Insurance, Nuri Life
 Pangunahing investigative fact pattern: ang mga pasyenteng hindi talaga naka-confine ay nirehistro bilang tuloy-tuloy na inpatients, nilagyan ng pekeng treatment at nursing records, at bahagi ng insurance proceeds ay ibinalik sa mga account na kontrolado ng ospital
 Pangunahing halaga o lawak: KRW 628,000,000 insurance payments
-Mga pangunahing search term: Room 306, huwag markahang leave, admission, attendance, insurance payment, 800,000, EMR, patient
+Pangunahing evidence object: false admission records, insurance proceeds
+Mga pangunahing lokasyon: Saebom Hospital · Patient Workplaces · Insurance Companies
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -6839,10 +6860,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng customs evasion sa pamamagitan ng sadyang mababang deklarasyon ng halaga ng electronic components
 
 Case No.: 2026-PIL-4323
+Mga pinaghihinalaang krimen: customs evasion at unlawful foreign-exchange transactions
 Mga pangunahing taong sangkot: Kang Tae-sung, Seo Yoon-ho, Oh Jin-seok, Yoon Jae-min, Hong Se-ra
+Mga kaugnay na korporasyon at institusyon: Sungjin Logistics, SJ Trading, Pacific Components
 Pangunahing investigative fact pattern: ang commercial invoices na isinumite sa customs ay humigit-kumulang isang-sampu lamang ng tunay na transaction value, habang ang balanse ay ipinadala sa pamamagitan ng accounts ng related companies
 Pangunahing halaga o lawak: USD 418,000 actual value kumpara sa USD 42,000 declared value
-Mga pangunahing search term: 42,000, 418,000, official, balance, one tenth, invoice, HS code, customs
+Pangunahing evidence object: dual invoices, high-value electronic components
+Mga pangunahing lokasyon: Southeast Customs Office · Sungjin Logistics Headquarters · Overseas Supplier
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -7973,10 +7997,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng paglustay ng pondong R&D ng pamahalaan at pekeng tax invoices
 
 Case No.: 2026-PIL-4360
+Mga pinaghihinalaang krimen: subsidy fraud, embezzlement, at false tax invoices
 Mga pangunahing taong sangkot: Jung Min-ho, Kim Ye-rin, Oh Seung-chan, Moon Ha-rin, Park Ji-ho
+Mga kaugnay na korporasyon at institusyon: MirTech, A1 Systems, National Industrial Technology Agency
 Pangunahing investigative fact pattern: ang government R&D funds ay itinuring na pambili ng servers at measurement equipment na hindi naman na-deliver, pagkatapos ay ibinalik ng supplier ang malaking bahagi ng pera sa personal accounts ng director
 Pangunahing halaga o lawak: KRW 210,000,000
-Mga pangunahing search term: server equipment, false tax invoice, 160 milyon, apartment payment, imported car, walang loan, R&D, supplier
+Pangunahing evidence object: government R&D funds, fictitious equipment-purchase records
+Mga pangunahing lokasyon: MirTech · A1 Systems · CEO Residence
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -9107,10 +9134,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng money laundering gamit ang virtual-asset mixing services
 
 Case No.: 2026-PIL-4397
+Mga pinaghihinalaang krimen: concealment at laundering ng criminal proceeds
 Mga pangunahing taong sangkot: Jo Hyun-woo, Park Se-young, Ryu Ji-hoon, Han So-ra, Choi Dong-min
+Mga kaugnay na korporasyon at institusyon: KEX Virtual Exchange, OTC Desk R2
 Pangunahing investigative fact pattern: ang fraud proceeds ay kinonvert sa USDT, hinati sa maraming wallets, ipinadaan sa mixer services, at malaking bahagi ay muling nagsama sa final wallet cluster na kontrolado ng mga suspek
 Pangunahing halaga o lawak: KRW 200,000,000 mula sa KRW 320,000,000 na natunton
-Mga pangunahing search term: 6 wallets, mixer, clean, USDT, OTP, 73 porsiyento, final wallet, exchange
+Pangunahing evidence object: USDT, virtual-asset wallets
+Mga pangunahing lokasyon: Online Exchange · Suspect Residences · OTC Meeting Location
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -10241,10 +10271,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng accounting fraud, pekeng sales, at pandaraya sa pagkuha ng pautang
 
 Case No.: 2026-PIL-4434
+Mga pinaghihinalaang krimen: accounting fraud, fraud, at breach of trust
 Mga pangunahing taong sangkot: Lim Ji-hwan, Nam Gyu-seok, Kwon So-hee, Park Jun-oh, Choi Ha-rin
+Mga kaugnay na korporasyon at institusyon: Taesan Holdings, TS Distribution, Hansung Bank
 Pangunahing investigative fact pattern: ang circular transactions sa affiliates ay itinuring na tunay na sales, pinalaki ang inventory, at ginamit ang manipulated financial statements para makakuha ng bank financing
 Pangunahing halaga o lawak: KRW 12,600,000,000 pekeng sales at KRW 7,000,000,000 loan
-Mga pangunahing search term: December sales, reverse entry, double inventory, circular, 7 bilyon, audit, ERP, loan
+Pangunahing evidence object: fictitious sales, inflated inventory, loan proceeds
+Mga pangunahing lokasyon: Taesan Holdings Headquarters · Distribution Warehouse · Hansung Bank
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -11375,10 +11408,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng insider trading gamit ang hindi pa inilalabas na clinical-trial information
 
 Case No.: 2026-PIL-4471
+Mga pinaghihinalaang krimen: paggamit ng material nonpublic information sa securities trading
 Mga pangunahing taong sangkot: Kim Do-yun, Lee Tae-hoon, Park Seo-jin, Jung Woo-seok, Choi Gyu-hyun
+Mga kaugnay na korporasyon at institusyon: Aurora Bio, AB Investment Advisory
 Pangunahing investigative fact pattern: ang confidential clinical-trial results at malaking licensing deal ay naipasa sa mga kakilala bago ang public announcement, kasunod ang concentrated purchases ng shares
 Pangunahing halaga o lawak: tinatayang KRW 840,000,000 unlawful gain
-Mga pangunahing search term: trial success, bago announcement, buy, licensing deal, bukas na market, 840 milyon, IR, shares
+Pangunahing evidence object: undisclosed clinical-trial results, securities trading records
+Mga pangunahing lokasyon: Aurora Bio Headquarters · Brokerage Accounts · Private Meeting Location
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -12509,10 +12545,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng pagpapataas ng presyo ng construction materials at kickbacks
 
 Case No.: 2026-PIL-4508
+Mga pinaghihinalaang krimen: commercial bribery, kickbacks, at breach of trust
 Mga pangunahing taong sangkot: Kang Tae-sung, Seo Yoon-ho, Oh Jin-seok, Yoon Jae-min, Hong Se-ra
+Mga kaugnay na korporasyon at institusyon: Dongwoo Construction, Hangil Materials, Metropolitan Road Project Office
 Pangunahing investigative fact pattern: ang construction materials ay kinontrata sa presyong mas mataas kaysa market price at bahagi ng diperensiya ay ibinalik sa project personnel bilang cash at gift certificates
 Pangunahing halaga o lawak: KRW 2,300,000,000 inflated contract at humigit-kumulang KRW 230,000,000 kickbacks
-Mga pangunahing search term: presyo bawat tonelada, 10 porsiyento, gift certificate, site manager, settlement, difference, envelope, materials
+Pangunahing evidence object: material payments, kickback funds
+Mga pangunahing lokasyon: Road Construction Site · Hangil Materials · Hotel Parking Garage
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -13643,10 +13682,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng pagtagas ng confidential public IT procurement materials at pagpabor sa isang bidder
 
 Case No.: 2026-PIL-4545
+Mga pinaghihinalaang krimen: disclosure of official secrets at interference with public procurement
 Mga pangunahing taong sangkot: Jung Min-ho, Kim Ye-rin, Oh Seung-chan, Moon Ha-rin, Park Ji-ho
+Mga kaugnay na korporasyon at institusyon: National Data Agency, Sigma Systems, Onnuri IT
 Pangunahing investigative fact pattern: ang hindi pampublikong scoring criteria at bahagi ng proposal ng competitor ay naipasa sa preferred bidder bago evaluation, na pagkatapos ay nagbago ng proposal ayon sa lihim na criteria
 Pangunahing halaga o lawak: KRW 8,400,000,000 project value
-Mga pangunahing search term: score sheet, competitor, evaluation committee, revision, USB, 8.4 bilyon, RFP, procurement
+Pangunahing evidence object: confidential scoring sheet, competitor proposal
+Mga pangunahing lokasyon: National Data Agency · Sigma Systems · Evaluation Center
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -14777,10 +14819,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng ilegal na online gambling platform at money laundering gamit ang mga mule account
 
 Case No.: 2026-PIL-4582
+Mga pinaghihinalaang krimen: operation of illegal gambling facilities at concealment of criminal proceeds
 Mga pangunahing taong sangkot: Jo Hyun-woo, Park Se-young, Ryu Ji-hoon, Han So-ra, Choi Dong-min
+Mga kaugnay na korporasyon at institusyon: SportsPick24, PayLink
 Pangunahing investigative fact pattern: ang overseas-hosted sports betting platform ay tumanggap ng deposits gamit ang maraming nominee accounts at itinago ang payouts bilang online-shopping sales at payment-gateway settlements
 Pangunahing halaga o lawak: humigit-kumulang KRW 9,200,000,000 deposits
-Mga pangunahing search term: deposit, withdrawal, agent, 9.2 bilyon, administrator, mule account, settlement, bet
+Pangunahing evidence object: gambling proceeds, mule accounts, administrator panel
+Mga pangunahing lokasyon: Operations Office · Overseas Hosting Service · Mule Bank Accounts
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -15911,10 +15956,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng maling paggamit ng seller settlement funds ng online marketplace
 
 Case No.: 2026-PIL-4619
+Mga pinaghihinalaang krimen: malakihang embezzlement at fraud
 Mga pangunahing taong sangkot: Lim Ji-hwan, Nam Gyu-seok, Kwon So-hee, Park Jun-oh, Choi Ha-rin
+Mga kaugnay na korporasyon at institusyon: MarketBridge, MB Pay, H Company
 Pangunahing investigative fact pattern: ang perang dapat nakalaan sa sellers ay ginamit sa operating expenses ng affiliates at personal debts ng director, habang bagong sales proceeds ang ipinambayad sa dating settlement obligations
 Pangunahing halaga o lawak: KRW 7,400,000,000 unpaid seller settlements
-Mga pangunahing search term: settlement, D+7, rollover, affiliate, 7.4 bilyon, seller, shortfall, marketplace
+Pangunahing evidence object: seller settlement funds
+Mga pangunahing lokasyon: MarketBridge Headquarters · MB Pay Accounts · Affiliate Office
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -17045,10 +17093,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng ilegal na pagbebenta ng personal data ng mga miyembro sa data brokers
 
 Case No.: 2026-PIL-4656
+Mga pinaghihinalaang krimen: unlawful processing at disclosure ng personal information
 Mga pangunahing taong sangkot: Kim Do-yun, Lee Tae-hoon, Park Seo-jin, Jung Woo-seok, Choi Gyu-hyun
+Mga kaugnay na korporasyon at institusyon: ModuApp, DataCube, TargetAd
 Pangunahing investigative fact pattern: ang phone numbers, age groups, rehiyon, at purchase histories ng users ay in-export nang walang wastong consent at ibinenta sa advertising/data companies
 Pangunahing halaga o lawak: KRW 460,000,000 kapalit ng data transfer
-Mga pangunahing search term: 1.28 milyon, CSV, SFTP, walang consent, TargetAd, 460 milyon, export, member
+Pangunahing evidence object: 1.28 million member personal-data records
+Mga pangunahing lokasyon: ModuApp Data Warehouse · External SFTP Server · TargetAd Office
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -18179,10 +18230,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng kulang na deklarasyon ng export proceeds at pagtatago ng assets sa ibang bansa
 
 Case No.: 2026-PIL-4693
+Mga pinaghihinalaang krimen: foreign-exchange violations at concealment of assets offshore
 Mga pangunahing taong sangkot: Kang Tae-sung, Seo Yoon-ho, Oh Jin-seok, Yoon Jae-min, Hong Se-ra
+Mga kaugnay na korporasyon at institusyon: KJ Global, Blue Harbor Ltd., Centra Trading
 Pangunahing investigative fact pattern: bahagi lamang ng export contract revenue ang idineklara sa loob ng bansa habang ang natitirang halaga ay direktang ipinadala sa account ng offshore paper company
 Pangunahing halaga o lawak: humigit-kumulang USD 5,800,000
-Mga pangunahing search term: split invoice, Blue Harbor, 5.8 milyon, offshore account, balance, export proceeds, beneficiary, offshore
+Pangunahing evidence object: export proceeds, offshore bank accounts
+Mga pangunahing lokasyon: KJ Global · Blue Harbor Offshore Account · Overseas Trading Office
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -19313,10 +19367,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng pandaraya sa rental deposits at paggamit ng nominee owners sa real estate
 
 Case No.: 2026-PIL-4730
+Mga pinaghihinalaang krimen: fraud at unlawful use of nominee ownership in real property
 Mga pangunahing taong sangkot: Jung Min-ho, Kim Ye-rin, Oh Seung-chan, Moon Ha-rin, Park Ji-ho
+Mga kaugnay na korporasyon at institusyon: Harmony Housing, HL Realty
 Pangunahing investigative fact pattern: maraming residential units ang binili gamit ang nominee owners at minimal sariling kapital, itinago ang senior liens, at ginamit ang tenant deposits para sa susunod na acquisitions
 Pangunahing halaga o lawak: KRW 5,600,000,000 victim deposits
-Mga pangunahing search term: senior lien, deposit, 38 units, nominee, closing payment, next property, registry, rental
+Pangunahing evidence object: tenant deposits, nominee-owned properties
+Mga pangunahing lokasyon: 38 Metropolitan-Area Officetel Units · HL Realty Office · Bank Branch
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -20447,10 +20504,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng subsidy fraud gamit ang pekeng payroll at kathang-isip na serbisyo
 
 Case No.: 2026-PIL-4767
+Mga pinaghihinalaang krimen: subsidy fraud at false claims
 Mga pangunahing taong sangkot: Jo Hyun-woo, Park Se-young, Ryu Ji-hoon, Han So-ra, Choi Dong-min
+Mga kaugnay na korporasyon at institusyon: Green Future Association, Sharing Planning, Regional Welfare Foundation
 Pangunahing investigative fact pattern: ang mga taong hindi talaga nagtatrabaho ay idineklarang full-time staff at ang pekeng service contracts sa kaalyadong kompanya ay ginamit para ilabas ang public subsidy funds
 Pangunahing halaga o lawak: humigit-kumulang KRW 310,000,000 mula sa KRW 940,000,000 subsidies
-Mga pangunahing search term: walang attendance, salary return, fictitious service, subsidy, 310 milyon, staff list, attendance, foundation
+Pangunahing evidence object: false payroll records, fictitious service contracts
+Mga pangunahing lokasyon: Green Future Association · Sharing Planning · Regional Welfare Foundation
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.
@@ -21581,10 +21641,13 @@ Inirerekomendang ground-truth combinations para sa RAG evaluation:
 # Kaso ng pag-encrypt ng corporate servers para sa extortion at paghingi ng virtual assets
 
 Case No.: 2026-PIL-4804
+Mga pinaghihinalaang krimen: extortion at unauthorized intrusion into information systems
 Mga pangunahing taong sangkot: Lim Ji-hwan, Nam Gyu-seok, Kwon So-hee, Park Jun-oh, Choi Ha-rin
+Mga kaugnay na korporasyon at institusyon: Segwang Solutions, HN Virtual Hosting
 Pangunahing investigative fact pattern: nakompromiso ang corporate accounts, na-encrypt ang server files, humingi ng 15 BTC kapalit ng restoration, at nakita sa suspect devices ang access traces, ransom-note drafts, at wallet-management data
 Pangunahing halaga o lawak: 15 BTC demand
-Mga pangunahing search term: 15 BTC, readme_restore, access log, VPN, wallet, extortion email, restore, encryption
+Pangunahing evidence object: encrypted servers, extortion email, virtual-asset wallet
+Mga pangunahing lokasyon: Segwang Solutions Servers · Suspect Laptop · HN Virtual Hosting
 
 Ang seksiyong ito ay isang pinagsamang koleksiyon ng digital, financial, communication,
 geolocation, video metadata, enterprise-system logs, at physical evidence records.

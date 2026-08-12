@@ -12,12 +12,17 @@
 벡터 공간을 비교하는 것이므로, 공정한 모델 비교를 원하면 --reencode-chunks 를 써서
 청크도 같은 모델로 다시 인코딩해야 한다.
 
+검색 범위는 기본이 --scope doc (질문이 속한 문서 안에서만 검색) 이다.
+합성증거 문서 7종은 같은 20사건을 7개 언어로 번역한 것이라, --scope corpus 로 두면
+한국어 질의가 다른 언어판 대신 한국어판 청크를 집어내 다국어 점수가 무너진다.
+(전체 nDCG@10 기준 doc 0.438 vs corpus 0.203)
+
 사용 예:
     python src/search.py                              # 두 모델 비교 -> result.csv
     python src/search.py --models bge-m3              # 한 모델만
     python src/search.py --reencode-chunks            # 청크도 같은 모델로 재인코딩(공정 비교)
     python src/search.py --neighbor-tolerance 1       # 인접 청크도 정답 인정(overlap 보정)
-    python src/search.py --scope doc                  # 해당 문서 안에서만 검색
+    python src/search.py --scope corpus               # 전체 문서를 후보로 검색
     python src/search.py --csv out/exp.csv --dump out/exp.json
 """
 from __future__ import annotations
@@ -440,8 +445,11 @@ def main():
     ap.add_argument("--overwrite", action="store_true", help="번호를 붙이지 않고 덮어쓴다")
     ap.add_argument("--device", default=None, help="cuda / cpu (기본: 자동)")
     ap.add_argument("--batch-size", type=int, default=16)
-    ap.add_argument("--scope", choices=("corpus", "doc"), default="corpus",
-                    help="corpus: 전체 문서 청크를 후보로 검색(기본) / doc: 해당 문서 안에서만")
+    ap.add_argument("--scope", choices=("doc", "corpus"), default="doc",
+                    help="doc: 질문이 속한 문서 안에서만 검색(기본)\n"
+                         "corpus: 전체 문서 청크를 후보로 검색\n"
+                         "  합성증거 문서 7종은 같은 20사건의 번역본이라 corpus 로 두면\n"
+                         "  한국어 질의가 한국어판 청크를 먼저 집어내 다국어 점수가 무너진다.")
     ap.add_argument("--neighbor-tolerance", type=int, default=0,
                     help="정답 청크 ±N 을 정답으로 인정 (overlap=128 보정용)")
     ap.add_argument("--reencode-chunks", action="store_true",
