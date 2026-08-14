@@ -33,21 +33,15 @@ sparse 를 쓰는 구성은 bge-bge 뿐이다. sparse 헤드(sparse_linear.pt)�
             이라 서로가 서로의 중복이 되므로 점수가 무너진다. 비교 목적으로만
             쓰고 기본값으로 삼지 않는다.
 
-집계 축은 두 가지다.
+집계 축은 질의 유형(q_type) 하나다.
 
-  질의 유형 (q_type)
-    1 의미기반    고유명사를 빼고 범죄 정황만으로 검색
-    2 리터럴포함  IP/BTC 주소/파일명/도메인이 질의에 들어간다 (sparse 에 유리)
-    3 화자지정    'A와 B 사이의 대화에서 ...'
-    4 날짜지정    '2020년 M월 D일 ...'
+    1 의미기반         고유명사를 빼고 범죄 정황만으로 검색
+    2 식별자+의미기반  IP/BTC 주소/파일명/도메인이 질의에 들어간다 (sparse 에 유리)
+    3 화자기반         'A와 B 사이의 대화에서 ...'
+    4 날짜기반         '2020-MM-DD 에 ...'
 
-  질의 난이도 (phrasing)
-    direct      정답 청크의 핵심 표현을 질문에 그대로 담은 문항
-    paraphrase  같은 내용을 다른 말로 바꿔 물은 문항
-
-  유형 4종 x 표현 2종 x 25문항 = 200문항이고, 같은 정답 청크에 대해 direct 와
-  paraphrase 가 1:1 로 짝지어져 있다. 그래서 난이도 표의 낙폭은 다른 조건이
-  섞이지 않은 순수한 표현 효과다.
+  유형 4종 x 25문항 = 100문항이다. 모든 문항은 정답 청크의 핵심 표현을 질문에
+  그대로 담은 형태이므로, 표현을 바꿔 묻는 축(의역)은 두지 않는다.
 
 사용 예:
     python src/search.py                                      # 5개 구성 -> result.csv
@@ -99,12 +93,9 @@ MODE_LABEL = {"dense": "dense", "sparse": "sparse", "hybrid": "dense + sparse"}
 K_LIST = (5, 10)
 K_MAX = 10
 
-QTYPE_LABEL = {1: "의미기반", 2: "리터럴포함", 3: "화자지정", 4: "날짜지정"}
-
-# 유형 4종 x 표현 2종 x 25문항 = 200문항. 같은 정답 청크에 대해 direct 와
-# paraphrase 가 1:1 로 짝지어져 있어, 표현만 바꾼 효과를 다른 조건 없이 분리해
-# 볼 수 있다. 어휘가 겹칠 때와 의미만 통할 때의 격차를 보는 축이다.
-PHRASING_LABEL = {"direct": "직접포함", "paraphrase": "의역"}
+# 유형 4종 x 25문항 = 100문항. qa.json 의 q_type_name 을 쓰고, 없을 때만 이 표로
+# 대신한다.
+QTYPE_LABEL = {1: "의미기반", 2: "식별자+의미기반", 3: "화자기반", 4: "날짜기반"}
 
 # 질문은 항상 한국어다. 본문도 한국어인 코퍼스는 동일언어 검색, 나머지는
 # 교차언어 검색이라 성격이 달라 따로 집계한다. 지금은 ru/en 뿐이라 한국어
@@ -140,14 +131,6 @@ def qtype_label(pair: dict) -> str:
     return f"{t} {pair.get('q_type_name') or QTYPE_LABEL.get(t, '')}".strip()
 
 
-def phrasing_label(pair: dict) -> str:
-    """'직접포함' / '의역'. 없으면 빈 문자열."""
-    p = pair.get("phrasing")
-    if not p:
-        return ""
-    return pair.get("phrasing_name") or PHRASING_LABEL.get(p, p)
-
-
 def load_qa(qa_dir: str) -> list[dict]:
     """QA json 을 읽어 문서 목록을 만든다. 청크 벡터는 아직 읽지 않는다.
 
@@ -170,7 +153,6 @@ def load_qa(qa_dir: str) -> list[dict]:
                 raise ValueError(f"{qa['source']} {pair['id']}: 정답 청크가 비어 있습니다.")
             pair["_gold"] = gold
             pair["_qtype"] = qtype_label(pair)
-            pair["_phrasing"] = phrasing_label(pair)
 
         entries = qa.get("corpora")
         if not entries:                       # 구형: 파일 하나 = 코퍼스 하나
@@ -443,8 +425,7 @@ def evaluate(docs, target_docs, dense_all, sparse_all, layout, encoder,
             results.append({
                 "doc": doc["tag"], "corpus": doc["corpus"],
                 "eff_scope": scope, "n_candidates": int(len(ids)),
-                "qtype": pair["_qtype"], "phrasing": pair["_phrasing"],
-                "id": pair["id"], "question": pair["question"], "gold": pair["_gold"],
+                "qtype": pair["_qtype"], "id": pair["id"], "question": pair["question"], "gold": pair["_gold"],
                 "rank": m["rank"], "top_chunks": ranked, "top_docs": ranked_docs,
                 "top_scores": [round(float(scores[row, p]), 4) for p in cand],
                 **{k: m[k] for k in ("recall@5", "recall@10", "mrr@10", "ndcg@10")},
@@ -530,22 +511,6 @@ def build_rows(results, cfg_name: str, qm: str, dm: str, mode: str,
     for qt in sorted(by_type):
         rows.append(row(f"QTYPE({qt})", "mixed", by_type[qt], "q_type"))
 
-    # 표현 방식 2종별 (직접포함 / 의역)
-    by_ph = {}
-    for r in results:
-        if r.get("phrasing"):
-            by_ph.setdefault(r["phrasing"], []).append(r)
-    for ph in sorted(by_ph):
-        rows.append(row(f"PHRASE({ph})", "mixed", by_ph[ph], "phrasing"))
-
-    # 질문유형 x 표현방식 (유형별로 의역이 얼마나 어려워지는지)
-    by_tp = {}
-    for r in results:
-        if r.get("qtype") and r.get("phrasing"):
-            by_tp.setdefault((r["qtype"], r["phrasing"]), []).append(r)
-    for (qt, ph), sub in sorted(by_tp.items()):
-        rows.append(row(f"{qt} / {ph}", "mixed", sub, "q_type_phrasing"))
-
     # 문서 x 질문유형 (원문/영문 중 어느 쪽이 어떤 유형에 강한지)
     by_dt = {}
     for r in results:
@@ -566,7 +531,7 @@ def build_rows(results, cfg_name: str, qm: str, dm: str, mode: str,
 
 def print_table(rows, cfg_name: str, qm: str, dm: str, mode: str):
     shown = [r for r in rows
-             if r["group_kind"] in ("document", "q_type", "phrasing", "overall")]
+             if r["group_kind"] in ("document", "q_type", "overall")]
     width = max(len(r["document"]) for r in shown)
     header = (f"{'document'.ljust(width)}  {'N':>4} {'R@5':>7} {'R@10':>7} "
               f"{'MRR@10':>7} {'nDCG@10':>8}")
@@ -651,38 +616,6 @@ def matrix_block(all_rows, cfg_names, prefix: str, title: str, note: str,
     print("-" * width)
 
 
-def difficulty_block(all_rows, cfg_names):
-    """질의 난이도 = 정답 청크의 표현을 그대로 썼는지 아니면 바꿔 물었는지."""
-    def pick(cfg, want):
-        for r in all_rows:
-            if (r["config"] == cfg and r["group_kind"] == "phrasing"
-                    and r["document"] == f"PHRASE({want})"):
-                return r
-        return None
-
-    d_lab = PHRASING_LABEL["direct"]
-    p_lab = PHRASING_LABEL["paraphrase"]
-    present = [c for c in cfg_names if pick(c, d_lab) and pick(c, p_lab)]
-    if not present:
-        return
-    n_d = pick(present[0], d_lab)["n_queries"]
-    n_p = pick(present[0], p_lab)["n_queries"]
-    width = 12 + 13 * 3
-    print("■ 5. 질의 난이도별")
-    print(f"  직접포함: 정답 청크의 핵심 표현을 질문에 그대로 담은 문항 ({n_d}질의)")
-    print(f"  의역    : 같은 내용을 다른 말로 바꿔 물은 문항 ({n_p}질의)")
-    print("  둘은 같은 정답 청크에 1:1 로 짝지어져 있어 표현 차이만 분리된다.")
-    print("  낙폭이 작을수록 어휘 중복에 덜 기대고 의미를 잡는다는 뜻이다.")
-    print("-" * width)
-    print(f"{'config':<12}{'직접 nDCG':>13}{'의역 nDCG':>13}{'낙폭':>13}")
-    print("-" * width)
-    for c in present:
-        a, b = pick(c, d_lab), pick(c, p_lab)
-        print(f"{c:<12}{a['ndcg@10']:>13.3f}{b['ndcg@10']:>13.3f}"
-              f"{b['ndcg@10'] - a['ndcg@10']:>+13.3f}")
-    print("-" * width)
-
-
 GAP = "\n" * 3
 
 
@@ -700,10 +633,8 @@ def print_comparison(all_rows, cfg_names):
                   "질문은 한국어, 본문은 원문(ru)·영문(en) (교차언어 검색)")
     print(GAP, end="")
     matrix_block(all_rows, cfg_names, "QTYPE(", "■ 4. 질의 유형별 — 어떤 질문이 어려운가",
-                 "1 의미기반 / 2 리터럴포함 / 3 화자지정 / 4 날짜지정",
+                 "1 의미기반 / 2 식별자+의미기반 / 3 화자기반 / 4 날짜기반",
                  kind="q_type")
-    print(GAP, end="")
-    difficulty_block(all_rows, cfg_names)
     print("\n※ recall@k 는 hit-rate 입니다. 정답 청크 중 하나라도 상위 k 에 들면 1.0 으로"
           " 세며, 표준 Recall(|상위k ∩ 정답| / |정답|)이 아닙니다.")
 
