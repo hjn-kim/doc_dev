@@ -259,9 +259,10 @@ def main() -> None:
                     help="bge / kure, 또는 HuggingFace 모델 id")
     ap.add_argument("--max-length", type=int, default=512,
                     help="인코더 입력 상한. chunking.py 의 --chunk-size 와 맞춘다")
-    ap.add_argument("--slack", type=int, default=32,
-                    help="상한에 더할 여유 토큰. chunking.py 의 헤더 예산이 실제 헤더보다 "
-                         "짧으면 청크가 몇 토큰 넘칠 수 있어 기본 32를 둔다 (기본 32)")
+    ap.add_argument("--slack", type=int, default=128,
+                    help="상한에 더할 여유 토큰 (기본 128). chunking.py 가 영어를 축으로 "
+                         "자르므로 토큰을 더 먹는 언어(러시아어 원문)는 512 를 넘길 수 "
+                         "있다. 측정상 최대 560 토큰이라 128 이면 충분하다.")
     ap.add_argument("--batch-size", type=int, default=8, help="GPU 면 32 정도까지")
     ap.add_argument("--device", default=None, help="cpu / cuda (기본: 자동 판별)")
     ap.add_argument("--dtype", default="auto", help="auto / float32 / float16")

@@ -14,10 +14,14 @@ gap 1시간 기준 12,478 세션이 나오고, 그중 512 토큰을 넘어 쪼�
 뿐이다. gap 을 6시간까지 늘려도 초과 세션은 867 -> 931 로 거의 늘지 않는다.
 작은 세션끼리 합쳐질 뿐이라 1~2시간이면 충분하다.
 
-원문/영문 청크 경계는 기본적으로 일치시킨다(--split-basis max). 발화별 토큰
-수를 두 언어의 큰 쪽으로 잡아 분할 지점을 한 번만 계산하므로 두 벌의 청크
-인덱스가 같아져 QA 정답(청크 위치)을 1벌만 만들면 된다. 따로 계산하면 청크
-수가 어긋나 정답을 2벌 만들어야 한다.
+청크 경계는 영어를 축으로 한 번만 계산해 모든 언어에 똑같이 적용한다
+(--split-basis en). 언어를 나중에 추가해도 같은 발화 경계를 그대로 쓰므로 청크
+인덱스가 전 언어에서 일치하고, QA 정답(청크 위치)을 1벌만 만들면 된다. 언어별로
+따로 계산하면(--split-basis each) 청크 수가 어긋나 정답을 언어 수만큼 만들어야
+한다.
+
+축이 영어라 토큰을 더 먹는 언어(러시아어 원문)는 512 를 조금 넘길 수 있다.
+embed.py 의 --slack 이 그 여유를 흡수하고, 넘치면 경고를 찍는다.
 
 사용:
     python data/chunking.py
@@ -264,9 +268,9 @@ def main() -> None:
                     help="이 시간 이상 끊기면 다른 주제로 보고 세션 분리 (기본 1)")
     ap.add_argument("--chunk-size", type=int, default=512)
     ap.add_argument("--overlap", type=int, default=128)
-    ap.add_argument("--split-basis", choices=("max", "ru", "en", "each"), default="max",
-                    help="분할 경계 기준. max/ru/en 은 원문·영문 청크 인덱스를 "
-                         "일치시켜 QA 정답을 공유할 수 있게 한다 (기본 max). "
+    ap.add_argument("--split-basis", choices=("en", "ru", "max", "each"), default="en",
+                    help="분할 경계를 정하는 기준 언어 (기본 en). 영어를 축으로 두면 "
+                         "나중에 언어를 추가해도 모두 같은 발화 경계를 공유한다. "
                          "each 는 각각 따로 잘라 인덱스가 어긋난다.")
     ap.add_argument("--tokenizer", default=TOKENIZER)
     ap.add_argument("--stats-only", action="store_true", help="저장하지 않는다")
