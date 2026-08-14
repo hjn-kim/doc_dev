@@ -2,7 +2,15 @@
 """BGE-M3 / KURE-v1 검색 평가 (dense, sparse, 하이브리드) - Conti Jabber 로그
 
 질문을 인코딩 -> 청크 벡터와 유사도 -> 상위 10개 순위
--> Recall@5 / Recall@10 / MRR@10 / nDCG@10 을 계산하고 result.csv 로 저장한다.
+-> H@5 / H@10 / R@5 / R@10 / MRR@10 / nDCG@10 을 계산하고 result.csv 로 저장한다.
+
+지표는 두 계열이다. 정답이 여러 청크에 걸치는 것은 하나의 정황이 overlap=128
+때문에 쪼개진 결과이므로, '하나라도 찾았는가'와 '몇 개나 찾았는가'를 나눠 본다.
+
+    H@k     hit-rate(success@k). 정답 청크 중 하나라도 상위 k 에 들면 1
+    R@k     표준 Recall. 상위 k 가 덮은 정답 청크 수 / min(정답 수, k)
+    MRR@10  1 / 첫 적중 순위
+    nDCG@10 1 / log2(첫 적중 순위 + 1)
 
 대상은 data/qa/qa.json 하나다. 이 파일이 corpora 로 코퍼스 여러 개를 선언하고
 질문·정답은 공유한다. 같은 대화 세션을 원문(러시아어 중심)과 영문 번역으로
@@ -93,6 +101,12 @@ MODE_LABEL = {"dense": "dense", "sparse": "sparse", "hybrid": "dense + sparse"}
 K_LIST = (5, 10)
 K_MAX = 10
 
+# 내부 키 -> 표에 찍는 이름. 순서가 곧 출력 순서다.
+METRICS = {"hit@5": "H@5", "hit@10": "H@10",
+           "recall@5": "R@5", "recall@10": "R@10",
+           "mrr@10": "MRR@10", "ndcg@10": "nDCG@10"}
+METRIC_KEYS = tuple(METRICS)
+
 # 유형 4종 x 25문항 = 100문항. qa.json 의 q_type_name 을 쓰고, 없을 때만 이 표로
 # 대신한다.
 QTYPE_LABEL = {1: "의미기반", 2: "식별자+의미기반", 3: "화자기반", 4: "날짜기반"}
@@ -108,7 +122,7 @@ GROUP_MULTI = "ALL(다국어)"
 
 CSV_FIELDS = ["config", "question_model", "doc_model", "mode", "sparse_weight",
               "scope", "neighbor_tolerance", "group_kind", "corpus",
-              "document", "n_queries", "recall@5", "recall@10", "mrr@10", "ndcg@10"]
+              "document", "n_queries", *METRIC_KEYS]
 
 
 # --------------------------------------------------------------------------
@@ -341,21 +355,36 @@ def relevant_set(gold: list[int], n_chunks: int, tolerance: int) -> set[int]:
     return rel
 
 
-def query_metrics(ranked: list[int], rel: set[int]) -> dict:
-    """단일 질의 지표. 모두 '첫 적중' 기준이다.
+def query_metrics(ranked: list[int], rel: set[int], gold: list[int],
+                  tolerance: int) -> dict:
+    """단일 질의 지표.
 
-    주의 - recall@k 는 표준 Recall 이 아니라 hit-rate(= success@k) 다.
-      표준 Recall@k = |상위 k ∩ 정답| / |정답| 이라 정답 청크가 많을수록 불리하다.
-      여기서는 정답 청크 중 하나라도 상위 k 에 들면 1.0 으로 센다. 정답이 여러
-      청크에 걸치는 것은 하나의 정황이 overlap 때문에 쪼개진 결과일 뿐,
-      전부 회수해야 하는 별개 정답이 아니기 때문이다.
+    hit@k (H@k)
+      정답 청크 중 하나라도 상위 k 에 들면 1.0. 정답이 여러 청크에 걸치는 것은
+      하나의 정황이 overlap 때문에 쪼개진 결과일 뿐 전부 회수해야 하는 별개
+      정답이 아니라는 관점이다.
+
+    recall@k (R@k)
+      상위 k 가 덮은 정답 청크 수 / min(정답 수, k). 표준 Recall 이지만 정답이
+      k 개를 넘으면 구조적으로 1.0 이 불가능하므로 분모를 k 로 자른다.
+      --neighbor-tolerance N 을 주면 정답 g 는 상위 k 안에 g±N 이 있으면 덮인
+      것으로 센다 (인접 청크 수만큼 분모가 늘어나지 않게 정답 기준으로 센다).
+
+    MRR@10 / nDCG@10 은 첫 적중 순위만 본다.
     """
     first_rank = 0
     for pos, cid in enumerate(ranked[:K_MAX], start=1):
         if cid in rel:
             first_rank = pos
             break
-    m = {f"recall@{k}": float(0 < first_rank <= k) for k in K_LIST}
+
+    m: dict = {}
+    for k in K_LIST:
+        top = [c for c in ranked[:k] if c >= 0]      # -1 = 다른 문서의 청크
+        covered = sum(1 for g in gold
+                      if any(abs(c - g) <= tolerance for c in top))
+        m[f"hit@{k}"] = float(0 < first_rank <= k)
+        m[f"recall@{k}"] = covered / min(len(gold), k)
     m["mrr@10"] = 1.0 / first_rank if first_rank else 0.0
     m["ndcg@10"] = 1.0 / math.log2(first_rank + 1) if first_rank else 0.0
     m["rank"] = first_rank
@@ -363,8 +392,7 @@ def query_metrics(ranked: list[int], rel: set[int]) -> dict:
 
 
 def average(rows: list[dict]) -> dict:
-    keys = ("recall@5", "recall@10", "mrr@10", "ndcg@10")
-    return {k: float(np.mean([r[k] for r in rows])) for k in keys}
+    return {k: float(np.mean([r[k] for r in rows])) for k in METRIC_KEYS}
 
 
 # --------------------------------------------------------------------------
@@ -421,14 +449,15 @@ def evaluate(docs, target_docs, dense_all, sparse_all, layout, encoder,
             masked = [cid if dtag == doc["tag"] else -1
                       for cid, dtag in zip(ranked, ranked_docs)]
 
-            m = query_metrics(masked, rel)
+            m = query_metrics(masked, rel, pair["_gold"], tolerance)
             results.append({
                 "doc": doc["tag"], "corpus": doc["corpus"],
                 "eff_scope": scope, "n_candidates": int(len(ids)),
-                "qtype": pair["_qtype"], "id": pair["id"], "question": pair["question"], "gold": pair["_gold"],
+                "qtype": pair["_qtype"], "id": pair["id"],
+                "question": pair["question"], "gold": pair["_gold"],
                 "rank": m["rank"], "top_chunks": ranked, "top_docs": ranked_docs,
                 "top_scores": [round(float(scores[row, p]), 4) for p in cand],
-                **{k: m[k] for k in ("recall@5", "recall@10", "mrr@10", "ndcg@10")},
+                **{k: m[k] for k in METRIC_KEYS},
             })
     return results
 
@@ -492,7 +521,7 @@ def build_rows(results, cfg_name: str, qm: str, dm: str, mode: str,
             "scope": scope, "neighbor_tolerance": tolerance,
             "group_kind": kind, "corpus": corpus, "document": document,
             "n_queries": len(subset),
-            **{k: round(a[k], 4) for k in ("recall@5", "recall@10", "mrr@10", "ndcg@10")},
+            **{k: round(a[k], 4) for k in METRIC_KEYS},
         }
 
     rows = []
@@ -533,8 +562,8 @@ def print_table(rows, cfg_name: str, qm: str, dm: str, mode: str):
     shown = [r for r in rows
              if r["group_kind"] in ("document", "q_type", "overall")]
     width = max(len(r["document"]) for r in shown)
-    header = (f"{'document'.ljust(width)}  {'N':>4} {'R@5':>7} {'R@10':>7} "
-              f"{'MRR@10':>7} {'nDCG@10':>8}")
+    header = (f"{'document'.ljust(width)}  {'N':>4}"
+              + "".join(f"{METRICS[k]:>8}" for k in METRIC_KEYS))
 
     print(f"\n[{cfg_name}]  질문={qm}, 문서={dm}, 방식={MODE_LABEL[mode]}")
     print("-" * len(header))
@@ -545,9 +574,8 @@ def print_table(rows, cfg_name: str, qm: str, dm: str, mode: str):
         if prev and r["group_kind"] != prev:
             print("-" * len(header))
         prev = r["group_kind"]
-        print(f"{r['document'].ljust(width)}  {r['n_queries']:>4} "
-              f"{r['recall@5']:>7.3f} {r['recall@10']:>7.3f} "
-              f"{r['mrr@10']:>7.3f} {r['ndcg@10']:>8.3f}")
+        print(f"{r['document'].ljust(width)}  {r['n_queries']:>4}"
+              + "".join(f"{r[k]:>8.3f}" for k in METRIC_KEYS))
     print("-" * len(header))
 
 
@@ -568,8 +596,9 @@ def compare_block(all_rows, cfg_names, group: str, title: str, note: str = "",
     print("-" * width)
     print(f"{'metric':<14}" + "".join(f"{c:>12}" for c in present))
     print("-" * width)
-    for k in ("recall@5", "recall@10", "mrr@10", "ndcg@10"):
-        print(f"{k:<14}" + "".join(f"{picked[c][k]:>12.3f}" for c in present))
+    for k in METRIC_KEYS:
+        print(f"{METRICS[k]:<14}"
+              + "".join(f"{picked[c][k]:>12.3f}" for c in present))
     print("-" * width)
 
 
@@ -600,7 +629,7 @@ def matrix_block(all_rows, cfg_names, prefix: str, title: str, note: str,
         title = f"{title}  [{ref} 기준 내림차순]"
     label_w = max(len(g) for g in groups) + 2
     width = label_w + 6 + 12 * len(present)
-    print(f"{title}  ({metric})")
+    print(f"{title}  ({METRICS.get(metric, metric)})")
     if note:
         print(f"  {note}")
     print("-" * width)
@@ -635,8 +664,11 @@ def print_comparison(all_rows, cfg_names):
     matrix_block(all_rows, cfg_names, "QTYPE(", "■ 4. 질의 유형별 — 어떤 질문이 어려운가",
                  "1 의미기반 / 2 식별자+의미기반 / 3 화자기반 / 4 날짜기반",
                  kind="q_type")
-    print("\n※ recall@k 는 hit-rate 입니다. 정답 청크 중 하나라도 상위 k 에 들면 1.0 으로"
-          " 세며, 표준 Recall(|상위k ∩ 정답| / |정답|)이 아닙니다.")
+    print("\n※ H@k 는 hit-rate 입니다. 정답 청크 중 하나라도 상위 k 에 들면 1.0 입니다.")
+    print("※ R@k 는 표준 Recall 로, 상위 k 가 덮은 정답 청크 수를 min(정답 수, k) 로"
+          " 나눈 값입니다.")
+    print("※ 정답이 여러 청크인 것은 하나의 정황이 overlap=128 때문에 쪼개진 결과이므로,"
+          " H@k 가 '찾았는가', R@k 가 '얼마나 덮었는가' 를 봅니다.")
 
 
 def print_misses(results, limit: int):
