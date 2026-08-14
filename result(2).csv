@@ -1,0 +1,81 @@
+﻿config,question_model,doc_model,mode,sparse_weight,scope,neighbor_tolerance,group_kind,corpus,document,n_queries,hit@5,hit@10,recall@5,recall@10,mrr@10,ndcg@10
+bb-dense,bge,bge,dense,,doc,0,document,en,jabber_en,100,0.65,0.72,0.537,0.6002,0.5084,0.5594
+bb-dense,bge,bge,dense,,doc,0,document,ru,jabber_ru,100,0.66,0.71,0.5232,0.5747,0.5641,0.5995
+bb-dense,bge,bge,dense,,doc,0,q_type,mixed,QTYPE(1 의미기반),50,0.46,0.52,0.3517,0.3917,0.3615,0.4
+bb-dense,bge,bge,dense,,doc,0,q_type,mixed,QTYPE(2 식별자+의미기반),50,0.74,0.76,0.61,0.6567,0.6642,0.688
+bb-dense,bge,bge,dense,,doc,0,q_type,mixed,QTYPE(3 화자기반),50,0.82,0.88,0.6847,0.7693,0.6381,0.6965
+bb-dense,bge,bge,dense,,doc,0,q_type,mixed,QTYPE(4 날짜기반),50,0.6,0.7,0.474,0.532,0.4812,0.5333
+bb-dense,bge,bge,dense,,doc,0,document_q_type,en,jabber_en / 1 의미기반,25,0.44,0.48,0.3567,0.3667,0.2963,0.341
+bb-dense,bge,bge,dense,,doc,0,document_q_type,en,jabber_en / 2 식별자+의미기반,25,0.76,0.8,0.62,0.6733,0.6483,0.6856
+bb-dense,bge,bge,dense,,doc,0,document_q_type,en,jabber_en / 3 화자기반,25,0.84,0.88,0.7113,0.8127,0.6177,0.6817
+bb-dense,bge,bge,dense,,doc,0,document_q_type,en,jabber_en / 4 날짜기반,25,0.56,0.72,0.46,0.548,0.4713,0.5293
+bb-dense,bge,bge,dense,,doc,0,document_q_type,ru,jabber_ru / 1 의미기반,25,0.48,0.56,0.3467,0.4167,0.4267,0.459
+bb-dense,bge,bge,dense,,doc,0,document_q_type,ru,jabber_ru / 2 식별자+의미기반,25,0.72,0.72,0.6,0.64,0.68,0.6905
+bb-dense,bge,bge,dense,,doc,0,document_q_type,ru,jabber_ru / 3 화자기반,25,0.8,0.88,0.658,0.726,0.6584,0.7113
+bb-dense,bge,bge,dense,,doc,0,document_q_type,ru,jabber_ru / 4 날짜기반,25,0.64,0.68,0.488,0.516,0.4911,0.5373
+bb-dense,bge,bge,dense,,doc,0,overall,multi,ALL(다국어),200,0.655,0.715,0.5301,0.5874,0.5362,0.5795
+bb-dense,bge,bge,dense,,doc,0,overall,all,ALL,200,0.655,0.715,0.5301,0.5874,0.5362,0.5795
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,document,en,jabber_en,100,0.7,0.77,0.6025,0.6773,0.5955,0.638
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,document,ru,jabber_ru,100,0.7,0.77,0.5718,0.6383,0.6013,0.6421
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,q_type,mixed,QTYPE(1 의미기반),50,0.48,0.52,0.3617,0.4117,0.4067,0.4352
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,q_type,mixed,QTYPE(2 식별자+의미기반),50,0.84,0.88,0.7417,0.7857,0.718,0.758
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,q_type,mixed,QTYPE(3 화자기반),50,0.8,0.94,0.7007,0.8393,0.6737,0.7368
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,q_type,mixed,QTYPE(4 날짜기반),50,0.68,0.74,0.5447,0.5947,0.5951,0.6303
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,document_q_type,en,jabber_en / 1 의미기반,25,0.48,0.48,0.3667,0.3967,0.38,0.4062
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,document_q_type,en,jabber_en / 2 식별자+의미기반,25,0.84,0.88,0.7533,0.7867,0.7124,0.7543
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,document_q_type,en,jabber_en / 3 화자기반,25,0.8,0.96,0.7167,0.8927,0.6704,0.7388
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,document_q_type,en,jabber_en / 4 날짜기반,25,0.68,0.76,0.5733,0.6333,0.619,0.6528
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,document_q_type,ru,jabber_ru / 1 의미기반,25,0.48,0.56,0.3567,0.4267,0.4333,0.4642
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,document_q_type,ru,jabber_ru / 2 식별자+의미기반,25,0.84,0.88,0.73,0.7847,0.7237,0.7617
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,document_q_type,ru,jabber_ru / 3 화자기반,25,0.8,0.92,0.6847,0.786,0.677,0.7349
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,document_q_type,ru,jabber_ru / 4 날짜기반,25,0.68,0.72,0.516,0.556,0.5711,0.6078
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,overall,multi,ALL(다국어),200,0.7,0.77,0.5872,0.6578,0.5984,0.6401
+bb-hybrid,bge,bge,hybrid,0.3,doc,0,overall,all,ALL,200,0.7,0.77,0.5872,0.6578,0.5984,0.6401
+bk,bge,kure,dense,,doc,0,document,en,jabber_en,100,0.63,0.74,0.5378,0.6293,0.546,0.5923
+bk,bge,kure,dense,,doc,0,document,ru,jabber_ru,100,0.65,0.72,0.5173,0.6022,0.542,0.5843
+bk,bge,kure,dense,,doc,0,q_type,mixed,QTYPE(1 의미기반),50,0.46,0.56,0.365,0.445,0.3352,0.3886
+bk,bge,kure,dense,,doc,0,q_type,mixed,QTYPE(2 식별자+의미기반),50,0.74,0.78,0.6433,0.7233,0.6833,0.7073
+bk,bge,kure,dense,,doc,0,q_type,mixed,QTYPE(3 화자기반),50,0.78,0.9,0.6313,0.756,0.6474,0.7077
+bk,bge,kure,dense,,doc,0,q_type,mixed,QTYPE(4 날짜기반),50,0.58,0.68,0.4707,0.5387,0.5099,0.5496
+bk,bge,kure,dense,,doc,0,document_q_type,en,jabber_en / 1 의미기반,25,0.36,0.52,0.3233,0.4133,0.3214,0.3675
+bk,bge,kure,dense,,doc,0,document_q_type,en,jabber_en / 2 식별자+의미기반,25,0.76,0.84,0.6633,0.77,0.7067,0.739
+bk,bge,kure,dense,,doc,0,document_q_type,en,jabber_en / 3 화자기반,25,0.84,0.92,0.6913,0.7927,0.6278,0.6992
+bk,bge,kure,dense,,doc,0,document_q_type,en,jabber_en / 4 날짜기반,25,0.56,0.68,0.4733,0.5413,0.5281,0.5634
+bk,bge,kure,dense,,doc,0,document_q_type,ru,jabber_ru / 1 의미기반,25,0.56,0.6,0.4067,0.4767,0.3491,0.4097
+bk,bge,kure,dense,,doc,0,document_q_type,ru,jabber_ru / 2 식별자+의미기반,25,0.72,0.72,0.6233,0.6767,0.66,0.6757
+bk,bge,kure,dense,,doc,0,document_q_type,ru,jabber_ru / 3 화자기반,25,0.72,0.88,0.5713,0.7193,0.6671,0.7161
+bk,bge,kure,dense,,doc,0,document_q_type,ru,jabber_ru / 4 날짜기반,25,0.6,0.68,0.468,0.536,0.4917,0.5358
+bk,bge,kure,dense,,doc,0,overall,multi,ALL(다국어),200,0.64,0.73,0.5276,0.6158,0.544,0.5883
+bk,bge,kure,dense,,doc,0,overall,all,ALL,200,0.64,0.73,0.5276,0.6158,0.544,0.5883
+kb,kure,bge,dense,,doc,0,document,en,jabber_en,100,0.63,0.71,0.5245,0.5977,0.4985,0.5493
+kb,kure,bge,dense,,doc,0,document,ru,jabber_ru,100,0.7,0.74,0.5535,0.6088,0.58,0.6193
+kb,kure,bge,dense,,doc,0,q_type,mixed,QTYPE(1 의미기반),50,0.46,0.52,0.34,0.39,0.3496,0.3905
+kb,kure,bge,dense,,doc,0,q_type,mixed,QTYPE(2 식별자+의미기반),50,0.74,0.76,0.6367,0.6633,0.6443,0.6726
+kb,kure,bge,dense,,doc,0,q_type,mixed,QTYPE(3 화자기반),50,0.82,0.9,0.678,0.811,0.67,0.7256
+kb,kure,bge,dense,,doc,0,q_type,mixed,QTYPE(4 날짜기반),50,0.64,0.72,0.5013,0.5487,0.4931,0.5486
+kb,kure,bge,dense,,doc,0,document_q_type,en,jabber_en / 1 의미기반,25,0.4,0.48,0.3233,0.3733,0.3024,0.3442
+kb,kure,bge,dense,,doc,0,document_q_type,en,jabber_en / 2 식별자+의미기반,25,0.76,0.76,0.6533,0.6767,0.6313,0.6632
+kb,kure,bge,dense,,doc,0,document_q_type,en,jabber_en / 3 화자기반,25,0.8,0.92,0.6713,0.8193,0.642,0.7086
+kb,kure,bge,dense,,doc,0,document_q_type,en,jabber_en / 4 날짜기반,25,0.56,0.68,0.45,0.5213,0.4182,0.4813
+kb,kure,bge,dense,,doc,0,document_q_type,ru,jabber_ru / 1 의미기반,25,0.52,0.56,0.3567,0.4067,0.3967,0.4367
+kb,kure,bge,dense,,doc,0,document_q_type,ru,jabber_ru / 2 식별자+의미기반,25,0.72,0.76,0.62,0.65,0.6573,0.682
+kb,kure,bge,dense,,doc,0,document_q_type,ru,jabber_ru / 3 화자기반,25,0.84,0.88,0.6847,0.8027,0.698,0.7427
+kb,kure,bge,dense,,doc,0,document_q_type,ru,jabber_ru / 4 날짜기반,25,0.72,0.76,0.5527,0.576,0.568,0.6159
+kb,kure,bge,dense,,doc,0,overall,multi,ALL(다국어),200,0.665,0.725,0.539,0.6033,0.5392,0.5843
+kb,kure,bge,dense,,doc,0,overall,all,ALL,200,0.665,0.725,0.539,0.6033,0.5392,0.5843
+kk,kure,kure,dense,,doc,0,document,en,jabber_en,100,0.71,0.75,0.5898,0.6413,0.5872,0.6271
+kk,kure,kure,dense,,doc,0,document,ru,jabber_ru,100,0.69,0.74,0.5472,0.633,0.5697,0.6106
+kk,kure,kure,dense,,doc,0,q_type,mixed,QTYPE(1 의미기반),50,0.54,0.58,0.42,0.45,0.4219,0.4606
+kk,kure,kure,dense,,doc,0,q_type,mixed,QTYPE(2 식별자+의미기반),50,0.76,0.78,0.67,0.7167,0.6796,0.7042
+kk,kure,kure,dense,,doc,0,q_type,mixed,QTYPE(3 화자기반),50,0.86,0.92,0.6987,0.8293,0.6732,0.7325
+kk,kure,kure,dense,,doc,0,q_type,mixed,QTYPE(4 날짜기반),50,0.64,0.7,0.4853,0.5527,0.5392,0.5781
+kk,kure,kure,dense,,doc,0,document_q_type,en,jabber_en / 1 의미기반,25,0.52,0.6,0.4233,0.4733,0.4004,0.4483
+kk,kure,kure,dense,,doc,0,document_q_type,en,jabber_en / 2 식별자+의미기반,25,0.8,0.8,0.7033,0.7167,0.6933,0.7209
+kk,kure,kure,dense,,doc,0,document_q_type,en,jabber_en / 3 화자기반,25,0.92,0.92,0.7647,0.826,0.6927,0.7491
+kk,kure,kure,dense,,doc,0,document_q_type,en,jabber_en / 4 날짜기반,25,0.6,0.68,0.468,0.5493,0.5624,0.59
+kk,kure,kure,dense,,doc,0,document_q_type,ru,jabber_ru / 1 의미기반,25,0.56,0.56,0.4167,0.4267,0.4433,0.4729
+kk,kure,kure,dense,,doc,0,document_q_type,ru,jabber_ru / 2 식별자+의미기반,25,0.72,0.76,0.6367,0.7167,0.6658,0.6875
+kk,kure,kure,dense,,doc,0,document_q_type,ru,jabber_ru / 3 화자기반,25,0.8,0.92,0.6327,0.8327,0.6538,0.7159
+kk,kure,kure,dense,,doc,0,document_q_type,ru,jabber_ru / 4 날짜기반,25,0.68,0.72,0.5027,0.556,0.516,0.5661
+kk,kure,kure,dense,,doc,0,overall,multi,ALL(다국어),200,0.7,0.745,0.5685,0.6372,0.5785,0.6189
+kk,kure,kure,dense,,doc,0,overall,all,ALL,200,0.7,0.745,0.5685,0.6372,0.5785,0.6189
