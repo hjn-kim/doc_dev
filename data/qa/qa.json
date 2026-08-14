@@ -5,14 +5,14 @@
       "tag": "jabber_ru",
       "corpus": "ru",
       "embedding_file": "jabber_ru_embeddings.npz",
-      "chunks": "data/jabber_ru.jsonl",
+      "chunks": "data/chunks/jabber_ru.jsonl",
       "desc": "러시아어 중심 원본 대화"
     },
     {
       "tag": "jabber_en",
       "corpus": "en",
       "embedding_file": "jabber_en_embeddings.npz",
-      "chunks": "data/jabber_en.jsonl",
+      "chunks": "data/chunks/jabber_en.jsonl",
       "desc": "같은 대화의 영어 번역"
     }
   ],
