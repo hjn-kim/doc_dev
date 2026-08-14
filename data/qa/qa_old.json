@@ -1,0 +1,1236 @@
+{
+  "source": "jabberchat2020.csv",
+  "corpora": [
+    {
+      "tag": "jabber_ru",
+      "corpus": "ru",
+      "embedding_file": "jabber_ru_embeddings.npz",
+      "chunks": "data/chunks/jabber_ru.jsonl",
+      "desc": "러시아어 중심 원본 대화"
+    },
+    {
+      "tag": "jabber_en",
+      "corpus": "en",
+      "embedding_file": "jabber_en_embeddings.npz",
+      "chunks": "data/chunks/jabber_en.jsonl",
+      "desc": "같은 대화의 영어 번역"
+    }
+  ],
+  "chunking": {
+    "model": "BAAI/bge-m3",
+    "dim": 1024,
+    "chunk_size": 512,
+    "overlap": 128,
+    "n_chunks": 15522,
+    "unit": "dyad + 1시간 gap 세션",
+    "split_basis": "en"
+  },
+  "question_language": "ko",
+  "n_qa": 100,
+  "note": "Conti Jabber 로그(2020) 대화 세션 청크에 대한 증거찾기 QA. 질의는 '~증거를 찾아주세요' 형태의 한국어 문장이다. q_type 1=의미기반(고유명사 배제) 2=리터럴포함(IP/BTC/파일명 등) 3=화자지정 4=날짜지정. phrasing direct=정답 청크의 핵심 표현을 질문에 그대로 담은 문항(유형별 앞 10개), paraphrase=같은 내용을 다른 말로 바꿔 물은 문항(유형별 뒤 15개). 정답은 해당 정황이 걸쳐 있는 청크 전부(answer_chunk_indices, 0-based)이며 overlap=128 때문에 여러 개인 것이 정상이다. corpora 의 모든 코퍼스가 같은 세션 경계로 잘려 청크 인덱스가 동일하므로 정답을 공유한다.",
+  "qa_pairs": [
+    {
+      "id": "jabber-001",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "바이러스와 백도어를 테스트하고 이를 '디지털 무기 작업'에 비유하며 악성 프로그램을 파트너에게 제공하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        313,
+        314
+      ]
+    },
+    {
+      "id": "jabber-002",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "500대의 감염 봇에 악성 모듈을 대량으로 다운로드·배포하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        100
+      ]
+    },
+    {
+      "id": "jabber-003",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "백도어를 이용해 관리자 패널에서 원격으로 파일을 실행하고 명령을 수행한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        356
+      ]
+    },
+    {
+      "id": "jabber-004",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "랜섬웨어를 실행해 피해 시스템의 파일을 잠그고 익명 네트워크를 통해 몸값 지급 페이지로 이동하도록 한 범죄행동의 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1465
+      ]
+    },
+    {
+      "id": "jabber-005",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "랜섬웨어로 탐지된 실행 파일을 다시 업로드하여 보안제품에 탐지되지 않는 상태로 만들려 한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1439
+      ]
+    },
+    {
+      "id": "jabber-006",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "기존 랜섬웨어 샘플을 기반으로 새로운 파일 암호화 악성코드를 개발하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5902,
+        5903,
+        5904
+      ]
+    },
+    {
+      "id": "jabber-007",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "공격에 사용한 관리자 패널을 단기간만 사용한 뒤 전체 활동 기록을 삭제하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        6075,
+        6076
+      ]
+    },
+    {
+      "id": "jabber-008",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "기존 랜섬웨어보다 보안제품에 덜 탐지되고 대용량 파일을 더 효과적으로 암호화하는 악성코드를 만들도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13550
+      ]
+    },
+    {
+      "id": "jabber-009",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "파일이 암호화된 피해 기업의 소유자나 책임자에게 연락하여 자신들이 복호화 수단을 가지고 있다고 알리도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        11308
+      ]
+    },
+    {
+      "id": "jabber-010",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "감염된 테스트 기기에서 공격용 코드를 실행해 정상적으로 동작하는지 시험하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        3274,
+        3275,
+        3276,
+        3277
+      ]
+    },
+    {
+      "id": "jabber-011",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "악성코드가 보안업체에 노출되는 것을 막기 위해 테스트 중에는 클라우드 기반 보호와 샘플 전송 기능을 비활성화하고 실제 공격 직전에만 다시 활성화하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        2319,
+        2320,
+        2417,
+        2439,
+        2471
+      ]
+    },
+    {
+      "id": "jabber-012",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "피해자로부터 가상자산을 수취하기 위한 중앙 지갑을 마련하고 피해 대상마다 별도의 익명 접속 경로를 할당하는 인프라를 구축하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5084
+      ]
+    },
+    {
+      "id": "jabber-013",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "감염된 기기마다 서로 다른 익명 접속 주소를 제공할 수 있도록 다수의 숨김 서비스를 생성하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5119
+      ]
+    },
+    {
+      "id": "jabber-014",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "백도어와 악성코드 로더를 함께 개발하면서 로더가 여러 보안제품의 검사를 통과하도록 하고 탐지될 경우 코드를 쉽게 변경할 수 있게 설계하려 한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        4799
+      ]
+    },
+    {
+      "id": "jabber-015",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "공격에 사용하는 원격 제어 인프라가 중단될 경우 즉시 대체할 수 있도록 동일한 기능의 예비 서버를 별도로 준비한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5300
+      ]
+    },
+    {
+      "id": "jabber-016",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "침해한 외부 시스템을 악성코드 배포 장소로 이용하고 정상 파일과 공격용 파일을 필요에 따라 교체하면서, 서버가 차단되면 예비 서버로 전환하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5777,
+        5778
+      ]
+    },
+    {
+      "id": "jabber-017",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "공격 코드를 자동으로 암호화하고 실행 파일로 생성한 뒤 보안제품 검사와 배포 전 검증까지 자동화하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        8467
+      ]
+    },
+    {
+      "id": "jabber-018",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "해킹 프로그램을 개발할 인력을 모집하면서 공격용 소프트웨어 제작 업무를 설명하고 급여를 가상자산으로 지급해 개인 계좌로 현금화하도록 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        4879,
+        4880,
+        4881
+      ]
+    },
+    {
+      "id": "jabber-019",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "기업 내부망의 권한을 상승시키고 네트워크를 장악하는 방법을 조직원들에게 교육한 뒤 곧바로 랜섬웨어를 배포하도록 계획한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13410,
+        13412,
+        13413,
+        13414
+      ]
+    },
+    {
+      "id": "jabber-020",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "기업 시스템에 침입해 데이터를 탈취한 뒤 이를 이용해 피해자를 협박하고 가상자산을 요구하는 범죄 수법을 논의한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13411
+      ]
+    },
+    {
+      "id": "jabber-021",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "침해한 시스템에서 계정 자격증명을 원격으로 추출할 수 있는 공격 도구를 공유하고 이를 실제로 시험하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13499,
+        13500
+      ]
+    },
+    {
+      "id": "jabber-022",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "피해 시스템의 복구에 사용하는 복호화 프로그램을 수정·재배포하면서 피해자로부터 가상자산이 지급된 사실도 함께 확인한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13533
+      ]
+    },
+    {
+      "id": "jabber-023",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "랜섬웨어 피해자에게 복호화 서비스를 지속적으로 제공하기 위해 별도의 지원 담당자를 배치하고 상시 대응 체계를 마련하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13583,
+        13584
+      ]
+    },
+    {
+      "id": "jabber-024",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "원격 공격 프레임워크에서 사용하는 공격 코드를 암호화하고 이를 실행 파일과 라이브러리 형태로 변환해 공격에 활용하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        11425,
+        11426
+      ]
+    },
+    {
+      "id": "jabber-025",
+      "q_type": 1,
+      "q_type_name": "의미기반",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "악성 로더가 보안제품에 탐지되자 파일을 수정·재업로드하고 별도의 암호화된 로더도 제작하여 탐지를 우회하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        2578
+      ]
+    },
+    {
+      "id": "jabber-026",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "IP 68.224.217.72와 CALAHANLAW가 관련된 기록에서 피해 조직의 문서를 탈취하고 랜섬웨어 공격 대상으로 관리한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        27
+      ]
+    },
+    {
+      "id": "jabber-027",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "IP 104.193.29.32와 DANBHINC.local이 관련된 기록에서 피해 조직의 서버와 컴퓨터를 장악하고 백업 데이터를 삭제한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        28
+      ]
+    },
+    {
+      "id": "jabber-028",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "IP 207.35.1.34와 transbec.local이 관련된 기록에서 서버와 컴퓨터 및 NAS를 암호화하고 피해 조직에 비트코인을 요구한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        12871,
+        12872
+      ]
+    },
+    {
+      "id": "jabber-029",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "IP 38.122.185.171과 www.hullandhull.com이 관련된 기록에서 피해 조직의 시스템 규모와 매출 정보를 파악하고 비트코인 몸값을 산정한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        12873,
+        12875
+      ]
+    },
+    {
+      "id": "jabber-030",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "Arneg SpA와 IP 173.231.116.10이 관련된 기록에서 피해 조직의 문서를 탈취하고 20 BTC를 몸값으로 산정한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        12888,
+        12891
+      ]
+    },
+    {
+      "id": "jabber-031",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "Build_AN.exe가 Ransom:Win32/HydraCrypt.B로 탐지된 뒤 악성 파일의 탐지 여부를 계속 시험한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1439
+      ]
+    },
+    {
+      "id": "jabber-032",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "rdpscanDll과 추가 모듈을 각각 500대의 봇에 배포하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        93,
+        94,
+        100
+      ]
+    },
+    {
+      "id": "jabber-033",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "Rumikon LLC 인증서를 공격에 사용할 프로그램에 적용하고 이후 공격 준비를 진행한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        3742,
+        3743
+      ]
+    },
+    {
+      "id": "jabber-034",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "Infinte Programming LLC로 서명된 Document_Print.exe를 여러 보안제품에서 검사하고 실제 공격에 사용할 수 있는지 확인한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        3883,
+        3884
+      ]
+    },
+    {
+      "id": "jabber-035",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "RCxYjopEEXXxaFmtTMsGXQHNasNuIfMK_locker.exe가 보안제품에 탐지되자 파일을 다시 수정·업로드하여 탐지를 회피하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        2774,
+        2775
+      ]
+    },
+    {
+      "id": "jabber-036",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "Geksan LLC로 서명된 Preview.exe와 Preview1.exe를 공격에 투입하기 전에 여러 보안제품에서 반복 검사하고 탐지 결과에 따라 수정하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        3888,
+        3889,
+        3892,
+        3893
+      ]
+    },
+    {
+      "id": "jabber-037",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "www.careerbuilder.com과 관련하여 내부 도메인 간 신뢰관계를 조사하고 대규모 서버·컴퓨터·백업 자산을 파악한 뒤 금전 요구 및 협상 대상으로 삼은 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        14658,
+        14659,
+        14664,
+        14666
+      ]
+    },
+    {
+      "id": "jabber-038",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "www.uhsinc.com과 관련된 공격에서 약 65,000대의 컴퓨터와 수천 대의 서버가 영향을 받은 사실을 확인하고 5천만 달러를 요구하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        14614,
+        15170
+      ]
+    },
+    {
+      "id": "jabber-039",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "Credit One Bank의 서비스가 여러 날 동안 중단된 상황을 추적하면서 피해 기업의 시스템 장애와 업무 마비 상태를 관찰한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        14614,
+        15170,
+        15401
+      ]
+    },
+    {
+      "id": "jabber-040",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "Mueller Inc와 Foursquare Healthcare가 공격으로 혼란에 빠진 상황에서 두 피해 기업이 금전을 지급할 준비가 되어 있는지 확인하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1029,
+        15137,
+        15138
+      ]
+    },
+    {
+      "id": "jabber-041",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "Constellis Group, academi.com, triplecanopy.com과 관련된 기록에서 여러 도메인의 관리자 권한을 확보하고 내부 네트워크를 장악한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13746,
+        13747,
+        13748
+      ]
+    },
+    {
+      "id": "jabber-042",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "cobalt shellcode를 테스트 봇에서 실행해 동작을 확인하고 이후 이를 암호화하여 EXE와 DLL 형태의 공격 도구로 만들려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        3274,
+        3275,
+        3276,
+        3277,
+        11425,
+        11426
+      ]
+    },
+    {
+      "id": "jabber-043",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "서버 216.244.85.15에 Bitcoin node를 구축하고 관련 데이터베이스와 시스템을 이전하여 가상자산 처리 인프라를 운영하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5151,
+        5153,
+        5162
+      ]
+    },
+    {
+      "id": "jabber-044",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "IP 46.249.32.16과 3hikhkjb4y4tq5r7.onion을 연결하여 Tor hidden service와 웹 기반 인프라를 구축하고 운영한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5155,
+        5157,
+        5158,
+        12033,
+        12034
+      ]
+    },
+    {
+      "id": "jabber-045",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "185.172.129.62, 185.142.99.25, 185.180.197.120을 모듈의 설정값으로 사용하고 192.3.247.116이 포함된 테스트 환경을 이용해 원격 제어 기능을 시험한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        781,
+        782
+      ]
+    },
+    {
+      "id": "jabber-046",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "외부 IP 173.232.146.236을 Test Bots에서 찾아 관리자 패널에 감염 기기를 식별하고 원격 명령 실행을 시험한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1116,
+        1117
+      ]
+    },
+    {
+      "id": "jabber-047",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "BTC 주소 34NCToBuWPFTJeXSdLeSUBKmFGbm5ujs7f를 이용하여 거래소와 비트코인을 거쳐 자금을 익명성이 높은 방식으로 이전하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        7441
+      ]
+    },
+    {
+      "id": "jabber-048",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "BTC 주소 3N5bSgwFtEJby5bYWbhSdUXAUSJS6Y5nAF를 악성코드 암호화 작업 비용 지급에 사용하고 chil67.dll 등 공격용 모듈을 지속적으로 수정한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1373,
+        1377
+      ]
+    },
+    {
+      "id": "jabber-049",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "www.omegasystemsuae.com/DocumentPreview.exe와 bloomfieldholding.com/PreviewDocument.exe의 보안제품 탐지 여부를 반복 확인하면서 공격용 실행 파일의 탐지 회피 상태를 점검한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1373,
+        1374
+      ]
+    },
+    {
+      "id": "jabber-050",
+      "q_type": 2,
+      "q_type_name": "리터럴포함",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "IP 209.34.28.166과 실행파일 식별자 SoYabCUZfBZgycVyTtsecIbtQNKgCJTr가 관련된 기록에서 수천 대의 컴퓨터와 수백 대의 서버가 있는 조직을 공격하고 NAS를 암호화한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        12878,
+        12883
+      ]
+    },
+    {
+      "id": "jabber-051",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "azot와 bentley 사이의 대화에서 바이러스와 백도어를 테스트하고 이를 '디지털 무기 작업'에 비유하며 악성 프로그램을 제공하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        313,
+        314
+      ]
+    },
+    {
+      "id": "jabber-052",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "bentley와 deploy 사이의 대화에서 랜섬웨어로 탐지된 실행 파일을 다시 업로드하고 암호화 작업을 통해 탐지를 피하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1439
+      ]
+    },
+    {
+      "id": "jabber-053",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "bentley와 deploy 사이의 대화에서 랜섬웨어를 실행해 파일을 잠그고 피해자가 Tor를 통해 몸값 지급 페이지로 이동하도록 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1465
+      ]
+    },
+    {
+      "id": "jabber-054",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "barmen과 target 사이의 대화에서 랜섬웨어 피해 기업들이 혼란에 빠져 있으며 금전을 지급할 준비가 되어 있는지 확인하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1029
+      ]
+    },
+    {
+      "id": "jabber-055",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "mango와 stern 사이의 대화에서 파일이 암호화된 피해 기업의 소유자나 책임자에게 연락해 복호화 도구를 가지고 있다고 알리도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        11308
+      ]
+    },
+    {
+      "id": "jabber-056",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "professor와 troy 사이의 대화에서 원격 시스템의 계정 자격증명을 추출할 수 있는 공격 도구를 공유한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13500
+      ]
+    },
+    {
+      "id": "jabber-057",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "frog와 mushroom 사이의 대화에서 악성 로더를 관리자 패널에 업로드하고 여러 백신이 설치된 가상환경에서 탐지 여부를 시험하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        9300
+      ]
+    },
+    {
+      "id": "jabber-058",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "mushroom과 steller 사이의 대화에서 악성 로더가 보안제품에 차단되자 다시 난독화하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        12482
+      ]
+    },
+    {
+      "id": "jabber-059",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "carter와 stern 사이의 대화에서 다수의 서버와 VPN, 도메인을 확보하고 해당 인프라의 비용을 비트코인으로 지급하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        6707,
+        6708
+      ]
+    },
+    {
+      "id": "jabber-060",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "bentley와 brom 사이의 대화에서 로더 파일을 암호화하기 위해 다른 작업자에게 전달하고 비밀번호가 설정된 압축파일과 파일공유 서비스를 이용하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1161
+      ]
+    },
+    {
+      "id": "jabber-061",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "bentley와 idgo 사이의 대화에서 악성코드가 보안업체에 노출되는 것을 막기 위해 테스트 중에는 클라우드 보호와 샘플 전송을 제한하고 실제 공격 직전에만 보호 기능을 활성화하도록 한 지시의 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        2319,
+        2320
+      ]
+    },
+    {
+      "id": "jabber-062",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "braun과 stern 사이의 대화에서 피해자로부터 가상자산을 수취하기 위한 지갑을 준비하고 피해 대상별 Tor 주소와 복구용 통신 기능을 구축하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5084
+      ]
+    },
+    {
+      "id": "jabber-063",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "professor와 target 사이의 대화에서 조직원들에게 기업 내부망의 권한 상승과 네트워크 장악 방법을 교육한 뒤 랜섬웨어를 배포하고 금전을 요구하는 공격 방식을 논의한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13410,
+        13411,
+        13412,
+        13413,
+        13414
+      ]
+    },
+    {
+      "id": "jabber-064",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "professor와 reshaev 사이의 대화에서 랜섬웨어를 보안제품에 덜 탐지되도록 개선하고 메모리상에서 실행하거나 원격으로 배포하는 방법을 검토한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13052,
+        13053
+      ]
+    },
+    {
+      "id": "jabber-065",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "hof와 stern 사이의 대화에서 악성 로더 본체를 암호화·은닉하여 백신에 노출되지 않게 하고 실행 후 중간 파일을 삭제하는 방식의 탐지 회피를 논의한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        10494,
+        10495
+      ]
+    },
+    {
+      "id": "jabber-066",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "revers와 target 사이의 대화에서 취약한 시스템을 공격 경로로 이용하고 계정 정보와 인증정보를 확보해 권한을 상승시킨 뒤 내부 네트워크로 이동하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13859,
+        13860
+      ]
+    },
+    {
+      "id": "jabber-067",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "deploy와 target 사이의 대화에서 실제 공격에 사용할 악성코드 암호화 작업을 전담하게 하고 별도의 테스트 인력을 배치하여 보안 탐지를 제거하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        8486,
+        8487,
+        8488
+      ]
+    },
+    {
+      "id": "jabber-068",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "mushroom과 price 사이의 대화에서 감염 시스템에 악성코드가 지속적으로 남도록 명령 체계를 변경하고 관리자 패널을 통해 로더와 봇을 배포하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        12348,
+        12349
+      ]
+    },
+    {
+      "id": "jabber-069",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "bentley와 many 사이의 대화에서 랜섬웨어를 암호화해 재제작하고 보안제품 탐지 결과를 반복 확인하면서 탐지되지 않는 버전을 만들려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        2546,
+        2551,
+        2552,
+        2553
+      ]
+    },
+    {
+      "id": "jabber-070",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "price와 target 사이의 대화에서 악성 프로그램이 시스템 시작 시 자동 실행되고 정상 프로세스에 주입되도록 하면서 기업용 보안제품에 탐지되지 않는지 확인한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13006,
+        13010,
+        13012
+      ]
+    },
+    {
+      "id": "jabber-071",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "stern과 terry 사이의 대화에서 악성 모듈을 이용해 다른 시스템으로 감염을 확산시키는 기능을 반복 시험하고 감염 성공 여부를 확인한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        14793,
+        14801,
+        14802
+      ]
+    },
+    {
+      "id": "jabber-072",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "kaktus와 target 사이의 대화에서 백도어가 보안제품의 감시 기능을 우회할 수 있도록 시스템 호출 감시 기능을 제거하거나 복구하는 기법을 논의한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        10797
+      ]
+    },
+    {
+      "id": "jabber-073",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "frog와 kaktus 사이의 대화에서 악성 프로그램의 정적·동적 탐지를 제거하고 난독화된 빌드를 다시 시험해 보안제품을 우회하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        9155
+      ]
+    },
+    {
+      "id": "jabber-074",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "deploy와 hof 사이의 대화에서 악성 프로그램이 보안제품에 탐지되는 원인을 프로세스 주입 과정과 연관지어 분석하고 탐지 조건을 시험한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        8118
+      ]
+    },
+    {
+      "id": "jabber-075",
+      "q_type": 3,
+      "q_type_name": "화자지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "revers와 stern 사이의 대화에서 다른 작업자들에게 기업 네트워크 침투 방법을 교육하고 관리자 권한을 확보한 네트워크에서 랜섬웨어 공격을 시험하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13759
+      ]
+    },
+    {
+      "id": "jabber-076",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "2020년 7월 31일 랜섬웨어로 탐지된 실행 파일을 다시 업로드하고 탐지 여부를 재시험한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        1439
+      ]
+    },
+    {
+      "id": "jabber-077",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "2020년 7월 9일부터 10일까지 기존 랜섬웨어를 참고해 새로운 파일 암호화 악성코드를 개발하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5902,
+        5903,
+        5904
+      ]
+    },
+    {
+      "id": "jabber-078",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "2020년 10월 14일 악성코드 테스트 중 클라우드 보호와 샘플 전송 기능을 비활성화하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        2319,
+        2320
+      ]
+    },
+    {
+      "id": "jabber-079",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "2020년 6월 30일 피해자로부터 가상자산을 수취하기 위한 지갑과 피해 대상별 익명 접속 인프라를 구축하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5084
+      ]
+    },
+    {
+      "id": "jabber-080",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "2020년 9월 14일 공격에 사용되는 서버가 차단될 경우 다른 서버로 즉시 전환할 수 있도록 예비 인프라를 준비한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5777,
+        5778
+      ]
+    },
+    {
+      "id": "jabber-081",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "2020년 10월 10일 파일이 암호화된 피해 기업의 책임자에게 연락해 복호화 도구를 보유하고 있다고 알리도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        11308
+      ]
+    },
+    {
+      "id": "jabber-082",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "2020년 9월 11일 감염된 테스트 기기에서 공격용 코드를 실행하여 동작 여부를 시험하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        3274,
+        3275,
+        3276,
+        3277
+      ]
+    },
+    {
+      "id": "jabber-083",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "2020년 10월 22일부터 23일까지 공격에 사용한 관리자 패널을 단기간만 사용한 뒤 활동 기록을 삭제하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        6075,
+        6076
+      ]
+    },
+    {
+      "id": "jabber-084",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "2020년 9월 28일 관리자 패널 계정을 이용해 악성 로더를 등록하고 보안제품 탐지 여부를 시험하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        9300
+      ]
+    },
+    {
+      "id": "jabber-085",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "direct",
+      "phrasing_name": "직접포함",
+      "question": "2020년 9월 3일 악성 로더가 보안제품에 탐지되자 다시 난독화하여 탐지를 피하도록 지시한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        12482
+      ]
+    },
+    {
+      "id": "jabber-086",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 8월 13일 공격용 소프트웨어 개발 인력을 모집하고 급여를 가상자산으로 지급한 뒤 개인 금융수단을 통해 현금화하도록 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        4879,
+        4880,
+        4881
+      ]
+    },
+    {
+      "id": "jabber-087",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 10월 2일 기업 내부망의 권한을 확보하는 방법을 교육하고 네트워크를 장악한 뒤 랜섬웨어를 실행해 금전을 요구하는 공격 절차를 논의한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13410,
+        13411,
+        13412,
+        13413,
+        13414
+      ]
+    },
+    {
+      "id": "jabber-088",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 9월 21일 랜섬웨어를 실행 중인 프로세스의 메모리에서 직접 동작시키고 보안제품을 우회할 수 있는 여러 실행 방식을 검토한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13052,
+        13053
+      ]
+    },
+    {
+      "id": "jabber-089",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 9월 21일 공격에 사용할 악성코드 암호화 작업을 전담시키고 여러 테스트 인력을 배치하여 보안제품의 탐지를 제거하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        8486,
+        8487,
+        8488
+      ]
+    },
+    {
+      "id": "jabber-090",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 9월 22일 감염된 시스템에 악성코드가 지속적으로 남도록 기능을 변경하고 관리자 패널을 통해 대상별 공격 파일을 배포하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        12348,
+        12349
+      ]
+    },
+    {
+      "id": "jabber-091",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 9월 24일 랜섬웨어를 반복적으로 암호화·재제작하고 보안제품의 실시간 탐지 결과를 확인하며 탐지되지 않는 버전을 만들려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        2546,
+        2551,
+        2552,
+        2553
+      ]
+    },
+    {
+      "id": "jabber-092",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 7월 14일 악성 프로그램이 시스템에 지속적으로 남고 정상 프로세스 내부에서 실행되도록 하면서 보안제품 탐지를 피하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13006,
+        13010,
+        13012
+      ]
+    },
+    {
+      "id": "jabber-093",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 10월 20일부터 21일까지 가상 시스템을 이용해 악성 모듈의 네트워크 확산 기능을 시험하고 다른 시스템으로 감염이 전파되는지 확인한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        14801,
+        14802
+      ]
+    },
+    {
+      "id": "jabber-094",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 6월 30일 백도어가 보안제품의 시스템 호출 감시 기능을 우회하도록 보안 훅을 제거하는 기능을 개발·검토한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        10797
+      ]
+    },
+    {
+      "id": "jabber-095",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 10월 26일 악성 프로그램의 정적·동적 탐지를 제거하고 난독화된 빌드를 다시 생성해 여러 보안제품을 우회하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        9155
+      ]
+    },
+    {
+      "id": "jabber-096",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 8월 5일 악성 프로그램이 보안제품에 탐지되는 원인을 분석하고 탐지 조건을 확인한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        8118
+      ]
+    },
+    {
+      "id": "jabber-097",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 7월 23일 침해한 네트워크에서 관리자 계정과 인증정보를 확보하고 이를 추가 권한 상승과 내부 이동의 공격 경로로 활용하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13859,
+        13860
+      ]
+    },
+    {
+      "id": "jabber-098",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 7월 27일 기업 네트워크를 장악하는 공격 전술을 교육하고 관리자 권한을 확보한 조직을 랜섬웨어 공격 대상으로 삼으려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        13759
+      ]
+    },
+    {
+      "id": "jabber-099",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 10월 12일 공격 인프라 운영을 위해 다수의 서버와 VPN을 추가로 확보하고 그 비용을 가상자산으로 지급하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        6707,
+        6708
+      ]
+    },
+    {
+      "id": "jabber-100",
+      "q_type": 4,
+      "q_type_name": "날짜지정",
+      "phrasing": "paraphrase",
+      "phrasing_name": "의역",
+      "question": "2020년 7월 6일 공격 도구로 사용할 수 있는 두 번째 예비 서버를 구축하려 한 정황에 대한 증거를 찾아주세요.",
+      "answer_chunk_indices": [
+        5300
+      ]
+    }
+  ]
+}

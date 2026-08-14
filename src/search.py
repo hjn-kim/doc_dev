@@ -4,15 +4,14 @@
 질문을 인코딩 -> 청크 벡터와 유사도 -> 상위 10개 순위
 -> Recall@5 / Recall@10 / MRR@10 / nDCG@10 을 계산하고 result.csv 로 저장한다.
 
-대상은 data/qa 의 jabber_{ru,en}_qa.json 두 벌이다. 같은 대화 세션을 원문
-(러시아어 중심)과 영문 번역으로 각각 임베딩한 것이라, 청크 인덱스가 완전히
-같고 정답도 공유한다. 따라서 두 문서의 점수 차이는 곧 원문 검색 대 교차언어
-검색의 차이가 된다.
+대상은 data/qa/qa.json 하나다. 이 파일이 corpora 로 코퍼스 여러 개를 선언하고
+질문·정답은 공유한다. 같은 대화 세션을 원문(러시아어 중심)과 영문 번역으로
+각각 임베딩한 것이라 청크 인덱스가 완전히 같기 때문이다. 한국어판을 추가하면
+corpora 에 한 줄 늘리는 것으로 끝난다.
 
-비교하는 6가지 구성 (질문 인코더 / 문서 인코더 / 방식)
+비교하는 5가지 구성 (질문 인코더 / 문서 인코더 / 방식)
 
     bb-dense    bge  / bge   dense
-    bb-sparse   bge  / bge   sparse          어휘 매칭만
     bb-hybrid   bge  / bge   dense + sparse
     bk          bge  / kure  dense
     kb          kure / bge   dense
@@ -34,18 +33,25 @@ sparse 를 쓰는 구성은 bge-bge 뿐이다. sparse 헤드(sparse_linear.pt)�
             이라 서로가 서로의 중복이 되므로 점수가 무너진다. 비교 목적으로만
             쓰고 기본값으로 삼지 않는다.
 
-질문 유형 (QA JSON 의 q_type) 별로도 집계한다.
+집계 축은 두 가지다.
 
+  질의 유형 (q_type)
     1 의미기반    고유명사를 빼고 범죄 정황만으로 검색
     2 리터럴포함  IP/BTC 주소/파일명/도메인이 질의에 들어간다 (sparse 에 유리)
     3 화자지정    'A와 B 사이의 대화에서 ...'
     4 날짜지정    '2020년 M월 D일 ...'
 
-  유형 1 과 2 의 격차가 곧 어휘 매칭이 실제로 얼마나 기여하는지를 보여준다.
+  질의 난이도 (phrasing)
+    direct      정답 청크의 핵심 표현을 질문에 그대로 담은 문항
+    paraphrase  같은 내용을 다른 말로 바꿔 물은 문항
+
+  유형 4종 x 표현 2종 x 25문항 = 200문항이고, 같은 정답 청크에 대해 direct 와
+  paraphrase 가 1:1 로 짝지어져 있다. 그래서 난이도 표의 낙폭은 다른 조건이
+  섞이지 않은 순수한 표현 효과다.
 
 사용 예:
-    python src/search.py                                      # 6개 구성 -> result.csv
-    python src/search.py --configs bb-dense,bb-sparse,bb-hybrid
+    python src/search.py                                      # 5개 구성 -> result.csv
+    python src/search.py --configs bb-dense,bb-hybrid
     python src/search.py --sparse-weight 0.5
     python src/search.py --neighbor-tolerance 1               # 인접 청크도 정답 인정
     python src/search.py --doc jabber_en
@@ -93,18 +99,21 @@ MODE_LABEL = {"dense": "dense", "sparse": "sparse", "hybrid": "dense + sparse"}
 K_LIST = (5, 10)
 K_MAX = 10
 
-# 문서 태그 'jabber_ru' -> 'ru'. 질문은 항상 한국어이므로 ru 는 교차언어 검색,
-# en 도 교차언어지만 번역을 거쳐 어휘가 한국어 질의와 더 가깝다.
-CORPUS_LABEL = {"ru": "원문", "en": "영문"}
-
 QTYPE_LABEL = {1: "의미기반", 2: "리터럴포함", 3: "화자지정", 4: "날짜지정"}
 
-# 각 유형 25문항 중 앞 10문항은 정답 청크의 핵심 표현을 질문에 그대로 담았고,
-# 뒤 15문항은 같은 내용을 다른 말로 바꿔 물었다. 어휘가 겹칠 때와 의미만 통할
-# 때의 격차를 보는 축이다.
+# 유형 4종 x 표현 2종 x 25문항 = 200문항. 같은 정답 청크에 대해 direct 와
+# paraphrase 가 1:1 로 짝지어져 있어, 표현만 바꾼 효과를 다른 조건 없이 분리해
+# 볼 수 있다. 어휘가 겹칠 때와 의미만 통할 때의 격차를 보는 축이다.
 PHRASING_LABEL = {"direct": "직접포함", "paraphrase": "의역"}
 
+# 질문은 항상 한국어다. 본문도 한국어인 코퍼스는 동일언어 검색, 나머지는
+# 교차언어 검색이라 성격이 달라 따로 집계한다. 지금은 ru/en 뿐이라 한국어
+# 그룹이 비어 있고, 한국어판 코퍼스를 추가하면 자동으로 채워진다.
+KO_CORPUS = "ko"
+
 GROUP_ALL = "ALL"
+GROUP_KO = "ALL(한국어)"
+GROUP_MULTI = "ALL(다국어)"
 
 CSV_FIELDS = ["config", "question_model", "doc_model", "mode", "sparse_weight",
               "scope", "neighbor_tolerance", "group_kind", "corpus",
@@ -545,6 +554,12 @@ def build_rows(results, cfg_name: str, qm: str, dm: str, mode: str,
     for (tag, qt), sub in sorted(by_dt.items()):
         rows.append(row(f"{tag} / {qt}", sub[0]["corpus"], sub, "document_q_type"))
 
+    ko = [r for r in results if r["corpus"] == KO_CORPUS]
+    multi = [r for r in results if r["corpus"] != KO_CORPUS]
+    if ko:
+        rows.append(row(GROUP_KO, KO_CORPUS, ko))
+    if multi:
+        rows.append(row(GROUP_MULTI, "multi", multi))
     rows.append(row(GROUP_ALL, "all", results))
     return rows
 
@@ -571,11 +586,14 @@ def print_table(rows, cfg_name: str, qm: str, dm: str, mode: str):
     print("-" * len(header))
 
 
-def compare_block(all_rows, cfg_names, group: str, title: str, note: str = ""):
-    """한 그룹에서 구성들을 나란히 비교."""
+def compare_block(all_rows, cfg_names, group: str, title: str, note: str = "",
+                  empty_note: str = ""):
+    """한 그룹에서 구성들을 나란히 비교. 해당 질의가 없으면 안내만 남긴다."""
     picked = {r["config"]: r for r in all_rows if r["document"] == group}
     present = [c for c in cfg_names if c in picked]
     if not present:
+        if empty_note:
+            print(f"{title}\n  {empty_note}")
         return
     n = picked[present[0]]["n_queries"]
     width = 14 + 12 * len(present)
@@ -588,31 +606,6 @@ def compare_block(all_rows, cfg_names, group: str, title: str, note: str = ""):
     for k in ("recall@5", "recall@10", "mrr@10", "ndcg@10"):
         print(f"{k:<14}" + "".join(f"{picked[c][k]:>12.3f}" for c in present))
     print("-" * width)
-
-
-def corpus_compare(all_rows, cfg_names):
-    """원문(ru) 대 영문(en) 을 구성별로 나란히 놓고 비교."""
-    ru = {r["config"]: r for r in all_rows
-          if r["group_kind"] == "document" and r["corpus"] == "ru"}
-    en = {r["config"]: r for r in all_rows
-          if r["group_kind"] == "document" and r["corpus"] == "en"}
-    present = [c for c in cfg_names if c in ru and c in en]
-    if not present:
-        return
-    width = 12 + 11 * 4 + 12
-    print("■ 2. 원문 대 영문 — 번역이 검색에 도움이 되는가")
-    print(f"  원문(ru): 러시아어 중심 원본 대화 ({ru[present[0]]['n_queries']}문항)")
-    print(f"  영문(en): 같은 대화의 영어 번역 ({en[present[0]]['n_queries']}문항)")
-    print("-" * width)
-    print(f"{'config':<12}" + f"{'원문 R@5':>11}{'원문 nDCG':>11}"
-          + f"{'영문 R@5':>11}{'영문 nDCG':>11}" + f"{'nDCG 차이':>12}")
-    print("-" * width)
-    for c in present:
-        d = en[c]["ndcg@10"] - ru[c]["ndcg@10"]
-        print(f"{c:<12}{ru[c]['recall@5']:>11.3f}{ru[c]['ndcg@10']:>11.3f}"
-              f"{en[c]['recall@5']:>11.3f}{en[c]['ndcg@10']:>11.3f}{d:>+12.3f}")
-    print("-" * width)
-    print("  (nDCG 차이 = 영문 − 원문. 양수면 번역본이 더 잘 찾힌다는 뜻)")
 
 
 def matrix_block(all_rows, cfg_names, prefix: str, title: str, note: str,
@@ -658,34 +651,8 @@ def matrix_block(all_rows, cfg_names, prefix: str, title: str, note: str,
     print("-" * width)
 
 
-def lexical_gain(all_rows, cfg_names):
-    """유형1(의미기반) 대비 유형2(리터럴포함) 이득 = 어휘 매칭의 실제 기여."""
-    def pick(cfg, want):
-        for r in all_rows:
-            if (r["config"] == cfg and r["group_kind"] == "q_type"
-                    and r["document"].startswith(f"QTYPE({want}")):
-                return r
-        return None
-
-    present = [c for c in cfg_names if pick(c, 1) and pick(c, 2)]
-    if not present:
-        return
-    width = 12 + 13 * 3
-    print("■ 4. 어휘 매칭의 기여 — 유형1(의미기반) 대 유형2(리터럴포함)")
-    print("  유형2 만 질의에 IP/BTC 주소/파일명/도메인이 들어간다.")
-    print("  sparse 를 쓰는 구성일수록 차이가 커야 정상이다.")
-    print("-" * width)
-    print(f"{'config':<12}{'유형1 nDCG':>13}{'유형2 nDCG':>13}{'차이':>13}")
-    print("-" * width)
-    for c in present:
-        a, b = pick(c, 1), pick(c, 2)
-        print(f"{c:<12}{a['ndcg@10']:>13.3f}{b['ndcg@10']:>13.3f}"
-              f"{b['ndcg@10'] - a['ndcg@10']:>+13.3f}")
-    print("-" * width)
-
-
-def phrasing_gain(all_rows, cfg_names):
-    """직접포함 대비 의역에서 얼마나 떨어지는지 = 어휘 중복에 얼마나 기대는지."""
+def difficulty_block(all_rows, cfg_names):
+    """질의 난이도 = 정답 청크의 표현을 그대로 썼는지 아니면 바꿔 물었는지."""
     def pick(cfg, want):
         for r in all_rows:
             if (r["config"] == cfg and r["group_kind"] == "phrasing"
@@ -698,10 +665,13 @@ def phrasing_gain(all_rows, cfg_names):
     present = [c for c in cfg_names if pick(c, d_lab) and pick(c, p_lab)]
     if not present:
         return
+    n_d = pick(present[0], d_lab)["n_queries"]
+    n_p = pick(present[0], p_lab)["n_queries"]
     width = 12 + 13 * 3
-    print("■ 5. 표현 방식의 영향 — 직접포함 대 의역")
-    print("  직접포함: 정답 청크의 핵심 표현을 질문에 그대로 담은 문항 (유형별 앞 10개)")
-    print("  의역    : 같은 내용을 다른 말로 바꿔 물은 문항 (유형별 뒤 15개)")
+    print("■ 5. 질의 난이도별")
+    print(f"  직접포함: 정답 청크의 핵심 표현을 질문에 그대로 담은 문항 ({n_d}질의)")
+    print(f"  의역    : 같은 내용을 다른 말로 바꿔 물은 문항 ({n_p}질의)")
+    print("  둘은 같은 정답 청크에 1:1 로 짝지어져 있어 표현 차이만 분리된다.")
     print("  낙폭이 작을수록 어휘 중복에 덜 기대고 의미를 잡는다는 뜻이다.")
     print("-" * width)
     print(f"{'config':<12}{'직접 nDCG':>13}{'의역 nDCG':>13}{'낙폭':>13}")
@@ -719,23 +689,21 @@ GAP = "\n" * 3
 def print_comparison(all_rows, cfg_names):
     print(GAP, end="")
     compare_block(all_rows, cfg_names, GROUP_ALL, "■ 1. 구성 비교 — 전체",
-                  "원문·영문 두 문서의 모든 질의를 합산")
+                  "모든 코퍼스의 질의를 합산")
     print(GAP, end="")
-    corpus_compare(all_rows, cfg_names)
+    compare_block(all_rows, cfg_names, GROUP_KO, "■ 2. 구성 비교 — 한국어 문서",
+                  "질문·본문이 모두 한국어 (동일언어 검색)",
+                  empty_note="한국어 코퍼스가 없습니다. qa.json 의 corpora 에 "
+                             "corpus='ko' 를 추가하면 채워집니다.")
     print(GAP, end="")
-    matrix_block(all_rows, cfg_names, "QTYPE(", "■ 3. 질문 유형별 — 어떤 질문이 어려운가",
+    compare_block(all_rows, cfg_names, GROUP_MULTI, "■ 3. 구성 비교 — 다국어 문서 (한국어 제외)",
+                  "질문은 한국어, 본문은 원문(ru)·영문(en) (교차언어 검색)")
+    print(GAP, end="")
+    matrix_block(all_rows, cfg_names, "QTYPE(", "■ 4. 질의 유형별 — 어떤 질문이 어려운가",
                  "1 의미기반 / 2 리터럴포함 / 3 화자지정 / 4 날짜지정",
                  kind="q_type")
     print(GAP, end="")
-    lexical_gain(all_rows, cfg_names)
-    print(GAP, end="")
-    phrasing_gain(all_rows, cfg_names)
-    print(GAP, end="")
-    matrix_block(all_rows, cfg_names, "", "■ 6. 질문유형 x 표현방식",
-                 "유형마다 의역이 얼마나 더 어려워지는가", kind="q_type_phrasing")
-    print(GAP, end="")
-    matrix_block(all_rows, cfg_names, "jabber", "■ 7. 문서 x 질문유형 상세",
-                 "원문·영문이 각 유형에서 어떻게 다른가", kind="document_q_type")
+    difficulty_block(all_rows, cfg_names)
     print("\n※ recall@k 는 hit-rate 입니다. 정답 청크 중 하나라도 상위 k 에 들면 1.0 으로"
           " 세며, 표준 Recall(|상위k ∩ 정답| / |정답|)이 아닙니다.")
 
