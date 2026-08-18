@@ -75,20 +75,14 @@ DETAIL = {
 NDCG = METRICS.index("nDCG@10")
 
 TYPE_EX = [
-    ("1 의미기반", "고유명사를 모두 빼고 범죄 정황만으로 검색",
-     "바이러스와 백도어를 테스트하고 이를 '디지털 무기 작업'에 비유하며 정상 "
-     "동작하는 소프트웨어를 파트너에게 제공하는 업무에 대한 증거를 찾아주세요."),
-    ("2 식별자+의미기반", "IP·비트코인 주소·파일명·회사명이 질문에 들어간다",
-     "IP 68.224.217.72와 CALAHANLAW가 관련된 기록에서 피해 조직의 문서를 탈취한 "
-     "정황에 대한 증거를 찾아주세요."),
-    ("3 화자기반", "대화 참여자 두 명을 지정한다",
-     "azot와 bentley 사이의 대화에서 바이러스와 백도어를 테스트하고 이를 '디지털 "
-     "무기 작업'에 비유하며 정상 동작하는 소프트웨어를 파트너에게 제공하는 업무에 "
-     "대한 증거를 찾아주세요."),
-    ("4 날짜기반", "대화가 오간 날짜를 지정한다",
-     "2020-09-25에 바이러스와 백도어를 테스트하고 이를 '디지털 무기 작업'에 "
-     "비유하며 정상 동작하는 소프트웨어를 파트너에게 제공하는 업무에 대해 논의한 "
-     "증거를 찾아주세요."),
+    ("유형 1 — 의미 기반", "고유명사를 모두 빼고 범죄 정황만으로 검색",
+     "피해 조직의 서버와 컴퓨터 현황을 파악하고 내부 문서를 탈취한 정황에 대한 증거를 찾아주세요.", 25),
+    ("유형 2 — 식별자+의미기반", "파일명·해시·탐지명 등 고유 식별자가 질문에 들어간다",
+     "68.224.217.72와 CALAHANLAW가 등장하는 기록에서 피해 조직의 서버와 컴퓨터 현황을 파악하고 내부 문서를 탈취한 정황에 대한 증거를 찾아주세요.", 25),
+    ("유형 3 — 화자 + 의미 기반", "대화 참여자 두 명을 지정한다",
+      "ahtyng와 alarm 사이의 대화에서 피해 조직의 서버와 컴퓨터 현황을 파악하고 내부 문서를 탈취한 정황에 대한 증거를 찾아주세요.", 25),
+    ("유형 4 — 날짜 + 의미 기반", "대화가 오간 날짜를 지정한다",
+     "2020-09-29에 피해 조직의 서버와 컴퓨터 현황을 파악하고 내부 문서를 탈취한 정황에 대한 증거를 찾아주세요.", 25),
 ]
 
 
@@ -113,9 +107,9 @@ def show(df: pd.DataFrame, numeric: list[str] | None = None):
                  use_container_width=True)
 
 
-tab_result, tab_data, tab_eval, tab_model, tab_prep, tab_qtype = st.tabs(
-    ["1. 결과", "2. 데이터셋", "3. 평가 방식", "4. 모델",
-     "부록 1. 전처리", "부록 2. 질문 유형"])
+tab_result, tab_data, tab_prep, tab_chunking, tab_eval, tab_model, tab_metadata = st.tabs(
+    ["1. 결과", "2. 데이터셋", "3. 전처리", "4. 청킹",
+     "5. 평가 방식", "6. 모델", "7. 메타데이터"])
 
 
 with tab_result:
@@ -155,7 +149,7 @@ with tab_data:
     c = st.columns(3)
     c[0].metric("메시지", "107,967")
     c[1].metric("계정", "295")
-    c[2].metric("대화 상대 쌍", "1,113")
+    c[2].metric("대화 창", "1,113")
 
     st.markdown("### preview")
     frame([
@@ -167,10 +161,7 @@ with tab_data:
          "Nas: - Backup-80 TB"],
         ["42507", "00:22:33", "target → barmen",
          "Mueller Inc Foursquare Healthcare find out that with these offices there "
-         "you have them on contact they have a panic there they are ready to pay"],
-        ["42508", "00:22:38", "target → troy",
-         "Mueller Inc Foursquare Healthcare find out that with these offices there "
-         "you have them on contact they have a panic there they are ready to pay"],
+         "you have them on contact they have a panic there they are ready to pay"]
     ], ["행번호", "시각", "발신 → 수신", "body_en"])
 
 
@@ -202,11 +193,24 @@ with tab_eval:
 
     st.markdown("### 지표")
     frame([
-        ["R@5", "정답 청크가 상위 5위 안에 있으면 1점", "들면 1.00 / 못 들면 0"],
-        ["R@10", "정답 청크가 상위 10위 안에 있으면 1점", "들면 1.00 / 못 들면 0"],
+        ["H@5", "정답 청크 중 하나라도 상위 5위 안에 들면 1점",
+         "들면 1.00 / 못 들면 0"],
+        ["H@10", "정답 청크 중 하나라도 상위 10위 안에 들면 1점",
+         "들면 1.00 / 못 들면 0"],
+        ["R@5", "상위 5위가 덮은 정답 청크 수 / min(정답 수, 5)",
+         "정답 2개 중 1개 = 0.50"],
+        ["R@10", "상위 10위가 덮은 정답 청크 수 / min(정답 수, 10)",
+         "정답 2개 중 2개 = 1.00"],
         ["MRR@10", "첫 적중 순위의 역수", "1위 = 1.00, 4위 = 0.25"],
-        ["nDCG@10", "순위를 로그로 할인. 상위권을 더 크게 평가", "1위 = 1.00, 4위 = 0.43"],
+        ["nDCG@10", "1 / log2(첫 적중 순위 + 1)", "1위 = 1.00, 4위 = 0.43"],
     ], ["지표", "계산 방식", "예시 점수"])
+
+    st.markdown("### 질문 유형")
+
+    st.dataframe(pd.DataFrame(
+        [[name, desc, direct, n] for name, desc, direct, n in TYPE_EX],
+        columns=["질의 유형", "설명", "question", "개수"]
+    ), hide_index=True, use_container_width=True, row_height=60)
 
 
 with tab_model:
@@ -281,13 +285,69 @@ with tab_prep:
                 "이 계정이 막히면 연락이 끊긴다.", language=None)
 
 
-with tab_qtype:
+with tab_chunking:
+    st.markdown("### 청킹")
 
-    st.markdown("### 질문 유형")
+    frame([
+        ["① 대화창 분리", "dyad (발화자-수신자 쌍)", "1,112개"],
+        ["② 시간 gap 분리", "같은 대화창에서 1시간 이상 끊기면 분리", "12,478 세션"],
+        ["512토큰 초과 세션 (약 2,300자)", "세션 토큰 중앙 46, p99 2,095, 최대 15,294",
+         "886개 (7.10%)"],
+        ["③ 512/128토큰 분할", "886개 세션만 발화 경계에서 분할",
+         "대화 15,522 청크"],
+    ], ["단계", "기준", "결과"])
 
-    st.dataframe(pd.DataFrame(
-        [[name, desc, direct, DETAIL["bb-hybrid"][name][NDCG]]
-         for name, desc, direct in TYPE_EX],
-        columns=["질의 유형", "설명", "question", "nDCG@10"]
-    ).style.format({"nDCG@10": "{:.3f}"}),
-        hide_index=True, use_container_width=True)
+    st.markdown("### 512 토큰 근거")
+    frame([
+        ["BGE-M3 개발자 권장",
+         '"a chunk size of 512 is enough. And splitting the entire document '
+         'into multiple chunks often can improve the retrieval performance."',
+         "Hugging Face BAAI/bge-m3 Discussion #59, Shitao (BAAI), 2024-05-28",
+         "huggingface.co/BAAI/bge-m3/discussions/59"],
+        ["모델 카드",
+         "최대 8,192 지원. "
+         '"If you dont need such a long length, you can set a smaller value '
+         'to speed up the encoding process."',
+         "BAAI/bge-m3 모델 카드",
+         "huggingface.co/BAAI/bge-m3"],
+        ["청크 크기 연구",
+         "사실 단답형 정답은 64~128 토큰, 넓은 맥락이 필요하면 512~1,024 토큰이 "
+         "유리. 모델별로 최적 크기가 갈린다",
+         "Rethinking Chunk Size For Long-Document Retrieval (2025)",
+         "arxiv.org/abs/2505.21700"],
+        ["데이터 분포",
+         "세션 토큰 중앙 46. 12,478 세션 중 92.9%가 480 이하라 512에서 "
+         "잘리는 세션은 7.10%뿐",
+         "jabberchat2020process.csv 세션 집계 (bge-m3 토크나이저)",
+         "data/chunking.py"],
+        ["상한 무의미",
+         "8,192를 넘는 세션은 2개(0.02%). 8192/1024로 잡으면 12,480 청크로 "
+         "세션 수(12,478)와 같아져 사실상 분할이 없는 것과 동일",
+         "동일 세션 집계",
+         "data/chunking.py"]
+    ], ["근거", "내용", "출처", "링크"])
+
+
+with tab_metadata:
+    st.markdown("### 메타 데이터")
+
+    st.code("사용자 질문\n"
+            "  -> LLM이 메타데이터, 키워드 추출\n"
+            "  -> 메타데이터, 키워드로 검색 대상 축소\n"
+            "  -> 벡터 검색\n"
+            "  -> 청크 선정\n"
+            "  -> 답변", language=None)
+
+    st.markdown("### 메타데이터 리스트")
+    frame([
+        ["파일명"],
+        ["발화자"],
+        ["수신자"],
+        ["대화창 (발화자-수신자 쌍)"],
+        ["증거 소유자"],
+        ["시작 날짜"],
+        ["종료 날짜"],
+    ], ["메타데이터"])
+
+    st.markdown("### 키워드")
+    st.markdown("해당 키워드가 존재하는 청크들 + 앞뒤 N개로 범위 좁히기")
